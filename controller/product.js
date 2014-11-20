@@ -1,10 +1,11 @@
 var driverApi = require('../driverApi');
+var setting = require('../configuration').setting;
 
 exports.getProductInfo = function(req, res, renderFun){
     var params = {};
     params.uuid = req.params.uuid;
-    params.appKey = req.params.appKey || '6581235709';
-    params.appVer = req.params.appVer || '1.0';
+    params.appKey = setting.globalAPIParams.appKey || '6581235709';
+    params.appVer = setting.globalAPIParams.appVer || '1.0';
     try {
         driverApi.getProductInfo(params, function(data){
             console.log('data: ' + JSON.stringify(data));
@@ -25,8 +26,8 @@ exports.getProductInfo = function(req, res, renderFun){
 exports.getProductInfoData = function(req, res, renderFun){
     var params = {};
     params.uuid = req.query.uuid;
-    params.appKey = req.query.appKey;
-    params.appVer = req.query.appVer;
+    params.appKey = setting.globalAPIParams.appKey || '6581235709';
+    params.appVer = setting.globalAPIParams.appVer || '1.0';
     try {
         driverApi.getProductInfo(params, function(data){
             console.log('data' + JSON.stringify(data));
@@ -40,8 +41,8 @@ exports.getProductInfoData = function(req, res, renderFun){
 exports.getRecommandListData = function(req, res, renderFun){
     var params = {};
     params.uuid = req.query.uuid;
-    params.appKey = req.query.appKey;
-    params.appVer = req.query.appVer;
+    params.appKey = setting.globalAPIParams.appKey || '6581235709';
+    params.appVer = setting.globalAPIParams.appVer || '1.0';
     try {
         driverApi.getRecommandList(params, function(data){
             console.log('data' + JSON.stringify(data));
@@ -57,8 +58,8 @@ exports.getCommentListData = function(req, res, renderFun){
     params.uuid = req.body.uuid;
     params.limit = req.body.limit;
     params.type = req.body.type;
-    params.appKey = req.body.appKey;
-    params.appVer = req.body.appVer;
+    params.appKey = setting.globalAPIParams.appKey || '6581235709';
+    params.appVer = setting.globalAPIParams.appVer || '1.0';
     try {
         driverApi.getCommentList(params, function(data){
             console.log('data' + JSON.stringify(data));
@@ -73,8 +74,8 @@ exports.getDetailData = function(req, res, renderFun){
     var params = {};
     params.uuid = req.query.uuid;
     params.last_modified = req.query.last_modified;
-    params.appKey = req.query.appKey;
-    params.appVer = req.query.appVer;
+    params.appKey = setting.globalAPIParams.appKey || '6581235709';
+    params.appVer = setting.globalAPIParams.appVer || '1.0';
     try {
         driverApi.getDetailData(params, function(data){
             console.log('data' + JSON.stringify(data));
