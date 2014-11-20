@@ -1,0 +1,12 @@
+{
+    "globalAPIParams":{
+        "appKey": "",
+        "token":"",
+        "appVer":""
+    },
+
+    "wxParams":{
+        "appId":"",
+        "appSecret":""
+    }
+}
