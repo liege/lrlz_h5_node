@@ -19,3 +19,19 @@ var getCommentList = exports.getCommentList = function(params, callback){
 var getDetailData = exports.getDetailData = function(params, callback){
     Driver.queryDataByGet('http://meizhuangyouxuan.com/app/inter/getDetial.ss', params, callback);
 };
+//筛选器接口
+var getFilter = exports.getFilter = function(params, callback){
+    Driver.queryByPost('http://meizhuangyouxuan.com/app/inter/getFilter.ss', params, callback);
+};
+//美妆街-美妆旗舰店展示
+var getBrandList = exports.getBrandList = function(params, callback){
+    Driver.queryByPost('http://meizhuangyouxuan.com/app/inter/getBrandList.ss', params, callback);
+};
+//我的收藏-保存收藏
+var addFavor = exports.addFavor = function(params, callback){
+    Driver.queryByPost('http://meizhuangyouxuan.com/app/inter/addFavor.ss', params, callback);
+};
+//我的收藏-查询我收藏的商品
+var getFavorList = exports.getFavorList = function(params, callback){
+    Driver.queryByPost('http://meizhuangyouxuan.com/app/inter/getFavorList.ss', params, callback);
+};

@@ -22,15 +22,15 @@ exports.queryDataByGet = function(url,data,fn){
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             returnGetData = returnGetData + chunk;
-            console.log('chunk: ' + chunk);
+            // console.log('chunk: ' + chunk);
         }).on('end', function (){
             fn!=undefined && fn(JSON.parse(returnGetData));
-            console.log('returnGetData: ' + returnGetData);
+            // console.log('returnGetData: ' + returnGetData);
         });
     });
 
     req.on('error', function (e) {
-        console.log('problem with request: ' + e.message);
+        // console.log('problem with request: ' + e.message);
     });
 
     req.end();
@@ -54,8 +54,8 @@ exports.queryDataByPost = function(url,data,fn){
     };
 
     var req = http.request(options, function (res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        // console.log('STATUS: ' + res.statusCode);
+        // console.log('HEADERS: ' + JSON.stringify(res.headers));
         var returnPostData = "";
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
@@ -63,12 +63,12 @@ exports.queryDataByPost = function(url,data,fn){
             console.log('chunk: ' + chunk);
         }).on('end', function (){
             fn!=undefined && fn(JSON.parse(returnPostData));
-            console.log('returnPostData: ' + returnPostData);
+            // console.log('returnPostData: ' + returnPostData);
         });
     });
 
     req.on('error', function (e) {
-        console.log('problem with request: ' + e.message);
+        // console.log('problem with request: ' + e.message);
     });
 
 // write data to request body
