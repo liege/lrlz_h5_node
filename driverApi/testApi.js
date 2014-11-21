@@ -1,6 +1,10 @@
 var DriverApi = require('./index.js');
+var setting = require('../configuration').setting;
+var globalAPIParams = setting['globalAPIParams'];
 
-DriverApi.getProductInfo({uuid: 'IJ45014z98'},function(returnData){
+console.log(globalAPIParams['appKey']);
+
+DriverApi.getProductInfo({uuid: 'IJ45014z98',appKey:globalAPIParams['appKey'],appVer:globalAPIParams['appVer']},function(returnData){
     console.log('getProductInfo: ' + JSON.stringify(returnData));
 });
 

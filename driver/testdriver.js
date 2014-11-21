@@ -1,4 +1,5 @@
 var Driver = require('./index.js');
+var setting = require('../configuration').setting;
 
 Driver.queryDataByGet('http://112.64.126.126:49521/TAEServer/app/inter/getProductInfo.ss', {uuid: 'IJ45014z98'},function(returnData){
     console.log('returnGetData: ' + JSON.stringify(returnData));
