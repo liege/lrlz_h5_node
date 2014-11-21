@@ -78,7 +78,7 @@ exports.queryDataByPost = function(url,data,fn){
 
 };
 
-exports.post = function(url,data,fn){
+exports.queryByPost = function(url,data,fn){
     data=data||{};
     var content=qs.stringify(data);
     var parse_u=urlModule.parse(url,true);
