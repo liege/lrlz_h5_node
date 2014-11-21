@@ -66,6 +66,6 @@ DriverApi.getKeywordList({appKey:globalAppKey, appVer:globalAppVer,update_time:'
     // console.log('getKeywordList: ' + JSON.stringify(returnData));
 });
 //用户预注册接口【隐私】【HTTPS】
-DriverApi.preReg({appKey:globalAppKey, appVer:globalAppVer,token:globalToken,phone:'13699421383'},function(returnData){
+DriverApi.preReg({appKey:globalAppKey, appVer:globalAppVer,phone:'13699421383'},function(returnData){
     console.log('preReg: ' + JSON.stringify(returnData));
 });
