@@ -16,15 +16,15 @@ exports.queryDataByGet = function(url,data,fn){
     };
 
     var req = http.request(options, function (res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
+//        console.log('STATUS: ' + res.statusCode);
+//        console.log('HEADERS: ' + JSON.stringify(res.headers));
         var returnGetData = "";
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             returnGetData = returnGetData + chunk;
             // console.log('chunk: ' + chunk);
         }).on('end', function (){
-            fn!=undefined && fn(JSON.parse(returnGetData));
+            returnGetData ? fn!=undefined && fn(JSON.parse(returnGetData)) : fn!=undefined && fn('');
             // console.log('returnGetData: ' + returnGetData);
         });
     });
@@ -60,9 +60,9 @@ exports.queryDataByPost = function(url,data,fn){
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             returnPostData = returnPostData + chunk;
-            console.log('chunk: ' + chunk);
+//            console.log('chunk: ' + chunk);
         }).on('end', function (){
-            fn!=undefined && fn(JSON.parse(returnPostData));
+            returnPostData ? fn!=undefined && fn(JSON.parse(returnPostData)) : fn!=undefined && fn('');
             // console.log('returnPostData: ' + returnPostData);
         });
     });
@@ -103,7 +103,7 @@ exports.queryByPost = function(url,data,fn){
         });
 
         res.on('end', function(){
-            fn!=undefined && fn(JSON.parse(_data));
+            _data ? fn!=undefined && fn(JSON.parse(_data)) : fn!=undefined && fn('');
         });
     });
 
