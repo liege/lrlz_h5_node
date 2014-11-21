@@ -16,8 +16,8 @@ exports.queryDataByGet = function(url,data,fn){
     };
 
     var req = http.request(options, function (res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        // console.log('STATUS: ' + res.statusCode);
+        // console.log('HEADERS: ' + JSON.stringify(res.headers));
         var returnGetData = "";
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
@@ -60,7 +60,7 @@ exports.queryDataByPost = function(url,data,fn){
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             returnPostData = returnPostData + chunk;
-            console.log('chunk: ' + chunk);
+            // console.log('chunk: ' + chunk);
         }).on('end', function (){
             fn!=undefined && fn(JSON.parse(returnPostData));
             // console.log('returnPostData: ' + returnPostData);
