@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="target-densitydpi=high-dpi,width=device-width, user-scalable=no, initial-scale=0.66667, maximum-scale=0.6, minimum-scale=0.7" name="viewport">
+    <!--<meta name="viewport" content="target-densitydpi=high-dpi,width=480px,initial-scale=.66667,minimum-scale=0.6,maximum-scale=0.7,user-scalable=0"/>-->
+    <meta content="telephone=no" name="format-detection">
+    <title>确认订单</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/orderConfirm.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/js/zepto.touch.js"></script>
+    <script type="text/javascript" src="/js/orderConfirm.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="addAddress" class="addAddress">
+        <span class="addBtn"></span>
+        <span>添加收货地址</span>
+    </div>
+    <div id="editAddress" class="editAddress displayNone">
+        <div class="name boxFlexWrapper">
+            <span>收货人</span>
+            <input type="text" id="buyerName" value="" placeholder="填写姓名"/>
+        </div>
+        <p id="nameErrMsg" class="errMsg displayNone">姓名不能为空</p>
+        <div class="phoneNumber boxFlexWrapper">
+            <span>手机号</span>
+            <input type="number" id="buyerPhone" value="" maxlength="11" placeholder="填写11位手机号码"/>
+        </div>
+        <p id="phoneErrMsg" class="errMsg displayNone">请填写正确的11位手机号码</p>
+        <div class="address boxFlexWrapper">
+            <span>详细地址</span>
+            <input type="text" id="buyerAddress" value="" placeholder="街道门牌信息"/>
+        </div>
+        <p id="addressErrMsg" class="errMsg displayNone">地址不能为空</p>
+        <div id="completeBtn" class="completeBtn">完成</div>
+    </div>
+    <div id="completeAddress" class="completeAddress displayNone">
+        <div class="name boxFlexWrapper">
+            <span>收货人</span>
+            <input type="text" id="completeName" readonly/>
+        </div>
+        <div class="phoneNumber boxFlexWrapper">
+            <span>手机号</span>
+            <input type="text" id="completePhone" readonly/>
+        </div>
+        <div class="address boxFlexWrapper">
+            <span>详细地址</span>
+            <input type="text" id="completeAddr" readonly/>
+        </div>
+        <div id="editBtn" class="editBtn">编辑</div>
+    </div>
+    <div class="goodsInfo">
+        <div class="topInfo">
+            <span class="goodsLogo">Jurlique</span>
+            <span class="goodsName">茱莉蔻</span>
+        </div>
+        <div class="centerInfo">
+            <img class="goodsImg" src="images/2.jpg"/>
+            <div class="introduceItem">
+                <span id="introduce" class="introduce"></span>
+                <span class="category">分类：洁面乳+乳液+面霜+水 30ml</span>
+            </div>
+            <div class="priceItem">
+                <span class="price">¥260.00</span>
+                <span class="originalPrice">¥360.00</span>
+            </div>
+        </div>
+        <div class="bottomInfo">
+            <div class="courierItem boxFlexWrapper">
+                <span>快递费：</span>
+                <span class="courier">0元</span>
+            </div>
+            <div class="integralItem boxFlexWrapper">
+                <span>积分：</span>
+                <span class="integral">260积分</span>
+            </div>
+            <div class="countItem boxFlexWrapper">
+                <span>数量：</span>
+                <span><span class="countBtn"></span><span class="count">1</span></span>
+            </div>
+            <div class="paymentItem boxFlexWrapper">
+                <span>实付款（含运费）：</span>
+                <span class="payment">¥260.00</span>
+            </div>
+        </div>
+    </div>
+    <div class="payConfirm">
+        <div class="totalPrice">
+            <span>不含运费</span>
+            <span class="payMoney">合计：¥<span>260.00</span></span>
+        </div>
+        <span id="payBtn" class="payBtn">确认付款</span>
+    </div>
+</div>
+</body>
+</html>

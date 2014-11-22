@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="target-densitydpi=high-dpi,width=device-width, user-scalable=no, initial-scale=0.66667, maximum-scale=0.6, minimum-scale=0.7" name="viewport">
+    <!--<meta name="viewport" content="target-densitydpi=high-dpi,width=480px,initial-scale=.66667,minimum-scale=0.6,maximum-scale=0.7,user-scalable=0"/>-->
+    <meta content="telephone=no" name="format-detection">
+    <title>美妆优选</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/product.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/js/zepto.touch.js"></script>
+    <script type="text/javascript" src="/js/TouchSlide.1.1.js"></script>
+    <script type="text/javascript" src="/js/product.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="mask" class="mask displayNone"></div>
+    <div id="chooseCategory" class="chooseCategory displayNone">
+        <div class="categoryInfo">
+            <img class="categoryImg" />
+            <div class="infoRight">
+                <p class="price">¥<span id="priceRange">38.00-78.00</span></p>
+                <p>请选择 商品分类</p>
+            </div>
+        </div>
+        <div class="category">
+            <p>商品分类</p>
+            <div id="categoryList" class="categoryList"></div>
+        </div>
+        <div class="goodsCount">
+            <span class="chooseLab">购买数量</span>
+            <div class="addSubtract">
+                <div id="minus" class="minus"></div>
+                <span id="chooseCount" class="chooseCount">1</span>
+                <div id="plus" class="plus"></div>
+            </div>
+        </div>
+        <div id="closeBtn" class="closeBtn"></div>
+    </div>
+    <div class="content">
+        <div id="imgWindow" class="imgWindow">
+            <div id="focus" class="focus index-banner"><!-- 轮播图展示 -->
+                <div class="bd">
+                    <ul>
+                        <!--<li><a href=""><img _src="images/1.jpg" src="images/1.jpg" /></a></li>-->
+                    </ul>
+                </div>
+
+                <div class="hd">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div class="goodsInfo">
+            <div class="introduceArea">
+                <p id="introduce" class="introduce"></p>
+                <img class="dashImg" src="/images/product_dashed.png"/>
+            </div>
+            <div class="integralBuy">
+                <div class="buyPrice">
+                    <span class="discountPrice">折后价¥ <span id="discountPrice" >78.00</span></span>
+                    <span class="originalPrice">原价¥ <span id="originalPrice">138.00</span></span>
+                    <span class="integral">+ <span id="integral">78</span>积分</span>
+                </div>
+                <div class="buyInfo">
+                    <span class="courierFee">快递费<span id="courierFee">10.00</span>元</span>
+                    <span class="monthSale">月销<span id="monthSale">3139</span>件</span>
+                    <span class="commitment"></span>
+                </div>
+            </div>
+        </div>
+        <div id="chooseCategoryArea" class="chooseCategoryArea">
+            <span class="categoryLabel">选择分类</span>
+            <span id="categoryBtn" class="categoryBtn"></span>
+        </div>
+        <div class="buyBtn">
+            <span id="buyNow" class="buyNow">立即购买</span>
+            <span id="download" class="download">下载app</span>
+        </div>
+        <div class="evaluationArea">
+            <div class="evaluationLabel">
+                <span class="evaluationIcon"></span>
+                <span>评价信息</span>
+            </div>
+            <div class="evaluationContent">
+                <div id="evaluation" class="focus index-banner"><!-- 轮播图展示 -->
+                    <div class="bd">
+                        <ul>
+                            <li>
+                                <div class="userInfo">
+                                    <span class="userPhone">152****9471</span>
+                                    <span class="time">2014-9-25 14:32</span>
+                                </div>
+                                <p>一如既往的好。。。</p>
+                            </li>
+                            <li>
+                                <div class="userInfo">
+                                    <span class="userPhone">152****9471</span>
+                                    <span class="time">2014-9-25 14:32</span>
+                                </div>
+                                <p>不错不错。。。</p>
+                            </li>
+                            <li>
+                                <div class="userInfo">
+                                    <span class="userPhone">152****9471</span>
+                                    <span class="time">2014-9-25 14:32</span>
+                                </div>
+                                <p>很好好。。。</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hd">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detailArea">
+            <div class="detailLabel">
+                <span class="detailIcon"></span>
+                <span>商品详情</span>
+            </div>
+            <div class="detailContent">
+                <img src="/images/1.jpg"/>
+                <img src="/images/1.jpg"/>
+                <img src="/images/1.jpg"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+</script>
+</html>

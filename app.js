@@ -13,9 +13,9 @@ var app = express();
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'webViews'));
-//app.set('view engine', 'ejs');
-app.engine('.html', require('ejs').__express);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+//app.engine('.html', require('ejs').__express);
+//app.set('view engine', 'html');
 app.set("view options",{"layout":false});
 
 

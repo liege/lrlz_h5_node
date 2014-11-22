@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>美妆优选</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <script type="text/javascript">
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1c3100b0643ee97&redirect_uri=http://m.meizhuangyouxuan.com/mzyx/oauth&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+    </script>
+</head>
+<body>
+    <h2>您好，欢迎来到美妆优选，微信商城正在升级，敬请期待！</h2>
+
+    <h3>微信用户信息</h3>
+    <ul>
+        <li><%= userInfo.nickname%></li>
+        <li><img style="width: 200px; height: 200px" src=<%= userInfo.headimgurl%>/></li>
+    </ul>
+</body>
+</html>

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var productController = require('../controller/product')
+var productController = require('../controller/product');
+var oauthController = require('../controller/oauth');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -10,6 +11,11 @@ router.get('/', function(req, res) {
 /* GET users listing. */
 router.get('/users', function(req, res) {
     res.send('respond with a resource');
+});
+
+/* oauth weixin user */
+router.get('/oauth', function(req, res) {
+    oauthController.oauth(req, res, renderView);
 });
 
 /* GET product info page. */
