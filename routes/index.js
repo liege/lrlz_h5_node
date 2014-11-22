@@ -5,7 +5,12 @@ var oauthController = require('../controller/oauth');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('index', { title: 'Express' });
+    res.render('oauth', { title: '美妆优选' });
+});
+
+/* GET home page. */
+router.get('/index', function(req, res) {
+    res.render('index', { title: '美妆优选' });
 });
 
 /* GET users listing. */
