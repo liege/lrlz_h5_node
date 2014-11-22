@@ -6,7 +6,7 @@ exports.oauth = function(req, res, renderFun){
     var token_params = {};
     token_params.code = req.query.code;
     token_params.appid = setting.wxParams.appId;
-    token_params.appSecret = setting.wxParams.appSecret;
+    token_params.secret = setting.wxParams.appSecret;
     token_params.grant_type = 'authorization_code';
     try{
         Driver.queryByPost('https://api.weixin.qq.com/sns/oauth2/access_token', token_params, function(data){
