@@ -19,7 +19,7 @@ exports.oauth = function(req, res, renderFun){
                     userInfo = data;
                     renderFun(req,res, {
                         title: '用户信息',
-                        product: userInfo
+                        userInfo: userInfo
                     },'index');
                 }
             });
