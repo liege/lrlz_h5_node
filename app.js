@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -25,6 +26,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mzyx' ,cookie: { maxAge: 20000}}));  //session 时长为20秒,这个是以毫秒为单位,这样我们就建立一个session的会话，这是一个全局的设置
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'webPublic')));
 
