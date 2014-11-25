@@ -12,6 +12,7 @@ exports.oauth = function(req, res, renderFun){
         Driver.queryByPost('https://api.weixin.qq.com/sns/oauth2/access_token', token_params, function(tokenData){
             var user_params = {};
             user_params.access_token = tokenData.access_token;
+            console.log('access_token: ' + tokenData.access_token);
             user_params.openid = tokenData.openid;
             Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
                 var userInfo = {};
