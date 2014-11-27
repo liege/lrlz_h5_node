@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var partials = require('express-partials');
 
 var routes = require('./routes/index');
 
@@ -29,8 +30,9 @@ app.use(cookieParser());
 app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mzyx' ,cookie: { maxAge: 20000}}));  //session 时长为20秒,这个是以毫秒为单位,这样我们就建立一个session的会话，这是一个全局的设置
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'webPublic')));
+app.use(partials());
 
-app.use('/mzyx', routes);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
