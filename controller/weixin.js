@@ -43,7 +43,7 @@ exports.wxPay = function(req, res, renderFun){
     unifiedOrderParams.appid = setting.wxParams.appId;
     unifiedOrderParams.body = '贡献一分钱';
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
-    unifiedOrderParams.nonce_str = '123456wertyhhhhrfgt567hujm';
+    unifiedOrderParams.nonce_str = 'yhrfgt567hujm'+ new Date().getTime();
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
     unifiedOrderParams.openid = req.session.openid;
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
@@ -53,11 +53,14 @@ exports.wxPay = function(req, res, renderFun){
     unifiedOrderParams.trade_type = 'JSAPI';
     unifiedOrderParams.sign = utils.getSign(unifiedOrderParams);
 
+    var unifiedOrderXmlParams = utils.jsonToXml(unifiedOrderParams);
+
     try{
-        Driver.queryByPost(unifiedOrderUrl, unifiedOrderParams, function(unifiedOrderData){
+        Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
             if(unifiedOrderData.return_code == 'SUCCESS' && unifiedOrderData.result_code == 'SUCCESS'){
                 var payParams = {};
                 payParams.prepay_id = unifiedOrderData.prepay_id;
+                console.log('prepay_id: ' + unifiedOrderData.prepay_id);
                 renderFun(req,res, {payParams: payParams});
             }
         });

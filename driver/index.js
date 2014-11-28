@@ -1,7 +1,7 @@
 var http = require('http');
 var qs = require('querystring');
 var urlModule = require('url');
-
+var xml2js = require('xml2js');
 
 exports.queryDataByGet = function(url,data,fn){
     data=data||{};
@@ -103,6 +103,47 @@ exports.queryByPost = function(url,data,fn){
 
         res.on('end', function(){
             _data ? fn!=undefined && fn(JSON.parse(_data)) : fn!=undefined && fn('');
+        });
+    });
+
+    req.write(content);
+
+    req.end();
+};
+
+exports.queryByPostXml = function(url,xmlData,fn){
+    xmlData=xmlData||'<xml></xml>';
+    var content= xmlData;
+    var parse_u=urlModule.parse(url,true);
+    var isHttp=parse_u.protocol=='http:';
+
+    var options={
+        host:parse_u.hostname,
+        port:parse_u.port||(isHttp?80:443),
+        path:parse_u.path,
+        method:'POST',
+        headers:{
+            'Connection':'Keep-Alive',
+            'Content-Type':'application/xml; charset=UTF-8',
+            'Content-Length':content.length
+        }
+    };
+
+    var req = require(isHttp?'http':'https').request(options,function(res){
+        var _data='';
+        res.on('data', function(chunk){
+            _data += chunk;
+        });
+
+        res.on('end', function(){
+            var parseString = xml2js.parseString;
+            parseString(_data, function(err, json) {
+                if (err) {
+                    err.status = 400;
+                } else {
+                    _data ? fn!=undefined && fn(_data) : fn!=undefined && fn('');
+                }
+            });
         });
     });
 
