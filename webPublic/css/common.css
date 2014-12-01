@@ -28,3 +28,24 @@ body{background: #f3f2f2;}
 	left: 0;
 	width: 100%;
 }
+/*内容区域*/
+.container{
+	width: 100%;
+	overflow: hidden;
+	padding-bottom: 40px;
+}
+/*品牌街列表*/
+.brand_list li{
+	border:1px solid #d0cfcf;
+	margin: 10px 5px;
+	box-sizing:border-box;
+}
+.brand_list li:first-child{
+	margin-top: 5px;
+}
+.brand_list li:last-child{
+	margin-bottom: 5px;
+}
+.brand_list img{
+	width: 100%;
+}

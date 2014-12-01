@@ -1,0 +1,5 @@
+<ul class="brand_list">
+<% data.data.forEach(function(user){ %>
+    <li><a href=/listProducts?brand_uuid=<%= user.brand_uuid %>><img src=<%= user.banner_url_ios %>></a></li>
+<% }) %>
+</ul>
