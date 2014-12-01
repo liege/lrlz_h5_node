@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var productController = require('../controller/product');
-var oauthController = require('../controller/oauth');
+var weixinController = require('../controller/weixin');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -24,8 +24,18 @@ router.get('/users', function(req, res) {
 });
 
 /* oauth weixin user */
-router.get('/oauth', function(req, res) {
-    oauthController.oauth(req, res, renderView);
+router.get('weixin/oauth', function(req, res) {
+    weixinController.oauth(req, res, renderView);
+});
+
+/* weixin pay */
+router.get('/weixin/pay', function(req, res) {
+    weixinController.wxPay(req, res, renderView);
+});
+
+/* weixin pay */
+router.get('/weixin/notify', function(req, res) {
+    weixinController.notify(req, res, renderJson);
 });
 
 /* GET product info page. */
