@@ -13,7 +13,7 @@ exports.getClientIp = function(req) {
 var getSign = exports.getSign = function(package){
     var stringPackage = qs.stringify(package);
     var stringSignTemp = stringPackage + '&key='+ setting.wxParams.partnerKey;
-    var sign = md5.update(stringSignTemp).digest('hex').toUpperCase();
+    var sign = md5.update(stringSignTemp, 'utf8').digest('hex').toUpperCase();
     console.log('sign : ' + sign);
     return sign;
 };

@@ -49,7 +49,7 @@ exports.wxPay = function(req, res, renderFun){
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
-    unifiedOrderParams.total_fee = '0.1';
+    unifiedOrderParams.total_fee = 1;
     unifiedOrderParams.trade_type = 'JSAPI';
     unifiedOrderParams.sign = utils.getSign(unifiedOrderParams);
 
@@ -66,6 +66,7 @@ exports.wxPay = function(req, res, renderFun){
                 jsApiParameters.package = 'prepay_id=' + unifiedOrderData.prepay_id;
                 console.log('prepay_id: ' + unifiedOrderData.prepay_id);
                 jsApiParameters.paySign = utils.getSign(jsApiParameters);
+                console.log('jsApiParameters: ' + JSON.stringify(jsApiParameters));
                 renderFun(req,res, {
                     title:'确认订单',
                     jsApiParameters: jsApiParameters
