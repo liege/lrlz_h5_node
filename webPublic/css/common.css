@@ -1,0 +1,30 @@
+body{background: #f3f2f2;}
+/*页头----个人中心、搜索、AD-BANNER*/
+.header{
+	background:-webkit-gradient(linear,left top,right bottom,from(#e86a48),to(#c5198a));
+	background:-webkit-linear-gradient(0deg, #e86a48, #c5198a);
+	height:43px;
+}
+/*首页导航*/
+.layout_menu{display:-webkit-box;}
+.layout_menu li{
+	background: #fff;
+	-webkit-box-flex:1;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.2rem;
+}
+.layout_menu .current{
+	background: #ea4e57;
+	border-radius: 10px;
+	padding: 8px;
+	color: #fff;
+}
+/*页尾*/
+.footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}

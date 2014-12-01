@@ -2,6 +2,7 @@
 html{
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    font-size: 62.5%;/*10 ÷ 16 × 100% = 62.5%*/
 }
 
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
@@ -88,4 +89,9 @@ select { border : 0; background : none; -webkit-appearance: none;}
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
     display: none;
+}
+
+a{
+    text-decoration: none;
+    color: #a3a8ac;
 }

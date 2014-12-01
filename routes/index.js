@@ -8,6 +8,11 @@ router.get('/', function(req, res) {
     res.render('oauth', { title: '美妆优选' });
 });
 
+/* 微信共享地址. */
+router.get('/addr', function(req, res) {
+    res.render('addr', { ts:req.session.userInfo.access_token });
+});
+
 /* GET home page. */
 router.get('/index', function(req, res) {
     res.render('index', { title: '美妆优选' });
