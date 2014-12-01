@@ -25,7 +25,7 @@ router.get('weixin/oauth', function(req, res) {
 
 /* weixin pay */
 router.get('/weixin/pay', function(req, res) {
-    weixinController.wxPay(req, res, renderJson);
+    weixinController.wxPay(req, res, renderView);
 });
 
 /* weixin pay */

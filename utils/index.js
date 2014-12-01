@@ -34,6 +34,22 @@ var jsonToXml = exports.jsonToXml = function(jsonData){
     return xml;
 };
 
+var createNoncestr = exports.createNoncestr = function(length){
+    var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    var str ="";
+    for ( var i = 0; i < length; i++ )  {
+        str = str + chars.substr(randomNumber(chars.length), 1);
+    }
+    console.log('str : ' + str);
+    return str;
+};
+
+function randomNumber(number){
+    var r_number = Math.round(Math.random()*number);
+    return r_number;
+}
+
 //var package = {test:'test', user:'123'};
 //getSign(package);
 //jsonToXml(package);
+//createNoncestr(32);

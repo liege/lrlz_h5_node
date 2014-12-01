@@ -28,7 +28,7 @@ exports.oauth = function(req, res, renderFun){
                     renderFun(req,res, {
                         title: '用户信息',
                         userInfo: userInfo
-                    },'index');
+                    }, 'index');
                 }
             });
         });
@@ -43,9 +43,9 @@ exports.wxPay = function(req, res, renderFun){
     unifiedOrderParams.appid = setting.wxParams.appId;
     unifiedOrderParams.body = '贡献一分钱';
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
-    unifiedOrderParams.nonce_str = 'yhrfgt567hujm'+ new Date().getTime();
+    unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = req.session.openid;
+    unifiedOrderParams.openid = req.session.openid || '';
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
@@ -58,10 +58,18 @@ exports.wxPay = function(req, res, renderFun){
     try{
         Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
             if(unifiedOrderData.return_code == 'SUCCESS' && unifiedOrderData.result_code == 'SUCCESS'){
-                var payParams = {};
-                payParams.prepay_id = unifiedOrderData.prepay_id;
+                var jsApiParameters = {};
+                jsApiParameters.appId = setting.wxParams.appId;
+                jsApiParameters.timeStamp = new Date().getTime().toString();
+                jsApiParameters.nonceStr = utils.createNoncestr(32);
+                jsApiParameters.signType = 'MD5';
+                jsApiParameters.package = 'prepay_id=' + unifiedOrderData.prepay_id;
                 console.log('prepay_id: ' + unifiedOrderData.prepay_id);
-                renderFun(req,res, {payParams: payParams});
+                jsApiParameters.paySign = utils.getSign(jsApiParameters);
+                renderFun(req,res, {
+                    title:'确认订单',
+                    jsApiParameters: jsApiParameters
+                }, 'order_confirm');
             }
         });
     }catch(err){
