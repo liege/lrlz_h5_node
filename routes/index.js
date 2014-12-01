@@ -24,7 +24,7 @@ router.get('/users', function(req, res) {
 });
 
 /* oauth weixin user */
-router.get('weixin/oauth', function(req, res) {
+router.get('/weixin/oauth', function(req, res) {
     weixinController.oauth(req, res, renderView);
 });
 
