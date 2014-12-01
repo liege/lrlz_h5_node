@@ -3,6 +3,13 @@ var router = express.Router();
 var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
 
+var DriverApi = require('../driverApi/index.js');
+var setting = require('../configuration').setting;
+var globalAPIParams = setting['globalAPIParams'];
+var globalAppKey = globalAPIParams['appKey'];
+var globalAppVer = globalAPIParams['appVer'];
+var globalToken = globalAPIParams['token'];
+
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('oauth', { title: '美妆优选' });
@@ -14,8 +21,11 @@ router.get('/addr', function(req, res) {
 });
 
 /* GET home page. */
-router.get('/index', function(req, res) {
-    res.render('index', { title: '美妆优选' });
+router.get('/home', function(req, res) {
+    // DriverApi.getBrandList({ appKey:globalAppKey, appVer:globalAppVer,update_time:'20140801',user_label:'userXXXX'},function(returnData){
+        // console.log('getBrandList: ' + JSON.stringify(returnData));
+        res.render('home', { title: '美妆优选'});
+    // });    
 });
 
 /* GET users listing. */
