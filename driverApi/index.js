@@ -1,5 +1,10 @@
 var Driver = require('../driver/index.js');
 
+//商品列表查询接口					
+var getProductInfo = exports.getListProducts = function(params, callback){
+    Driver.queryDataByGet('http://meizhuangyouxuan.com/app/inter/listProducts.ss', params, callback);
+};
+
 //单个商品信息查询接口
 var getProductInfo = exports.getProductInfo = function(params, callback){
     Driver.queryDataByGet('http://meizhuangyouxuan.com/app/inter/getProductInfo.ss', params, callback);
