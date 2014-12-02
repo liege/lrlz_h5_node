@@ -5,10 +5,15 @@ var globalAppKey = globalAPIParams['appKey'];
 var globalAppVer = globalAPIParams['appVer'];
 var globalToken = globalAPIParams['token'];
 
-//单个商品信息查询接口
-DriverApi.getProductInfo({uuid: 'IJ45014z98',appKey:globalAppKey,appVer:globalAppVer},function(returnData){
-    // console.log('getProductInfo: ' + JSON.stringify(returnData));
+//商品列表接口
+DriverApi.getListProducts({brand_uuid: '16B3435E78',appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+    console.log('getListProducts'+JSON.stringify(returnData));
 });
+//BUG待处理
+//单个商品信息查询接口
+// DriverApi.getProductInfo({uuid: 'IJ45014z98',appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+    // console.log('getProductInfo: ' + JSON.stringify(returnData));
+// });
 //商品详细-推荐商品接口
 DriverApi.getRecommandList({uuid: 'IJ45014z98', appKey:globalAppKey, appVer:globalAppVer},function(returnData){
     // console.log('getRecommandList: ' + JSON.stringify(returnData));
@@ -67,5 +72,5 @@ DriverApi.getKeywordList({appKey:globalAppKey, appVer:globalAppVer,update_time:'
 });
 //用户预注册接口【隐私】【HTTPS】
 DriverApi.preReg({appKey:globalAppKey, appVer:globalAppVer,phone:'13699421383'},function(returnData){
-    console.log('preReg: ' + JSON.stringify(returnData));
+    // console.log('preReg: ' + JSON.stringify(returnData));
 });

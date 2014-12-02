@@ -2,7 +2,7 @@ var Driver = require('../driver/index.js');
 var host_port = require('../configuration').setting.globalAPIParams.host_port;
 
 //商品列表查询接口					
-var getProductInfo = exports.getListProducts = function(params, callback){
+var getListProducts = exports.getListProducts = function(params, callback){
     Driver.queryDataByGet(host_port+'/app/inter/listProducts.ss', params, callback);
 };
 
