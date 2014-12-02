@@ -141,7 +141,7 @@ exports.queryByPostXml = function(url,xmlData,fn){
                 if (err) {
                     err.status = 400;
                 } else {
-                    _data ? fn!=undefined && fn(_data) : fn!=undefined && fn('');
+                    json ? fn!=undefined && fn(json) : fn!=undefined && fn('');
                 }
             });
         });
