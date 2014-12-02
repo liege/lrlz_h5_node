@@ -41,7 +41,7 @@ exports.wxPay = function(req, res, renderFun){
     var unifiedOrderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     var unifiedOrderParams = {};
     unifiedOrderParams.appid = setting.wxParams.appId;
-    unifiedOrderParams.body = '贡献一分钱';
+    unifiedOrderParams.body = 'test';
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
@@ -58,14 +58,14 @@ exports.wxPay = function(req, res, renderFun){
     try{
         Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
             console.log('unifiedOrderData : ' + JSON.stringify(unifiedOrderData));
-            if(unifiedOrderData.return_code == 'SUCCESS' && unifiedOrderData.result_code == 'SUCCESS'){
+            if(unifiedOrderData.xml.return_code[0] == 'SUCCESS' && unifiedOrderData.xml.result_code[0] == 'SUCCESS'){
                 var jsApiParameters = {};
                 jsApiParameters.appId = setting.wxParams.appId;
-                jsApiParameters.timeStamp = new Date().getTime().toString();
                 jsApiParameters.nonceStr = utils.createNoncestr(32);
+                jsApiParameters.package = 'prepay_id=' + unifiedOrderData.xml.prepay_id[0];
+                console.log('prepay_id: ' + unifiedOrderData.xml.prepay_id[0]);
                 jsApiParameters.signType = 'MD5';
-                jsApiParameters.package = 'prepay_id=' + unifiedOrderData.prepay_id;
-                console.log('prepay_id: ' + unifiedOrderData.prepay_id);
+                jsApiParameters.timeStamp = parseInt(new Date().getTime()/1000).toString();
                 jsApiParameters.paySign = utils.getSign(jsApiParameters);
                 console.log('jsApiParameters: ' + JSON.stringify(jsApiParameters));
                 renderFun(req,res, {

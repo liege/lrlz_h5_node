@@ -1,7 +1,6 @@
 var setting = require('../configuration').setting;
 var qs = require('querystring');
 var crypto = require('crypto');
-var md5 = crypto.createHash('md5');
 
 exports.getClientIp = function(req) {
     return req.headers['x-forwarded-for'] ||
@@ -24,7 +23,7 @@ var getSign = exports.getSign = function(package){
         }
     }
     var stringSignTemp = stringPackage + '&key='+ setting.wxParams.partnerKey;
-    var sign = md5.update(stringSignTemp, 'utf8').digest('hex').toUpperCase();
+    var sign = crypto.createHash('md5').update(stringSignTemp,'utf8').digest('hex').toUpperCase();
     console.log('sign : ' + sign);
     return sign;
 };
@@ -60,7 +59,13 @@ function randomNumber(number){
     return r_number;
 }
 
-//var package = {test:'test', user:'123'};
+//var package = {
+//    "appId": "wx8888888888888888",
+//    "timeStamp": "1414411784",
+//    "nonceStr": "gbwr71b5no6q6ne18c8up1u7l7he2y75",
+//    "package": "prepay_id=wx201410272009395522657a690389285100",
+//    "signType": "MD5"
+//};
 //getSign(package);
 //jsonToXml(package);
 //createNoncestr(32);
