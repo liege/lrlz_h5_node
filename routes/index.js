@@ -13,9 +13,14 @@ router.get('/addr', function(req, res) {
     res.render('addr', { ts:req.session.userInfo.access_token });
 });
 
-/* GET home page. */
+/* 首页. */
 router.get('/home', function(req, res) {
     brandController.getBrandList(req,res,renderView);
+});
+
+/* 品牌列表. */
+router.get('/brand/list', function(req, res) {
+    brandController.getBrandDetail(req,res,renderView);
 });
 
 /* GET users listing. */
