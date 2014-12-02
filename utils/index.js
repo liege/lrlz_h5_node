@@ -11,7 +11,18 @@ exports.getClientIp = function(req) {
 };
 
 var getSign = exports.getSign = function(package){
-    var stringPackage = qs.stringify(package);
+//    var stringPackage = qs.stringify(package);
+    var buff = '';
+    var stringPackage = '';
+    if(package){
+        for(var key in package){
+            buff = buff + key + '=' + package[key] + '&';
+        }
+        if(buff.length > 0 ){
+            stringPackage = buff.substr(0,buff.length-1);
+            console.log('stringPackage : ' + stringPackage);
+        }
+    }
     var stringSignTemp = stringPackage + '&key='+ setting.wxParams.partnerKey;
     var sign = md5.update(stringSignTemp, 'utf8').digest('hex').toUpperCase();
     console.log('sign : ' + sign);

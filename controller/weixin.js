@@ -45,7 +45,7 @@ exports.wxPay = function(req, res, renderFun){
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = req.session.openid || '';
+    unifiedOrderParams.openid = req.session.openid || null;
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
@@ -57,6 +57,7 @@ exports.wxPay = function(req, res, renderFun){
 
     try{
         Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
+            console.log('unifiedOrderData : ' + JSON.stringify(unifiedOrderData));
             if(unifiedOrderData.return_code == 'SUCCESS' && unifiedOrderData.result_code == 'SUCCESS'){
                 var jsApiParameters = {};
                 jsApiParameters.appId = setting.wxParams.appId;
