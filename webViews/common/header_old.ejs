@@ -5,8 +5,10 @@
     <meta content="target-densitydpi=high-dpi,width=device-width, user-scalable=no, initial-scale=0.66667, maximum-scale=0.6, minimum-scale=0.7" name="viewport">
     <!--<meta name="viewport" content="target-densitydpi=high-dpi,width=480px,initial-scale=.66667,minimum-scale=0.6,maximum-scale=0.7,user-scalable=0"/>-->
     <meta content="telephone=no" name="format-detection">
-    <title>确认订单</title>
+    <title><%= title %></title>
     <link rel="stylesheet" type="text/css" href="/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="" />
+    <% for(var i=0; i<cssSrc.length; i++) {%>
+    <link rel="stylesheet" href=<%= cssSrc[i] %>.css>
+    <% } %>
 </head>
 <body>
