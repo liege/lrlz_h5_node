@@ -94,22 +94,26 @@
 </body>
 
 <script type="text/javascript">
+    var jsApiParameters = JSON.parse('<%- JSON.stringify(jsApiParameters) %>');
+//    alert('jsApiParameters : ' + JSON.stringify(jsApiParameters));
 
     //调用微信JS api 支付
     function jsApiCall()
     {
+//        alert('jsApiCall');
         WeixinJSBridge.invoke(
                 'getBrandWCPayRequest',
-                <%= jsApiParameters %>,
+                jsApiParameters,
         function(res){
             WeixinJSBridge.log(res.err_msg);
-            //alert(res.err_code+res.err_desc+res.err_msg);
+            alert(res.err_code+res.err_desc+res.err_msg);
         }
     );
     }
 
-    function callpay()
+    function callPay()
     {
+//        alert('callPay');
         if (typeof WeixinJSBridge == "undefined"){
             if( document.addEventListener ){
                 document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);

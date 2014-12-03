@@ -59,7 +59,8 @@ function bindEvent(){
     });
 
     $('#payBtn').on('tap', function(){
-        callpay();
+//        alert('call pay');
+        callPay();
 //        window.location.href = 'http://detail.m.tmall.com/item.htm?id=35598128047&sid=927a79b2f63dbf04&abtest=5&rn=0bb11bef2ab4ba09d4c4e5a60b9e18b6'
     });
 }
