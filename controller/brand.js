@@ -14,7 +14,7 @@ exports.getBrandList = function(req,res,renderFun){
 				brandList = data;
 				renderFun(req,res,{
 					title:'品牌街',
-					data:brandList
+					brandListData:brandList
 				},'home');
 			};
 		});
@@ -36,7 +36,7 @@ exports.getBrandDetail = function(req,res,renderFun){
 				brandDetail = data;
 				renderFun(req,res,{
 					title:'品牌详情',
-					data:brandDetail
+					brandDetailData:brandDetail
 				},'brand_list');
 			};			
 		});

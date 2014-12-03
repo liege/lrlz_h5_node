@@ -1,8 +1,23 @@
-<%- partial('common/header',{title:title,cssSrc:[1]}) %>
+<%- partial('common/header',{title:title,cssSrc:[]}) %>
 <%- partial('common/layout_header',{}) %>
 <!-- 页面内容 -->
 <div class="container">
-<%- JSON.stringify(data) %>
+	<ul class="brand_list">
+	<% brandDetailData.products.forEach(function(v){ %>
+		<li>
+			<a class="pic" href="javascript:;"><img src=<%= v.pic_url %> alt=""></a>
+			<p class="title" data-value="<%= v.title %>"></p>
+			<div class="price">
+				<div class="discount">优选价:<%= v.cur_price%></div>
+				<div class="original"><%= v.og_price%></div>
+			</div>
+			<div class="info">
+				<div class="sales">已售<%= v.sales %>件</div>
+				<div class="cart"><a href="javascript:;"></a></div>
+			</div>
+		</li>	    
+	<% }) %>
+	</ul>
 </div>
 <%- partial('common/layout_footer',{}) %>
-<%- partial('common/footer',{jsSrc:[]}) %>
+<%- partial('common/footer',{jsSrc:["util","brand_list"]}) %>

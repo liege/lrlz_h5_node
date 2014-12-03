@@ -35,17 +35,98 @@ body{background: #f3f2f2;}
 	padding-bottom: 40px;
 }
 /*品牌街列表*/
-.brand_list li{
+.brand_street_list li{
 	border:1px solid #d0cfcf;
 	margin: 10px 5px;
 	box-sizing:border-box;
 }
-.brand_list li:first-child{
+.brand_street_list li:first-child{
 	margin-top: 5px;
 }
-.brand_list li:last-child{
+.brand_street_list li:last-child{
 	margin-bottom: 5px;
 }
-.brand_list img{
+.brand_street_list img,.brand_list img{
 	width: 100%;
+}
+/*商品列表-品牌列表&新品首发*/
+.brand_list{
+	display: flex;
+	flex-flow:row wrap;
+}
+.brand_list li{
+	width: 50%; 
+	padding: 3px 3px 0;
+	box-sizing:border-box;
+	display: flex;
+	flex-flow:column;
+}
+.brand_list li:nth-child(odd){
+	padding-right: 1.5px;
+}
+.brand_list li:nth-child(even){
+	padding-left: 1.5px;
+}
+.brand_list .pic{
+	display: block;
+	border: 1px solid #dadada;
+	border-bottom-color: #eeeeee;
+}
+.brand_list .title{
+	background: #fff;
+	border-left: 1px solid #dadada;
+	border-right: 1px solid #dadada;
+	border-bottom: 1px dashed #dadada;
+	position: relative;
+	color: #626d72;
+	min-height: 36px;
+	line-height: 18px;
+	padding: 8px;
+}
+.brand_list .title:after,.brand_list .title:before{
+	content: "";
+	width: 4px;
+	height: 8px;
+	background: url(../images/icon_semicircle.png) no-repeat center center;
+	background-size: 100%;
+	position: absolute; 
+	right: 0;
+	bottom: -4px;
+}
+.brand_list .title:before{
+	transform: rotate(180deg);
+	right: auto;
+	left: 0;
+}
+.brand_list .price,.brand_list .info{
+	display: -webkit-flex;
+	align-items:center;
+	justify-content:space-between;
+	border: 1px solid #dadada;
+	border-width: 0 1px;
+	background: #fff;
+	padding: 3px 8px;
+}
+.brand_list .price{
+	padding-top:8px;
+}
+.brand_list .info{
+	padding-bottom:8px;
+}
+.price .discount{
+	color: #f2744e;
+}
+.price .original{
+	color: #aeb8bd;
+	text-decoration: line-through;
+}
+.info .sales{
+	color: #aeb8bd;	
+}
+.info .cart a{
+	width: 45px;
+	height: 23px;
+	display: inline-block;
+	background: url(../images/btn_cart.png) no-repeat center center;
+	background-size: 100%;
 }
