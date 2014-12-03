@@ -37,15 +37,15 @@ exports.oauth = function(req, res, renderFun){
     }
 };
 
-exports.wxPay = function(req, res, renderFun){
+exports.orderConfirm = function(req, res, renderFun){
     var unifiedOrderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     var unifiedOrderParams = {};
     unifiedOrderParams.appid = setting.wxParams.appId;
-    unifiedOrderParams.body = 'test';
+    unifiedOrderParams.body = 'Test';
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = req.session.openid || null;
+    unifiedOrderParams.openid = req.session.openid || '';
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);

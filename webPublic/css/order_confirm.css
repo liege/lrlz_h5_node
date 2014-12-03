@@ -96,7 +96,7 @@ input:focus{
     top: 6px;
     width: 30px;
     height: 30px;
-    background-image: url('../images/address_plus.png');
+    background-image: url('../images/order_confirm_plus.png');
     background-size: cover;
     margin: auto 10px;
 }
@@ -177,7 +177,7 @@ input:focus{
     display: inline-block;
     width: 16px;
     height: 15px;
-    background-image: url('../images/cheng.png');
+    background-image: url('../images/order_confirm_cheng.png');
     background-size: cover;
     margin-right: 5px;
 }

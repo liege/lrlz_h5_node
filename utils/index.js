@@ -15,7 +15,7 @@ var getSign = exports.getSign = function(package){
     var stringPackage = '';
     if(package){
         for(var key in package){
-            buff = buff + key + '=' + package[key] + '&';
+            buff = buff + key + '=' + encodeURI(package[key]) + '&';
         }
         if(buff.length > 0 ){
             stringPackage = buff.substr(0,buff.length-1);
@@ -33,9 +33,9 @@ var jsonToXml = exports.jsonToXml = function(jsonData){
     if(jsonData){
         for(var key in jsonData){
             if(!isNaN(jsonData[key])){
-                xml = xml + "<" + key + ">" + jsonData[key] + "</" + key + ">";
+                xml = xml + "<" + key + ">" + encodeURI(jsonData[key]) + "</" + key + ">";
             }else{
-                xml = xml + "<" + key + "><![CDATA[" + jsonData[key] + "]]></" + key + ">";
+                xml = xml + "<" + key + "><![CDATA[" + encodeURI(jsonData[key]) + "]]></" + key + ">";
             }
         }
     }
