@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta content="target-densitydpi=high-dpi,width=device-width, user-scalable=no, initial-scale=0.66667, maximum-scale=0.6, minimum-scale=0.7" name="viewport">
-    <!--<meta name="viewport" content="target-densitydpi=high-dpi,width=480px,initial-scale=.66667,minimum-scale=0.6,maximum-scale=0.7,user-scalable=0"/>-->
-    <meta content="telephone=no" name="format-detection">
-    <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="/css/order_confirm.css" />
-</head>
-<body>
+<%- partial('common/header_old',{title:title,cssSrc:['order_confirm']}) %>
 <div class="container">
     <div id="addAddress" class="addAddress">
         <span class="addBtn"></span>
@@ -54,7 +43,7 @@
             <span class="goodsName">茱莉蔻</span>
         </div>
         <div class="centerInfo">
-            <img class="goodsImg" src="images/2.jpg"/>
+            <img class="goodsImg" src="/images/order_confirm.jpg"/>
             <div class="introduceItem">
                 <span id="introduce" class="introduce"></span>
                 <span class="category">分类：洁面乳+乳液+面霜+水 30ml</span>
@@ -91,11 +80,9 @@
         <span id="payBtn" class="payBtn">确认付款</span>
     </div>
 </div>
-</body>
-
 <script type="text/javascript">
     var jsApiParameters = JSON.parse('<%- JSON.stringify(jsApiParameters) %>');
-//    alert('jsApiParameters : ' + JSON.stringify(jsApiParameters));
+    //    alert('jsApiParameters : ' + JSON.stringify(jsApiParameters));
 
     //调用微信JS api 支付
     function jsApiCall()
@@ -104,11 +91,11 @@
         WeixinJSBridge.invoke(
                 'getBrandWCPayRequest',
                 jsApiParameters,
-        function(res){
-            WeixinJSBridge.log(res.err_msg);
-            alert(res.err_code+res.err_desc+res.err_msg);
-        }
-    );
+                function(res){
+                    WeixinJSBridge.log(res.err_msg);
+                    alert(res.err_code+res.err_desc+res.err_msg);
+                }
+        );
     }
 
     function callPay()
@@ -126,7 +113,4 @@
         }
     }
 </script>
-<script type="text/javascript" src="/js/zepto.min.js"></script>
-<script type="text/javascript" src="/js/zepto.touch.js"></script>
-<script type="text/javascript" src="/js/order_confirm.js"></script>
-</html>
+<%- partial('common/footer_old',{jsSrc:['order_confirm']}) %>

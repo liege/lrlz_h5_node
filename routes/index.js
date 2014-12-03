@@ -33,9 +33,9 @@ router.get('/weixin/oauth', function(req, res) {
     weixinController.oauth(req, res, renderView);
 });
 
-/* weixin pay */
-router.get('/weixin/pay', function(req, res) {
-    weixinController.wxPay(req, res, renderView);
+/* order confirm */
+router.get('/order/confirm', function(req, res) {
+    weixinController.orderConfirm(req, res, renderView);
 });
 
 /* weixin pay */

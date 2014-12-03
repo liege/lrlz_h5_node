@@ -37,11 +37,11 @@ exports.oauth = function(req, res, renderFun){
     }
 };
 
-exports.wxPay = function(req, res, renderFun){
+exports.orderConfirm = function(req, res, renderFun){
     var unifiedOrderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     var unifiedOrderParams = {};
     unifiedOrderParams.appid = setting.wxParams.appId;
-    unifiedOrderParams.body = '贡献一分钱，任性！';
+    unifiedOrderParams.body = 'Test';
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
