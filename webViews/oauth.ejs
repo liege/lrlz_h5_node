@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>美妆优选</title>
     <script type="text/javascript">
-        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1c3100b0643ee97&redirect_uri=http://m.meizhuangyouxuan.com/weixin/oauth&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
-//        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1c3100b0643ee97&redirect_uri=http://m.meizhuangyouxuan.com/weixin/oauth&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+        var redirect_uri = encodeURIComponent('http://m.meizhuangyouxuan.com/weixin/oauth');
+//        alert('redirect_uri : ' + redirect_uri);
+        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1c3100b0643ee97&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+//        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1c3100b0643ee97&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
     </script>
 </head>
 <body>
