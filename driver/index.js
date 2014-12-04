@@ -124,8 +124,7 @@ exports.queryByPostXml = function(url,xmlData,fn){
         method:'POST',
         headers:{
             'Connection':'Keep-Alive',
-            'Content-Type':'application/xml; charset=UTF-8',
-            'Content-Length':content.length
+            'Content-Type':'application/xml; charset=UTF-8'
         }
     };
 

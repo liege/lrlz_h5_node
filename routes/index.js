@@ -48,8 +48,8 @@ router.get('/order/confirm', function(req, res) {
     weixinController.orderConfirm(req, res, renderView);
 });
 
-/* weixin pay */
-router.get('/weixin/notify', function(req, res) {
+/* weixin notify */
+router.post('/weixin/notify', function(req, res) {
     weixinController.notify(req, res, renderJson);
 });
 
