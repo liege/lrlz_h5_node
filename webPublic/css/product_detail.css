@@ -96,7 +96,7 @@ body {
     right: 5px;
     width: 50px;
     height: 50px;
-    background: url('../images/product_close.png') no-repeat 0 0;
+    background: url('../images/product_detail_close.png') no-repeat 0 0;
     background-size: cover;
 }
 
@@ -197,7 +197,7 @@ span.commitment{
     display: block;
     width: 116px;
     height: 26px;
-    background: url('../images/commitment.png') no-repeat 0 0;
+    background: url('../images/product_commitment.png') no-repeat 0 0;
     background-size: cover;
 }
 
@@ -245,7 +245,7 @@ span.commitment{
     display: block;
     width: 18px;
     height: 30px;
-    background: url('../images/choose_category.png') no-repeat 0 0;
+    background: url('../images/product_choose_category.png') no-repeat 0 0;
     background-size: cover;
 }
 
@@ -283,7 +283,7 @@ span.commitment{
     width: 325px;
     height: 60px;
     margin: 10px 20px;
-    background: url('../images/product_download.png') no-repeat 0 0;
+    background: url('../images/product_detail_download.png') no-repeat 0 0;
     background-size: cover;
 }
 
@@ -311,13 +311,13 @@ span.commitment{
     position: relative;
     top: 8px;
     height: 30px;
-    background: url("../images/evaluation_icon.png") no-repeat 0 0;
+    background: url("../images/product_evaluation_icon.png") no-repeat 0 0;
     background-size: cover;
 }
 
 .detailIcon{
     height: 23px;
-    background: url("../images/detail_icon.png") no-repeat 0 0;
+    background: url("../images/product_detail_icon.png") no-repeat 0 0;
 }
 
 .userInfo{

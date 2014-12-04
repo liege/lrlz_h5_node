@@ -15,7 +15,7 @@ exports.getProductInfo = function(req, res, renderFun){
                 renderFun(req,res, {
                     title: '商品详情',
                     product: product
-                },'product');
+                },'product_detail');
             }
         });
     }catch(err){

@@ -5,7 +5,7 @@
         <div class="categoryInfo">
             <img class="categoryImg" />
             <div class="infoRight">
-                <p class="price">¥<span id="priceRange">38.00-78.00</span></p>
+                <p class="price">¥<span id="priceRange"></span></p>
                 <p>请选择 商品分类</p>
             </div>
         </div>
@@ -40,28 +40,29 @@
         <div class="goodsInfo">
             <div class="introduceArea">
                 <p id="introduce" class="introduce"></p>
-                <img class="dashImg" src="/images/product_dashed.png"/>
+                <!--<img class="dashImg" src="images/product_detail_dashed.png"/>-->
             </div>
             <div class="integralBuy">
                 <div class="buyPrice">
-                    <span class="discountPrice">折后价¥ <span id="discountPrice" >78.00</span></span>
-                    <span class="originalPrice">原价¥ <span id="originalPrice">138.00</span></span>
-                    <span class="integral">+ <span id="integral">78</span>积分</span>
+                    <span class="discountPrice">折后价¥ <span id="discountPrice" ></span></span>
+                    <!--<span id="originalPriceArea" class="originalPrice displayNone">原价¥ <span id="originalPrice"></span></span>-->
+                    <span class="integral">+ <span id="integral"></span>积分</span>
                 </div>
                 <div class="buyInfo">
-                    <span class="courierFee">快递费<span id="courierFee">10.00</span>元</span>
-                    <span class="monthSale">月销<span id="monthSale">3139</span>件</span>
+                    <!--<span class="courierFee">快递费<span id="courierFee"></span>元</span>-->
+                    <span class="monthSale">月销<span id="monthSale"></span>件</span>
                     <span class="commitment"></span>
                 </div>
             </div>
         </div>
-        <div id="chooseCategoryArea" class="chooseCategoryArea">
-            <span class="categoryLabel">选择分类</span>
-            <span id="categoryBtn" class="categoryBtn"></span>
-        </div>
+        <!--<div id="chooseCategoryArea" class="chooseCategoryArea">-->
+        <!--<span class="categoryLabel">选择分类</span>-->
+        <!--<span id="categoryBtn" class="categoryBtn"></span>-->
+        <!--</div>-->
         <div class="buyBtn">
-            <span id="buyNow" class="buyNow">立即购买</span>
-            <span id="download" class="download">下载app</span>
+            <!--<span id="buyNow" class="buyNow">立即购买</span>-->
+            <!--<span id="download" class="download">下载APP立即购买</span>-->
+            <span id="download" class="productDownload"></span>
         </div>
         <div class="evaluationArea">
             <div class="evaluationLabel">
@@ -72,27 +73,13 @@
                 <div id="evaluation" class="focus index-banner"><!-- 轮播图展示 -->
                     <div class="bd">
                         <ul>
-                            <li>
-                                <div class="userInfo">
-                                    <span class="userPhone">152****9471</span>
-                                    <span class="time">2014-9-25 14:32</span>
-                                </div>
-                                <p>一如既往的好。。。</p>
-                            </li>
-                            <li>
-                                <div class="userInfo">
-                                    <span class="userPhone">152****9471</span>
-                                    <span class="time">2014-9-25 14:32</span>
-                                </div>
-                                <p>不错不错。。。</p>
-                            </li>
-                            <li>
-                                <div class="userInfo">
-                                    <span class="userPhone">152****9471</span>
-                                    <span class="time">2014-9-25 14:32</span>
-                                </div>
-                                <p>很好好。。。</p>
-                            </li>
+                            <!--<li>-->
+                            <!--<div class="userInfo">-->
+                            <!--<span class="userName">w**g</span>-->
+                            <!--<span class="time">2014-9-25 14:32</span>-->
+                            <!--</div>-->
+                            <!--<div class="comment">一如既往的好。。。</div>-->
+                            <!--</li>-->
                         </ul>
                     </div>
 
@@ -107,11 +94,11 @@
                 <span class="detailIcon"></span>
                 <span>商品详情</span>
             </div>
-            <div class="detailContent">
-                <img src="/images/1.jpg"/>
-                <img src="/images/1.jpg"/>
-                <img src="/images/1.jpg"/>
-            </div>
+            <iframe frameborder=no id="detailContent" class="detailContent">
+                <!--<img src="images/1.jpg"/>-->
+                <!--<img src="images/1.jpg"/>-->
+                <!--<img src="images/1.jpg"/>-->
+            </iframe>
         </div>
     </div>
 </div>

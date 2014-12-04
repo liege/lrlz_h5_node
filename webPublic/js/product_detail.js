@@ -65,7 +65,7 @@ function getGoodsInfo(){
     $.ajax({
         type: 'GET',
 //        type: 'POST',
-        url: '/mzyx/getProductInfo.ss',
+        url: '/ajax/getProductInfo.ss',
 //        data: JSON.stringify({ name: 'Zepto.js' }),
 //        contentType: 'application/json'
         data: { uuid:queryUuid, appKey:'6581235709', appVer:'1.0'},
@@ -177,7 +177,7 @@ function showGoodsInfo(goodsInfo){
 function getCommentList(){
     $.ajax({
         type: 'POST',
-        url: '/mzyx/getCommentList.ss',
+        url: '/ajax/getCommentList.ss',
         data: JSON.stringify({uuid: queryUuid, limit: '10', type: '1', appKey:'6581235709', appVer:'1.0'}),
         contentType: 'application/json',
         dataType: 'json',
@@ -229,7 +229,7 @@ function showCommentList(comments){
 function getDetail(){
     $.ajax({
         type: 'GET',
-        url: '/mzyx/getDetial.ss',
+        url: '/ajax/getDetial.ss',
         data: { uuid:queryUuid, last_modified:'0', appKey:'6581235709', appVer:'1.0'},
         dataType: 'json',
         timeout: 10000,
