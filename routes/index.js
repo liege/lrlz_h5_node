@@ -5,7 +5,7 @@ var weixinController = require('../controller/weixin');
 var brandController = require('../controller/brand');
 var newListController = require('../controller/newlist');
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/oauth', function(req, res) {
     res.render('oauth', { title: '美妆优选' });
 });
 
@@ -25,7 +25,7 @@ router.get('/home', function(req, res) {
             break;
         default:
             console.log('nothing');
-    }
+}
 });
 
 /* 品牌列表. */
@@ -54,7 +54,7 @@ router.post('/weixin/notify', function(req, res) {
 });
 
 /* GET product info page. */
-router.get('/productInfo/:uuid', function(req, res) {
+router.get('/product/detail/:uuid', function(req, res) {
     productController.getProductInfo(req, res, renderView);
 });
 

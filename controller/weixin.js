@@ -4,6 +4,8 @@ var utils = require('../utils/index');
 
 exports.oauth = function(req, res, renderFun){
     var state = req.query.state;
+    var redirect_url = req.url;
+    console.log('redirect_url : ' + redirect_url);
     var token_params = {};
     token_params.code = req.query.code;
     token_params.appid = setting.wxParams.appId;
@@ -15,20 +17,21 @@ exports.oauth = function(req, res, renderFun){
             user_params.access_token = tokenData.access_token;
             console.log('access_token: ' + tokenData.access_token);
             user_params.openid = tokenData.openid;
-            req.session.openid = tokenData.openid;
+            //save userInfo to session
+            req.session.userInfo = {};
+            req.session.userInfo.openid = tokenData.openid;
             Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
                 var userInfo = {};
                 if(!userData.errmsg){
                     userInfo = userData;
-                    //save userInfo to session
-                    req.session.userInfo = {};
                     req.session.userInfo = userData;
                     req.session.userInfo.access_token = tokenData.access_token;
                     req.session.userInfo.refresh_token = tokenData.refresh_token;
-                    renderFun(req,res, {
-                        title: '用户信息',
-                        userInfo: userInfo
-                    }, 'index');
+//                    renderFun(req,res, {
+//                        title: '用户信息',
+//                        userInfo: userInfo
+//                    }, 'index');
+                    res.redirect("/product/detail/IJ45014z98");
                 }
             });
         });
@@ -45,7 +48,7 @@ exports.orderConfirm = function(req, res, renderFun){
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = req.session.openid || '';
+    unifiedOrderParams.openid = session.userInfo.openid;
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
