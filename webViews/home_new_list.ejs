@@ -3,7 +3,6 @@
 <%- partial('common/menu',{}) %>
 <!-- 页面内容 -->
 <div class="container tab_container">
-	<h6><%= JSON.stringify(brandDetailData) %></h6>
 	<section id="hot_product"></section>
 	<section id=""></section>
 	<section id="new_list">
@@ -12,6 +11,7 @@
 			<li>
 				<a class="pic" href="javascript:;"><img src=<%= v.pic_url %> alt=""></a>
 				<p class="title" data-value="<%= v.title %>"></p>
+				<p class="memo"><%= v.memo %></p>
 				<div class="price">
 					<div class="discount">优选价:<%= v.cur_price%></div>
 					<div class="original"><%= v.og_price%></div>

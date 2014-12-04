@@ -15,6 +15,6 @@ $(function(){
 /*截取多余字符*/
 $(function(){
 	$('.brand_list').find('.title').each(function(i,v){
-		$(v).html(cutText($(v).data("value"),40));
+		$(v).html(Utils.cutText($(v).data("value"),40));
 	});
 });
