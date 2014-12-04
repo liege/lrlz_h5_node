@@ -19,7 +19,7 @@ var Utils = {
     'loadImages' : (function() {
         var imgIndex = 0;
 
-        return function(imgs, index, data){
+        return function(imgs, index, data){ // param imgs: zepto collections
             data = data ? data : 'data-original';
 
             if (index == 0) {
@@ -27,7 +27,7 @@ var Utils = {
             }
 
             for (var i = imgIndex; i < imgs.length; i++){
-                if (imgs[i].getOffsetTop() < getScrollTop() + window.innerHeight){
+                if (imgs[i].offset.top < imgs[i].scrollTop() + window.innerHeight){
                     var data_src = imgs[i].attr(data);
                     if (data_src) {
                         imgs[i].attr('src', data_src);
