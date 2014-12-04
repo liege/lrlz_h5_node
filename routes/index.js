@@ -15,8 +15,10 @@ router.get('/addr', function(req, res) {
 });
 
 /* 首页. */
-router.get('/home', function(req, res) {
-    switch(req.query.name){
+router.get('/home/:name/:index', function(req, res) {
+    switch(req.params.name){
+        case "hot_slace":
+            break;
         case "brand":
             brandController.getBrandList(req,res,renderView);
             break;

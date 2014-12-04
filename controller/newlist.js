@@ -7,16 +7,18 @@ exports.getNewList = function(req,res,renderFun){
 	params.appKey = setting.globalAPIParams.appKey;
 	params.appVer = setting.globalAPIParams.appVer;
 	params.scat_uuid = "activity03";
+	params.show_memo = "true";
 	console.log('========>INIT TRY');
 	try{
 		driverApi.getListProducts(params,function(data){
-			var brandDetail = {};
+			var newList = {};
+			console.log(data);
 			if(data && data.success == undefined || data && data.success && data.success == 'true'){
-				brandDetail = data;
+				newList = data;
 				console.log("=====>TO RENDER");
 				renderFun(req,res,{
 					title:'品牌详情',
-					brandDetailData:brandDetail
+					newListData:newList
 				},'home_new_list');
 			};			
 		});
