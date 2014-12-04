@@ -1,17 +1,20 @@
-TouchSlide({ slideCell:"#leftTabBox" });
-function cutText(str, length){
-    var sub_length = length ;
-    var temp1 = str.replace(/[^\x00-\xff]/g,"**");//匹配双字节字符
-    var temp2 = temp1.substring(0,sub_length);
-    //找出有多少个*
-    var x_length = temp2.split("\*").length - 1 ;
-    var hanzi_num = x_length /2 ;
-    sub_length = sub_length - hanzi_num ;//实际需要sub的长度是总长度-汉字长度
-    var res = str.substring(0,sub_length);
-    if(sub_length < str.length ){
-        var end  =res+"..." ;
-    }else{
-        var end  = res ;
-    }
-    return end ;
-}
+// 首页4栏切换
+$(function(){
+	//首先选项卡初始化显示页面 0，1，2，3
+	var pageIndex = parseInt(window.location.href.substr(-1,1));
+	pageIndex = typeof(pageIndex)!="number"||pageIndex>3?0:pageIndex;
+	TouchSlide({ 
+		slideCell:"#touchSlide",
+		titCell:".tab_li li", 
+		mainCell:".tab_container",
+		titOnClassName:"current",
+		defaultIndex:pageIndex
+	});
+});
+
+/*截取多余字符*/
+$(function(){
+	$('.brand_list').find('.title').each(function(i,v){
+		$(v).html(cutText($(v).data("value"),40));
+	});
+});

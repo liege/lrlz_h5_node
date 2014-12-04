@@ -4,7 +4,11 @@ html{
     -ms-text-size-adjust: 100%;
     font-size: 62.5%;/*10 ÷ 16 × 100% = 62.5%*/
 }
-
+@media screen and (max-width: 270px) { /*当屏幕尺寸小于270px时，应用下面的CSS样式*/
+  html {
+    font-size:50%;
+  }
+}
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
     margin:0;padding:0;
@@ -95,7 +99,7 @@ a{
     text-decoration: none;
     color: #a3a8ac;
 }
-
+/*图片下3像素空隙*/
 img{
     vertical-align: middle;
 }

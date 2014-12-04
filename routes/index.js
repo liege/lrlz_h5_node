@@ -3,6 +3,7 @@ var router = express.Router();
 var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
 var brandController = require('../controller/brand');
+var newListController = require('../controller/newlist');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('oauth', { title: '美妆优选' });
@@ -15,7 +16,16 @@ router.get('/addr', function(req, res) {
 
 /* 首页. */
 router.get('/home', function(req, res) {
-    brandController.getBrandList(req,res,renderView);
+    switch(req.query.name){
+        case "brand":
+            brandController.getBrandList(req,res,renderView);
+            break;
+        case "newlist":
+            newListController.getNewList(req,res,renderView);
+            break;
+        default:
+            console.log('nothing');
+    }
 });
 
 /* 品牌列表. */
