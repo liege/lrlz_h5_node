@@ -108,6 +108,10 @@ body{background: #f3f2f2;}
 	right: auto;
 	left: 0;
 }
+.brand_list .memo{
+	color: #f2744e;
+	padding: 8px;
+}
 .brand_list .price,.brand_list .info{
 	display: flex;
 	display: -webkit-flex;

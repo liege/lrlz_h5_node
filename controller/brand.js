@@ -15,7 +15,7 @@ exports.getBrandList = function(req,res,renderFun){
 				renderFun(req,res,{
 					title:'品牌街',
 					brandListData:brandList
-				},'home_brand');
+				},'home_brand_street');
 			};
 		});
 	}catch(err){
