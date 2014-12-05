@@ -1,5 +1,5 @@
 var Driver = require('../driver/index.js');
-var host_port = require('../configuration').setting.globalAPIParams.localhost_port;
+var host_port = require('../configuration').setting.globalAPIParams.host_port;
 var path = require('../configuration').setting.globalAPIParams.path;
 
 //商品列表查询接口					
