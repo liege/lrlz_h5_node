@@ -6,9 +6,10 @@ var brandController = require('../controller/brand');
 var newListController = require('../controller/new_products');
 var giftExchangeController = require('../controller/gift_exchange');
 var hotSalesController = require('../controller/hot_sales');
-/* GET home page. */
+
+/* oauth */
 router.get('/oauth', function(req, res) {
-    res.render('oauth', { title: '美妆优选' });
+    res.render('oauth', { title: '美妆优选'});
 });
 
 /* 微信共享地址. */

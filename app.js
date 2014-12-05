@@ -33,7 +33,7 @@ app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mz
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'webPublic')));
 app.use(partials());
-//app.use(filters.userAuthFilter);
+app.use(filters.userAuthFilter);
 
 app.use('/', routes);
 

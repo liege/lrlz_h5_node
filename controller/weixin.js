@@ -4,7 +4,10 @@ var utils = require('../utils/index');
 
 exports.oauth = function(req, res, renderFun){
     var state = req.query.state;
-    var redirect_url = req.url;
+    var redirect_url = '/home';
+    if(req.session.globalParams){
+        redirect_url = req.session.globalParams.redirect_url;
+    }
     console.log('redirect_url : ' + redirect_url);
     var token_params = {};
     token_params.code = req.query.code;
@@ -27,6 +30,7 @@ exports.oauth = function(req, res, renderFun){
                     req.session.userInfo = userData;
                     req.session.userInfo.access_token = tokenData.access_token;
                     req.session.userInfo.refresh_token = tokenData.refresh_token;
+                    console.log('req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
 //                    renderFun(req,res, {
 //                        title: '用户信息',
 //                        userInfo: userInfo

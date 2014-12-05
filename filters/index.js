@@ -16,6 +16,8 @@ exports.userAuthFilter = function(req, res, next){
         next();
     } else if (req.session == null ||  req.session.userInfo == null ||
         req.session.userInfo == "") {
+        req.session.globalParams = {};
+        req.session.globalParams.redirect_url = req.url;
         res.redirect("/oauth");
     } else {
         next();
