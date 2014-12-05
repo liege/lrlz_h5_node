@@ -16,6 +16,11 @@ router.get('/addr', function(req, res) {
     res.render('addr', { ts:req.session.userInfo.access_token });
 });
 
+/* GET default index page. */
+router.get('/', function(req, res) {
+    hotSalesController.getBrandList(req,res,renderView);
+});
+
 /* 首页. */
 router.get('/home/:name?/:index?', function(req, res) {
     console.log("=====>"+req.params.name);
@@ -31,13 +36,8 @@ router.get('/home/:name?/:index?', function(req, res) {
             break;
         case "hot_sales":
         default:
-<<<<<<< HEAD
             hotSalesController.getBrandList(req,res,renderView);
     }
-=======
-            console.log('nothing');
-}
->>>>>>> 37cab4f202e289c9b93702ad27504e18ec63aa79
 });
 
 /* 品牌列表. */
