@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var partials = require('express-partials');
 
-var routes = require('./routes/index');
+var routes = require('./routes/index')
+    , filters = require('./filters');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mz
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'webPublic')));
 app.use(partials());
+app.use(filters.userAuthFilter);
 
 app.use('/', routes);
 

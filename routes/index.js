@@ -7,7 +7,7 @@ var newListController = require('../controller/new_products');
 var giftExchangeController = require('../controller/gift_exchange');
 var hotSalesController = require('../controller/hot_sales');
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/oauth', function(req, res) {
     res.render('oauth', { title: '美妆优选' });
 });
 
@@ -31,8 +31,13 @@ router.get('/home/:name?/:index?', function(req, res) {
             break;
         case "hot_sales":
         default:
+<<<<<<< HEAD
             hotSalesController.getBrandList(req,res,renderView);
     }
+=======
+            console.log('nothing');
+}
+>>>>>>> 37cab4f202e289c9b93702ad27504e18ec63aa79
 });
 
 /* 品牌列表. */
@@ -61,27 +66,27 @@ router.post('/weixin/notify', function(req, res) {
 });
 
 /* GET product info page. */
-router.get('/productInfo/:uuid', function(req, res) {
+router.get('/product/detail/:uuid', function(req, res) {
     productController.getProductInfo(req, res, renderView);
 });
 
 /* GET product info data. */
-router.get('/getProductInfo.ss', function(req, res) {
+router.get('/ajax/getProductInfo.ss', function(req, res) {
     productController.getProductInfoData(req, res, renderJson);
 });
 
 /* GET product recommands data. */
-router.get('/getRecommandList.ss', function(req, res) {
+router.get('/ajax/getRecommandList.ss', function(req, res) {
     productController.getRecommandListData(req, res, renderJson);
 });
 
 /* GET product commends data. */
-router.post('/getCommentList.ss', function(req, res) {
+router.post('/ajax/getCommentList.ss', function(req, res) {
     productController.getCommentListData(req, res, renderJson);
 });
 
 /* GET product detail data. */
-router.get('/getDetial.ss', function(req, res) {
+router.get('/ajax/getDetial.ss', function(req, res) {
     productController.getDetailData(req, res, renderJson);
 });
 
