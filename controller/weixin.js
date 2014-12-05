@@ -107,5 +107,6 @@ exports.orderConfirm = function(req, res, renderFun){
 };
 
 exports.notify = function(req, res, renderFun){
+    console.log('weixin notify : ' +  JSON.stringify(req.body));
     renderFun(req,res,{return_code:'SUCCESS'});
 };

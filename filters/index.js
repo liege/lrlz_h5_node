@@ -3,6 +3,7 @@ exports.userAuthFilter = function(req, res, next){
         req.url == "/login" ||
         req.url == "/oauth" ||
         req.url.match("/weixin/oauth") != null ||
+        req.url.match("/weixin/notify") != null ||
         req.url.match("/api/") != null ||
         req.url.match("/public/") != null ||
         req.url.match("/error/") != null ||
@@ -16,6 +17,7 @@ exports.userAuthFilter = function(req, res, next){
         next();
     } else if (req.session == null ||  req.session.userInfo == null ||
         req.session.userInfo == "") {
+        console.log('req.session : ' + JSON.stringify(req.session));
         req.session.globalParams = {};
         req.session.globalParams.redirect_url = req.url;
         res.redirect("/oauth");
