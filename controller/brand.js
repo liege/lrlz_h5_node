@@ -16,11 +16,11 @@ exports.getBrandList = function(req,res,renderFun){
 					title:'品牌街',
 					brandListData:brandList
 				},'home_brand_street');
-			};
+			}
 		});
 	}catch(err){
 		console.log("call back error : " + JSON.stringify(err));
-	};
+	}
 };
 exports.getBrandDetail = function(req,res,renderFun){
 	var params = {};
@@ -38,9 +38,9 @@ exports.getBrandDetail = function(req,res,renderFun){
 					title:'品牌详情',
 					brandDetailData:brandDetail
 				},'brand_list');
-			};			
+			}
 		});
 	}catch(err){
 		console.log("call back error : " + JSON.stringify(err));
-	};
+	}
 };

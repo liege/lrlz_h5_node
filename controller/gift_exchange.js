@@ -16,9 +16,9 @@ exports.getBrandList = function(req,res,renderFun){
 					title:'品牌街',
 					brandListData:brandList
 				},'home_gift_exchange');
-			};
+			}
 		});
 	}catch(err){
 		console.log("call back error : " + JSON.stringify(err));
-	};
+	}
 };
