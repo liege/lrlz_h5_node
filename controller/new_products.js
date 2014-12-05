@@ -19,9 +19,9 @@ exports.getNewList = function(req,res,renderFun){
 					title:'品牌详情',
 					newListData:newList
 				},'home_new_products');
-			};			
+			}
 		});
 	}catch(err){
 		console.log("call back error : " + JSON.stringify(err));
-	};
+	}
 };

@@ -29,7 +29,7 @@ router.get('/home/:name?/:index?', function(req, res) {
         case "gift_exchange":
             giftExchangeController.getBrandList(req,res,renderView);
             break;
-        case "brand":
+        case "brand_street":
             brandController.getBrandList(req,res,renderView);
             break;
         case "new_products":
