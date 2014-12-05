@@ -16,6 +16,11 @@ router.get('/addr', function(req, res) {
     res.render('addr', { ts:req.session.userInfo.access_token });
 });
 
+/* GET default index page. */
+router.get('/', function(req, res) {
+    hotSalesController.getBrandList(req,res,renderView);
+});
+
 /* 首页. */
 router.get('/home/:name?/:index?', function(req, res) {
     console.log("=====>"+req.params.name);
@@ -33,8 +38,8 @@ router.get('/home/:name?/:index?', function(req, res) {
         default:
             hotSalesController.getBrandList(req,res,renderView);
     }
-}
 
+}
 });
 
 /* 品牌列表. */

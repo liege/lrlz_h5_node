@@ -31,7 +31,8 @@ exports.oauth = function(req, res, renderFun){
 //                        title: '用户信息',
 //                        userInfo: userInfo
 //                    }, 'index');
-                    res.redirect("/product/detail/IJ45014z98");
+//                    res.redirect("/product/detail/IJ45014z98");
+                    res.redirect(redirect_url);
                 }
             });
         });

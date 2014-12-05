@@ -2,7 +2,7 @@ exports.userAuthFilter = function(req, res, next){
     if (req.url == "/signup" ||
         req.url == "/login" ||
         req.url == "/oauth" ||
-        req.url == "/product/detail/IJ45014z98" ||
+        req.url.match("/weixin/oauth") != null ||
         req.url.match("/api/") != null ||
         req.url.match("/public/") != null ||
         req.url.match("/error/") != null ||
