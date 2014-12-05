@@ -38,8 +38,6 @@ router.get('/home/:name?/:index?', function(req, res) {
         default:
             hotSalesController.getBrandList(req,res,renderView);
     }
-
-}
 });
 
 /* 品牌列表. */
