@@ -31,13 +31,10 @@ router.get('/home/:name?/:index?', function(req, res) {
             break;
         case "hot_sales":
         default:
-<<<<<<< HEAD
             hotSalesController.getBrandList(req,res,renderView);
     }
-=======
-            console.log('nothing');
 }
->>>>>>> 37cab4f202e289c9b93702ad27504e18ec63aa79
+
 });
 
 /* 品牌列表. */
