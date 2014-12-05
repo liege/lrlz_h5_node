@@ -1,6 +1,18 @@
 var Driver = require('../driver/index.js');
 var host_port = require('../configuration').setting.globalAPIParams.host_port;
 var path = require('../configuration').setting.globalAPIParams.path;
+var https_host_port = require('../configuration').setting.globalAPIParams.https_host_port;
+var path_h5 = require('../configuration').setting.globalAPIParams.path_h5;
+
+//微信登陆接口
+var wxLogin = exports.wxLogin = function(params, callback){
+    Driver.queryByPost(host_port+path_h5+'/login.ss', params, callback);
+};
+
+//手机绑定接口
+var bindPhone = exports.bindPhone = function(params, callback){
+    Driver.queryByPost(host_port+path_h5+'/bindPhone.ss', params, callback);
+};
 
 //商品列表查询接口					
 var getListProducts = exports.getListProducts = function(params, callback){

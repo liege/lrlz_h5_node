@@ -1,4 +1,5 @@
 var Driver = require('../driver/index');
+var driverApi = require('../driverApi');
 var setting = require('../configuration').setting;
 var utils = require('../utils/index');
 
@@ -20,23 +21,41 @@ exports.oauth = function(req, res, renderFun){
             user_params.access_token = tokenData.access_token;
             console.log('access_token: ' + tokenData.access_token);
             user_params.openid = tokenData.openid;
-            //save userInfo to session
-            req.session.userInfo = {};
-            req.session.userInfo.openid = tokenData.openid;
             Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
                 var userInfo = {};
                 if(!userData.errmsg){
-                    userInfo = userData;
-                    req.session.userInfo = userData;
-                    req.session.userInfo.access_token = tokenData.access_token;
-                    req.session.userInfo.refresh_token = tokenData.refresh_token;
-                    console.log('req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
-//                    renderFun(req,res, {
-//                        title: '用户信息',
-//                        userInfo: userInfo
-//                    }, 'index');
-//                    res.redirect("/product/detail/IJ45014z98");
-                    res.redirect(redirect_url);
+                    var wxLoginParams = {};
+                    wxLoginParams.weixin_id = userData.openid;
+                    wxLoginParams.weixin_nick = userData.nickname || '';
+                    wxLoginParams.weixin_pic = userData.headimgurl || '';
+                    wxLoginParams.appKey = setting.globalAPIParams.appKey;
+                    wxLoginParams.appVer = setting.globalAPIParams.appVer;
+                    console.log('wxLoginParams : ' + JSON.stringify(wxLoginParams));
+                    driverApi.wxLogin(wxLoginParams, function(wxLoginData){
+                        console.log('wxLoginData: ' + JSON.stringify(wxLoginData));
+                        if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
+                            //save userInfo to session
+                            req.session.userInfo = {};
+                            req.session.userInfo.uuid = wxLoginData.uuid;
+                            req.session.userInfo.openid = wxLoginData.weixin_id;
+                            req.session.userInfo.phone = wxLoginData.phone;
+                            req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
+                            req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
+                            req.session.userInfo.point = wxLoginData.point;
+//                            req.session.userInfo.access_token = tokenData.access_token;
+//                            req.session.userInfo.refresh_token = tokenData.refresh_token;
+                            console.log('req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
+
+//                            userInfo = userData;
+//                            renderFun(req,res, {
+//                                title: '用户信息',
+//                                userInfo: userInfo
+//                            }, 'index');
+
+//                            res.redirect("/product/detail/IJ45014z98");
+                            res.redirect(redirect_url);
+                        }
+                    });
                 }
             });
         });
@@ -53,7 +72,7 @@ exports.orderConfirm = function(req, res, renderFun){
     unifiedOrderParams.mch_id = setting.wxParams.mchid;
     unifiedOrderParams.nonce_str = utils.createNoncestr(32);
     unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = session.userInfo.openid;
+    unifiedOrderParams.openid = req.session.userInfo.openid;
     unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
     console.log('client ip : ' + utils.getClientIp(req));
     unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
