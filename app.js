@@ -29,7 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mzyx' ,cookie: { maxAge: 1000*60*60*24*30}}));  //session 时长为20秒,这个是以毫秒为单位,这样我们就建立一个session的会话，这是一个全局的设置
+app.use(session({resave:false, saveUninitialized:false, secret: 'mzyx', key: 'mzyx' ,cookie: { maxAge: 1000*60*60*24}}));  //session 时长为24小时,这个是以毫秒为单位,这样我们就建立一个session的会话，这是一个全局的设置
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'webPublic')));
 app.use(partials());

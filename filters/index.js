@@ -1,4 +1,5 @@
 exports.userAuthFilter = function(req, res, next){
+    console.log('req.session : ' + JSON.stringify(req.session));
     if (req.url == "/signup" ||
         req.url == "/login" ||
         req.url == "/oauth" ||
@@ -17,7 +18,6 @@ exports.userAuthFilter = function(req, res, next){
         next();
     } else if (req.session == null ||  req.session.userInfo == null ||
         req.session.userInfo == "") {
-        console.log('req.session : ' + JSON.stringify(req.session));
         req.session.globalParams = {};
         req.session.globalParams.redirect_url = req.url;
         res.redirect("/oauth");
