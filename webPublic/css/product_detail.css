@@ -1,5 +1,6 @@
 body {
-    color: #4f5051;
+    color: #828f95;
+    /*color: #4f5051;*/
     /*font: 1.4rem Arial,Verdana,"宋体";*/
     font-size: 1.4rem;
     font-weight: bold;
@@ -169,6 +170,7 @@ body {
     display: block;
     width: 100%;
     margin-bottom: 10px;
+    color: #4f5051;
     /*text-overflow: ellipsis;*/
     /*overflow: hidden;*/
     /*white-space: nowrap;*/
@@ -210,7 +212,7 @@ span.commitment{
 .originalPrice{
     display: block;
     text-decoration: line-through;
-    color: #a6a6a6;
+    color: #828f95;
 }
 
 .integral{
@@ -299,7 +301,6 @@ span.commitment{
     color: #fff;
     border-radius: 20px;
     background-color: #ea4e57;
-    /*background-color: #ff9732;*/
     font-size: 1.6rem;
 }
 
@@ -319,6 +320,30 @@ span.commitment{
     border-bottom: 1px solid #d5d5d5;
     font-size: 1.6rem;
     color: #828f95;
+}
+
+.detailLabel{
+    height: 50px;
+    background-color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+}
+
+.detailLabel .detail_tab, .detailLabel .params_tab{
+    display: block;
+    -webkit-box-flex: 1;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.detailLabel .detail_tab{
+    border-right: 1px solid #d5d5d5;
+}
+
+.detailLabel .on{
+    color: #f35a46;
 }
 
 .evaluationIcon, .detailIcon{
