@@ -6,7 +6,7 @@ var homeController = require('../controller/home');
 
 /* oauth */
 router.get('/oauth', function(req, res) {
-    res.render('oauth', { title: '美妆优选'});
+    res.render('oauth', { title: '美妆优选', scope:'snsapi_base'});
 });
 
 /* 微信共享地址. */
@@ -53,8 +53,13 @@ router.get('/users', function(req, res) {
 });
 
 /* oauth weixin user */
-router.get('/weixin/oauth', function(req, res) {
-    weixinController.oauth(req, res, renderView);
+router.get('/weixin/oauth/:scope', function(req, res) {
+    console.log('scope : ' + req.params.scope);
+    if(req.params.scope == 'snsapi_base'){
+        weixinController.oauthBase(req, res, renderView);
+    }else{
+        weixinController.oauthUserInfo(req, res, renderView);
+    }
 });
 
 /* order confirm */

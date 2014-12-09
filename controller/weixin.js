@@ -3,48 +3,112 @@ var driverApi = require('../driverApi');
 var setting = require('../configuration').setting;
 var utils = require('../utils/index');
 
-exports.oauth = function(req, res, renderFun){
+exports.oauthBase = function(req, res, renderFun){
     var state = req.query.state;
     var redirect_url = '/home';
     if(req.session.globalParams){
         redirect_url = req.session.globalParams.redirect_url;
     }
-    console.log('redirect_url : ' + redirect_url);
+    console.log('oauthBase redirect_url : ' + redirect_url);
+
     var token_params = {};
+    console.log('oauthBase code : '+ req.query.code);
     token_params.code = req.query.code;
     token_params.appid = setting.wxParams.appId;
     token_params.secret = setting.wxParams.appSecret;
     token_params.grant_type = 'authorization_code';
     try{
         Driver.queryByPost('https://api.weixin.qq.com/sns/oauth2/access_token', token_params, function(tokenData){
+            console.log('oauthBase tokenData : ' + JSON.stringify(tokenData));
             var user_params = {};
             user_params.access_token = tokenData.access_token;
-            console.log('access_token: ' + tokenData.access_token);
+            console.log('oauthBase access_token: ' + tokenData.access_token);
             user_params.openid = tokenData.openid;
-            Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
-                var userInfo = {};
-                if(!userData.errmsg){
-                    var wxLoginParams = {};
-                    wxLoginParams.weixin_id = userData.openid;
-                    wxLoginParams.weixin_nick = userData.nickname || '';
-                    wxLoginParams.weixin_pic = userData.headimgurl || '';
-                    wxLoginParams.appKey = setting.globalAPIParams.appKey;
-                    wxLoginParams.appVer = setting.globalAPIParams.appVer;
-                    console.log('wxLoginParams : ' + JSON.stringify(wxLoginParams));
-                    driverApi.wxLogin(wxLoginParams, function(wxLoginData){
-                        console.log('wxLoginData: ' + JSON.stringify(wxLoginData));
-                        if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
-                            //save userInfo to session
-                            req.session.userInfo = {};
-                            req.session.userInfo.uuid = wxLoginData.uuid;
-                            req.session.userInfo.openid = wxLoginData.weixin_id;
-                            req.session.userInfo.phone = wxLoginData.phone;
-                            req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
-                            req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
-                            req.session.userInfo.point = wxLoginData.point;
+            req.session.userInfo = {};
+            req.session.userInfo.openid = tokenData.openid;
+
+            var wxLoginParams = {};
+            wxLoginParams.weixin_id = tokenData.openid;
+            wxLoginParams.weixin_nick = '';
+            wxLoginParams.weixin_pic = '';
+            wxLoginParams.appKey = setting.globalAPIParams.appKey;
+            wxLoginParams.appVer = setting.globalAPIParams.appVer;
+            console.log('oauthBase wxLoginParams : ' + JSON.stringify(wxLoginParams));
+            driverApi.wxLogin(wxLoginParams, function(wxLoginData){
+                console.log('oauthBase wxLoginData: ' + JSON.stringify(wxLoginData));
+                if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
+                    //save userInfo to session
+                    req.session.userInfo.uuid = wxLoginData.uuid;
+                    req.session.userInfo.openid = wxLoginData.weixin_id;
+                    req.session.userInfo.phone = wxLoginData.phone;
+                    req.session.userInfo.point = wxLoginData.point;
+                    if(wxLoginData.weixin_nick && wxLoginData.weixin_pic){
+                        req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
+                        req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
+                        res.redirect(redirect_url);
+                    }else{
+                        req.session.userInfo.weixin_nick = '';
+                        req.session.userInfo.weixin_pic = '';
+                        renderFun(req,res, {
+                            title: '美妆优选',
+                            scope:'snsapi_userinfo'
+                        }, 'oauth');
+                    }
+                }
+            });
+        });
+    }catch(err){
+        console.log("error : " + JSON.stringify(err));
+    }
+};
+
+exports.oauthUserInfo = function(req, res, renderFun){
+    var state = req.query.state;
+    var redirect_url = '/home';
+    if(req.session.globalParams){
+        redirect_url = req.session.globalParams.redirect_url;
+    }
+    console.log('oauthUserInfo redirect_url : ' + redirect_url);
+
+    var token_params = {};
+    console.log('oauthUserInfo code : '+ req.query.code);
+    if(!req.query.code){
+        res.redirect(redirect_url);
+    }else{
+        token_params.code = req.query.code;
+        token_params.appid = setting.wxParams.appId;
+        token_params.secret = setting.wxParams.appSecret;
+        token_params.grant_type = 'authorization_code';
+        try{
+            Driver.queryByPost('https://api.weixin.qq.com/sns/oauth2/access_token', token_params, function(tokenData){
+                var user_params = {};
+                user_params.access_token = tokenData.access_token;
+                console.log('oauthUserInfo access_token: ' + tokenData.access_token);
+                user_params.openid = tokenData.openid;
+                Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
+                    var userInfo = {};
+                    if(!userData.errmsg){
+                        var wxLoginParams = {};
+                        wxLoginParams.weixin_id = userData.openid;
+                        wxLoginParams.weixin_nick = userData.nickname;
+                        wxLoginParams.weixin_pic = userData.headimgurl;
+                        wxLoginParams.appKey = setting.globalAPIParams.appKey;
+                        wxLoginParams.appVer = setting.globalAPIParams.appVer;
+                        console.log('oauthUserInfo wxLoginParams : ' + JSON.stringify(wxLoginParams));
+                        driverApi.wxLogin(wxLoginParams, function(wxLoginData){
+                            console.log('oauthUserInfo wxLoginData: ' + JSON.stringify(wxLoginData));
+                            if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
+                                //save userInfo to session
+                                req.session.userInfo = {};
+                                req.session.userInfo.uuid = wxLoginData.uuid;
+                                req.session.userInfo.openid = wxLoginData.weixin_id;
+                                req.session.userInfo.phone = wxLoginData.phone;
+                                req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
+                                req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
+                                req.session.userInfo.point = wxLoginData.point;
 //                            req.session.userInfo.access_token = tokenData.access_token;
 //                            req.session.userInfo.refresh_token = tokenData.refresh_token;
-                            console.log('req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
+                                console.log('oauthUserInfo req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
 
 //                            userInfo = userData;
 //                            renderFun(req,res, {
@@ -53,14 +117,15 @@ exports.oauth = function(req, res, renderFun){
 //                            }, 'index');
 
 //                            res.redirect("/product/detail/IJ45014z98");
-                            res.redirect(redirect_url);
-                        }
-                    });
-                }
+                                res.redirect(redirect_url);
+                            }
+                        });
+                    }
+                });
             });
-        });
-    }catch(err){
-        console.log("error : " + JSON.stringify(err));
+        }catch(err){
+            console.log("error : " + JSON.stringify(err));
+        }
     }
 };
 
@@ -107,5 +172,6 @@ exports.orderConfirm = function(req, res, renderFun){
 };
 
 exports.notify = function(req, res, renderFun){
+    console.log('weixin notify : ' +  JSON.stringify(req.body));
     renderFun(req,res,{return_code:'SUCCESS'});
 };

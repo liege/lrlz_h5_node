@@ -1,8 +1,10 @@
 exports.userAuthFilter = function(req, res, next){
+    console.log('req.session : ' + JSON.stringify(req.session));
     if (req.url == "/signup" ||
         req.url == "/login" ||
         req.url == "/oauth" ||
         req.url.match("/weixin/oauth") != null ||
+        req.url.match("/weixin/notify") != null ||
         req.url.match("/api/") != null ||
         req.url.match("/public/") != null ||
         req.url.match("/error/") != null ||
