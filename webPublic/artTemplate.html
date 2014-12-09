@@ -14,6 +14,9 @@
 	        <li>条目内容 <%=i + 1%> ：<%=list[i]%></li>
 	    <%}%>
 	</ul>	
+	<% list.forEach(function(v){ %>
+		<h1><%= v %></h1>
+	<% }) %>
 	</script>	
 	<script>
 		window.onload = function(){
