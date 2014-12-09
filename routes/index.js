@@ -3,6 +3,7 @@ var router = express.Router();
 var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
 var homeController = require('../controller/home');
+var favoriteController = require('../controller/favorite');
 
 /* oauth */
 router.get('/oauth', function(req, res) {
@@ -16,7 +17,7 @@ router.get('/addr', function(req, res) {
 
 /* GET default index page. */
 router.get('/', function(req, res) {
-    hotSalesController.getBrandList(req,res,renderView);
+    homeController.getHotSalesBanner(req,res,renderView);
 });
 
 /* 首页. */
@@ -46,7 +47,14 @@ router.get('/ajax/getHotSales/:scat_uuid',function(req,res){
 router.get('/brand/list', function(req, res) {
     homeController.getBrandDetail(req,res,renderView);
 });
-
+// 收藏列表页
+router.get('/users/favor', function(req, res) {
+    favoriteController.getFavoriteList(req,res,renderView);
+});
+// 添加收藏
+router.get('/ajax/addFavor', function(req, res) {
+    favoriteController.addFavor(req,res,renderJson);
+});
 /* GET users listing. */
 router.get('/users', function(req, res) {
     res.send('respond with a resource');

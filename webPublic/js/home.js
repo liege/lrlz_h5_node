@@ -42,13 +42,14 @@ $(function(){
 		}, false);
 	})();
 	//首页列表加载
-	ajaxRenderTemplate(hotSalesTemp,"activity05",$(".caizhuang"));
+	if(window.hotSalesTemp){
+		ajaxRenderTemplate(hotSalesTemp,"activity05",$(".caizhuang"));
+	}
 	//首页 分类列表选项卡初始化
 	new Tab({
 		hd:$('.tab_hd li'),
 		bd:$('.tab_bd ul'),
 		switchEnd:function(index){
-			console.log(ajaxRenderTemplate);
 			if(this.bd.eq(index).html()!=""){
 				return;
 			}else{
@@ -56,20 +57,15 @@ $(function(){
 			}
 		}
 	});
-
-	/*截取多余字符*/
-	$(function(){
-		$('.brand_list').find('.title').each(function(i,v){
-			$(v).html(Utils.cutText($(v).data("value"),40));
-		});
+	// 列表页收藏商品按钮
+	$('.addFavor').on("tap",function(){
+		if($(this).data("flag") && $(this).data("flag")=="addFavor"){
+			$(this).data("flag","rmFavor");
+		}else{
+			$(this).data("flag","addFavor");
+		}
+		return false;
 	});
-	/*截取多余字符*/
-	$(function(){
-		$('.brand_list').find('.memo').each(function(i,v){
-			$(v).html(Utils.cutText($(v).data("value"),60));
-		});
-	});	
-
 });
 
 /**

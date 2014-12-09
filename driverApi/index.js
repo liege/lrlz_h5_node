@@ -1,7 +1,7 @@
 var Driver = require('../driver/index.js');
 var host_port = require('../configuration').setting.globalAPIParams.host_port;
-var path = require('../configuration').setting.globalAPIParams.path;
 var https_host_port = require('../configuration').setting.globalAPIParams.https_host_port;
+var path = require('../configuration').setting.globalAPIParams.path;
 var path_h5 = require('../configuration').setting.globalAPIParams.path_h5;
 
 //微信登陆接口
@@ -46,9 +46,13 @@ var getFilter = exports.getFilter = function(params, callback){
 var getBrandList = exports.getBrandList = function(params, callback){
     Driver.queryByPost(host_port+path+'/getBrandList.ss', params, callback);
 };
-//我的收藏-保存收藏 P.S. 测试数据返回值为空字符串 ""
+//我的收藏-保存收藏
 var addFavor = exports.addFavor = function(params, callback){
-    // Driver.queryByPost(host_port+path+'/addFavor.ss', params, callback);
+    Driver.queryByPost(https_host_port+path+'/addFavor.ss', params, callback);
+};
+//我的收藏-取消收藏
+var delFavor = exports.delFavor = function(params, callback){
+    Driver.queryByPost(https_host_port+path+'/delFavor.ss', params, callback);
 };
 //我的收藏-查询我收藏的商品
 var getFavorList = exports.getFavorList = function(params, callback){
@@ -68,7 +72,7 @@ var getAppVersion = exports.getAppVersion = function(params, callback){
 };
 //我的收藏-查询我收藏的品牌
 var getFavorBrandList = exports.getFavorBrandList = function(params, callback){
-    Driver.queryByPost(host_port+path+'/getFavorBrandList.ss', params, callback);
+    Driver.queryByPost(https_host_port+path+'/getFavorBrandList.ss', params, callback);
 };
 //商品详细-商品图文详情获得接口
 var getDetial = exports.getDetial = function(params, callback){
