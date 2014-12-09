@@ -102,6 +102,7 @@ exports.queryByPost = function(url,data,fn){
         });
 
         res.on('end', function(){
+//            console.log('_data : ' + _data);
             _data ? fn!=undefined && fn(JSON.parse(_data)) : fn!=undefined && fn('');
         });
     });
