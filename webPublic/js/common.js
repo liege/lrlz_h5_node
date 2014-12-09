@@ -18,7 +18,7 @@ $(function(){
 		}
 	});
 	//首页 分类列表选项卡初始化
-	new Tab($('.tab_hd li'),$('.tab_bd ul'));
+	new Tab($('.tab_hd li'),$('.tab_bd ul')).callBack;
 });
 
 /*截取多余字符*/
@@ -38,9 +38,27 @@ $(function(){
  * @param {[type]} hd [切换标签集合 jq、zepto、类数组对象]
  * @param {[type]} bd [切换内容集合 jq、zepto、类数组对象]
  */
-function Tab(hd,bd){
+function Tab(option){
+	this.hd = option.hd;
+	this.bd = option.bd;
+	this.callBack = function(index){
+		console.log("===>"+index);
+	}
+	this.bind();
+}
+Tab.prototype.bind = function(){
+	var hd = this.hd,
+		bd = this.bd,
+		_this = this;
 	hd.on("tap",function(e){
 		$(this).addClass("current").siblings().removeClass("current");
 		bd.eq($(this).index()).show().siblings().hide();
-	})
+		_this.callBack($(this).index())
+	})	
 }
+
+
+
+
+
+
