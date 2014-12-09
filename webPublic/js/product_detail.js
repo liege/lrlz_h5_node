@@ -16,12 +16,14 @@ function init() {
 }
 
 function bindEvent(){
-    $('#buyNow').on('tap', function(){
+    $('#add_cart').on('tap', function(){
         var chooseCount = parseInt($('#chooseCount').text());
-        if($('.categoryList .selected').length > 0 && chooseCount > 0){
+        if($(this).hasClass('onCategoryArea')){
+            //vincent-todo add cart
+            $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
             closeChooseCategory();
-            window.location.href = 'http://app.meizhuangyouxuan.com/weixin/appdown.html';
-        } else{
+        }else{
+            $('#add_cart').addClass('onCategoryArea').text('确定');
             showChooseCategory();
         }
     });
@@ -31,16 +33,18 @@ function bindEvent(){
     });
 
     $('#chooseCategoryArea').on('tap', function(){
+        $('#add_cart').addClass('onCategoryArea').text('确定');
         showChooseCategory();
     });
 
     $('#closeBtn').on('tap', function(){
+        $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
         closeChooseCategory();
     });
 
     $('#minus').on('tap',function(){
         var chooseCount = parseInt($('#chooseCount').text());
-        if(chooseCount > 0){
+        if(chooseCount > 1){
             $('#chooseCount').text(chooseCount-1);
         }
     });
@@ -98,7 +102,7 @@ function showGoodsInfo(goodsInfo){
         picUrlArr = goodsInfo.pic_url.split(',');
         if(picUrlArr && picUrlArr.length>0){
             $.each(picUrlArr, function(i, item){
-                var liNode = $('<li><a href=""><img src=' + item + '></a></li>');
+                var liNode = $('<li><a><img src=' + item + '></a></li>');
                 imgUl.append(liNode);
             });
 
@@ -115,7 +119,8 @@ function showGoodsInfo(goodsInfo){
         }
     }
 
-    $('#introduce').text(cutText(goodsInfo.title,66));
+//    $('#introduce').text(cutText(goodsInfo.title,20));
+    $('#introduce').text(goodsInfo.title);
     var discountPrice = parseInt(goodsInfo.cur_price.split('-')[0]);
     var originalPrice = parseInt(goodsInfo.og_price.split('-')[0]);
     $('#discountPrice').text(discountPrice);
@@ -163,6 +168,11 @@ function showGoodsInfo(goodsInfo){
             });
 
             $('.categoryList span').each(function(i){
+                if(i == 0){
+                    $(this).addClass('selected');
+                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
+                    $('#priceRange').text($(this).attr('skuPrice'));
+                }
                 $(this).on('tap', function(){
                     $('.categoryList .selected').removeClass('selected');
                     $(this).addClass('selected');

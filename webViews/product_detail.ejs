@@ -1,4 +1,4 @@
-<%- partial('common/header_old',{title:title,cssSrc:['product_detail']}) %>
+<%- partial('common/header',{title:title,cssSrc:['product_detail']}) %>
 <div class="container">
     <div id="mask" class="mask displayNone"></div>
     <div id="chooseCategory" class="chooseCategory displayNone">
@@ -55,13 +55,16 @@
                 </div>
             </div>
         </div>
-        <!--<div id="chooseCategoryArea" class="chooseCategoryArea">-->
-        <!--<span class="categoryLabel">选择分类</span>-->
-        <!--<span id="categoryBtn" class="categoryBtn"></span>-->
-        <!--</div>-->
+        <div id="chooseCategoryArea" class="chooseCategoryArea">
+            <span class="categoryLabel">选择分类</span>
+            <span id="categoryBtn" class="categoryBtn"></span>
+        </div>
         <div class="buyBtn">
-            <span id="buyNow" class="buyNow">加入购物车</span>
-            <span id="download" class="download">立即购买</span>
+            <div class="left">
+                <span id="add_favor" class="add_favor"></span>
+                <span id="go_cart" class="go_cart"></span>
+            </div>
+            <span id="add_cart" class="add_cart">加入购物车</span>
             <!--<span id="download" class="productDownload"></span>-->
         </div>
         <div class="evaluationArea">
@@ -94,12 +97,8 @@
                 <span class="detailIcon"></span>
                 <span>商品详情</span>
             </div>
-            <iframe frameborder=no id="detailContent" class="detailContent">
-                <!--<img src="images/1.jpg"/>-->
-                <!--<img src="images/1.jpg"/>-->
-                <!--<img src="images/1.jpg"/>-->
-            </iframe>
+            <iframe frameborder=no id="detailContent" class="detailContent"></iframe>
         </div>
     </div>
 </div>
-<%- partial('common/footer_old',{jsSrc:['product_detail']}) %>
+<%- partial('common/footer',{jsSrc:['product_detail']}) %>
