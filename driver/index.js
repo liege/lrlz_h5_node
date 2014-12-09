@@ -95,7 +95,6 @@ exports.queryByPost = function(url,data,fn){
         },
         rejectUnauthorized: false  
     };
-    // console.log("===>"+options.path);
     var req = require(isHttp?'http':'https').request(options,function(res){
         var _data='';
         res.on('data', function(chunk){
@@ -107,7 +106,6 @@ exports.queryByPost = function(url,data,fn){
             _data ? fn!=undefined && fn(JSON.parse(_data)) : fn!=undefined && fn('');
         });
     });
-    console.log("===>");
     req.write(content);
 
     req.end();
