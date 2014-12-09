@@ -1,4 +1,23 @@
 $(function(){
+	// 首页4栏切换
+	//首先选项卡初始化显示页面 0，1，2，3
+	var pageIndex = parseInt(window.location.href.substr(-1,1));
+	pageIndex = typeof(pageIndex)!="number"||pageIndex>3?0:pageIndex;
+	new TouchSlide({ 
+		slideCell:"#touchSlide",
+		titCell:".tab_li li", 
+		mainCell:".tab_container",
+		titOnClassName:"current",
+		defaultIndex:pageIndex,
+		startFun:function(i,c){ 
+			if(i!=0){
+				$(".banner").hide();
+			}else{
+				$(".banner").show();
+			}
+		}
+	});
+
 	// 首页四块内容切换
 	new TouchSlide({ 
 		slideCell:"#banner",

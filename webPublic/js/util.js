@@ -43,3 +43,25 @@ var Utils = {
         };
     })()
 };
+
+/**
+ * [Tab description] 选项卡
+ * @param {[type]} hd [切换标签集合 jq、zepto、类数组对象]
+ * @param {[type]} bd [切换内容集合 jq、zepto、类数组对象]
+ */
+function Tab(option){
+    this.hd = option.hd;
+    this.bd = option.bd;
+    this.switchEndCB = option.switchEnd;
+    this.bind();
+}
+Tab.prototype.bind = function(){
+    var hd = this.hd,
+        bd = this.bd,
+        _this = this;
+    hd.on("tap",function(e){
+        $(this).addClass("current").siblings().removeClass("current");
+        bd.eq($(this).index()).show().siblings().hide();
+        _this.switchEndCB($(this).index())
+    })  
+}
