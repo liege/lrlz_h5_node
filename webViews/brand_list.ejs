@@ -1,11 +1,11 @@
-<%- partial('common/header',{title:title,cssSrc:[]}) %>
+<%- partial('common/header',{title:title,cssSrc:["common"]}) %>
 <%- partial('common/layout_header',{}) %>
 <!-- 页面内容 -->
 <div class="container">
 	<ul class="brand_list">
 	<% brandDetailData.products.forEach(function(v){ %>
 		<li>
-			<a class="pic" href="javascript:;"><img src=<%= v.pic_url %> alt=""></a>
+			<a class="pic" href="/product/detail/<%= v.uuid%>"><img src=<%= v.pic_url %> alt=""></a>
 			<p class="title decorate_line" data-value="<%= v.title %>"></p>
 			<div class="price">
 				<div class="discount">优选价:<%= v.cur_price%></div>

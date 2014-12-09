@@ -2,7 +2,7 @@ var hotSalesTemp =
 			'<% products.forEach(function(v){ %>'+
 			'<li>'+
 				'<div class="pic">'+
-					'<img src=<%= v.pic_url %> alt="">'+
+					'<a href=/product/detail/<%= v.uuid%>><img src=<%= v.pic_url %> alt=""></a>'+
 				'</div>'+
 				'<div class="info">'+
 					'<p class="title"><%= v.title %></p>'+

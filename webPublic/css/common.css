@@ -108,6 +108,7 @@ section:first-child{
     padding: 8px;
 }
 .brand_list .memo {
+	height: 3em;
     color: #b1bbbf;
     padding: 8px;
     background: #fff;
@@ -310,6 +311,7 @@ section:first-child{
     background: #fff;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    min-height: 600px;
 }
 .sort img{
 	width: 40px;

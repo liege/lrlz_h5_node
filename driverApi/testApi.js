@@ -6,14 +6,14 @@ var globalAppVer = globalAPIParams['appVer'];
 var globalToken = globalAPIParams['token'];
 
 //微信登陆接口
-DriverApi.wxLogin({"weixin_id":"oT8GMjqTpFuZfmL9M28Su-6jtRBw","weixin_nick":"汪吉灵","weixin_pic":"http://wx.qlogo.cn/mmopen/9Qgaibq4OTBTYfRHiaIMOOibbwlLG9vjSxMOkYmuedn5sEeyNAUkObSWjFFSHqpq8PtjshrjicxThzMXdMFhsz64DcuKzMxjVNpib/0",appKey:globalAppKey,appVer:globalAppVer},function(returnData){
-    console.log('wxLogin:'+JSON.stringify(returnData));
-});
+// DriverApi.wxLogin({"weixin_id":"oT8GMjqTpFuZfmL9M28Su-6jtRBw","weixin_nick":"汪吉灵","weixin_pic":"http://wx.qlogo.cn/mmopen/9Qgaibq4OTBTYfRHiaIMOOibbwlLG9vjSxMOkYmuedn5sEeyNAUkObSWjFFSHqpq8PtjshrjicxThzMXdMFhsz64DcuKzMxjVNpib/0",appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+//     console.log('wxLogin:'+JSON.stringify(returnData));
+// });
 
 //手机绑定接口
-DriverApi.bindPhone({uuid: '97901u1kAn', phone: '15216779471', appKey:globalAppKey,appVer:globalAppVer},function(returnData){
-    console.log('bindPhone:'+JSON.stringify(returnData));
-});
+// DriverApi.bindPhone({uuid: '97901u1kAn', phone: '15216779471', appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+//     console.log('bindPhone:'+JSON.stringify(returnData));
+// });
 
 ////商品列表接口
 //DriverApi.getListProducts({brand_uuid: '16B3435E78',appKey:globalAppKey,appVer:globalAppVer},function(returnData){
@@ -45,13 +45,13 @@ DriverApi.bindPhone({uuid: '97901u1kAn', phone: '15216779471', appKey:globalAppK
 //    // console.log('getBrandList: ' + JSON.stringify(returnData));
 //});
 ////我的收藏-保存收藏
-//DriverApi.addFavor({uuid:'IJ45014z98',isDelete:'true', appKey:globalAppKey, appVer:globalAppVer,type:'0',user_label:'userXXXX'},function(returnData){
-//    // console.log('addFavor: ' + JSON.stringify(returnData));
-//});
+DriverApi.addFavor({uuid:'IJ45014z98',isDelete:'true', appKey:globalAppKey, appVer:globalAppVer,type:'0',user_label:'userXXXX'},function(returnData){
+   console.log('addFavor: ' + JSON.stringify(returnData));
+});
 ////我的收藏-查询我收藏的商品
-//DriverApi.getFavorList({client_type:'anywhere', appKey:globalAppKey, appVer:globalAppVer,user_label:'userXXXX'},function(returnData){
-//    // console.log('getFavorList: ' + JSON.stringify(returnData));
-//});
+DriverApi.getFavorList({client_type:'anywhere', appKey:globalAppKey, appVer:globalAppVer,user_label:'userXXXX'},function(returnData){
+   console.log('getFavorList: ' + JSON.stringify(returnData));
+});
 ////专场秀
 //DriverApi.getShows({appKey:globalAppKey, appVer:globalAppVer,update_time:'20140801',client_type:'anywhere'},function(returnData){
 //    // console.log('getShows: ' + JSON.stringify(returnData));

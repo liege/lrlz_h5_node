@@ -23,7 +23,33 @@ $(function(){
 		}, false);
 	})();
 	//首页列表加载
-	ajaxRenderTemplate(hotSalesTemp,"activity05");
+	ajaxRenderTemplate(hotSalesTemp,"activity05",$(".caizhuang"));
+	//首页 分类列表选项卡初始化
+	new Tab({
+		hd:$('.tab_hd li'),
+		bd:$('.tab_bd ul'),
+		switchEnd:function(index){
+			console.log(ajaxRenderTemplate);
+			if(this.bd.eq(index).html()!=""){
+				return;
+			}else{
+				ajaxRenderTemplate(hotSalesTemp,"activity0"+(5+index),this.bd.eq(index));
+			}
+		}
+	});
+
+	/*截取多余字符*/
+	$(function(){
+		$('.brand_list').find('.title').each(function(i,v){
+			$(v).html(Utils.cutText($(v).data("value"),40));
+		});
+	});
+	/*截取多余字符*/
+	$(function(){
+		$('.brand_list').find('.memo').each(function(i,v){
+			$(v).html(Utils.cutText($(v).data("value"),60));
+		});
+	});	
 
 });
 
@@ -33,7 +59,7 @@ $(function(){
  * @param  {[type]} scat_uuid   [activity05/6/7/8]
  * @return {[type]}             [undefined]
  */
-function ajaxRenderTemplate(templateStr,scat_uuid){
+function ajaxRenderTemplate(templateStr,scat_uuid,$wrap){
 	console.log(scat_uuid);
 	$.ajax({
 		type:"GET",
@@ -43,7 +69,7 @@ function ajaxRenderTemplate(templateStr,scat_uuid){
         success:function(res){
 			var render = template.compile(templateStr);
 			var html = render(res);
-			$(".caizhuang").html(html);	
+			$wrap.html(html);	
         }		
 	});			
 }

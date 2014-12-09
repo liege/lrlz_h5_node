@@ -17,22 +17,8 @@ $(function(){
 			}
 		}
 	});
-	//首页 分类列表选项卡初始化
-	new Tab($('.tab_hd li'),$('.tab_bd ul')).callBack;
 });
 
-/*截取多余字符*/
-$(function(){
-	$('.brand_list').find('.title').each(function(i,v){
-		$(v).html(Utils.cutText($(v).data("value"),40));
-	});
-});
-/*截取多余字符*/
-$(function(){
-	$('.brand_list').find('.memo').each(function(i,v){
-		$(v).html(Utils.cutText($(v).data("value"),60));
-	});
-});
 /**
  * [Tab description] 选项卡
  * @param {[type]} hd [切换标签集合 jq、zepto、类数组对象]
@@ -41,9 +27,7 @@ $(function(){
 function Tab(option){
 	this.hd = option.hd;
 	this.bd = option.bd;
-	this.callBack = function(index){
-		console.log("===>"+index);
-	}
+	this.switchEndCB = option.switchEnd;
 	this.bind();
 }
 Tab.prototype.bind = function(){
@@ -53,7 +37,7 @@ Tab.prototype.bind = function(){
 	hd.on("tap",function(e){
 		$(this).addClass("current").siblings().removeClass("current");
 		bd.eq($(this).index()).show().siblings().hide();
-		_this.callBack($(this).index())
+		_this.switchEndCB($(this).index())
 	})	
 }
 

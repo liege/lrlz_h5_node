@@ -1,4 +1,4 @@
-<%- partial('common/header',{title:title,cssSrc:[]}) %>
+<%- partial('common/header',{title:title,cssSrc:["common"]}) %>
 <%- partial('common/layout_header',{}) %>
 <%- partial('common/menu',{}) %>
 <!-- 页面内容 -->
@@ -9,7 +9,7 @@
 				<ul class="banner_hd"></ul>
 				<ul class="banner_bd">
 					<% hotSalesData.products.forEach(function(v){ %>
-					<li><a href="#"><img _src="<%= v.ad_pic %>" src="/images/loading.gif" /></a></li>
+					<li><a href=/product/detail/<%= v.uuid%>><img _src="<%= v.ad_pic %>" src="/images/loading.gif" /></a></li>
 					<% }) %>				
 				</ul>			
 		</div>
@@ -24,9 +24,9 @@
 				<ul class="layout_list caizhuang">
 
 		        </ul>
-		        <ul>2</ul>
-		        <ul>3</ul>
-		        <ul>4</ul>
+		        <ul class="layout_list hufu"></ul>
+		        <ul class="layout_list jiemian"></ul>
+		        <ul class="layout_list meibai"></ul>
 	        </div>		
 		</div>
 	</section>
