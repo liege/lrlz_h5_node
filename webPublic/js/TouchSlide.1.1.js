@@ -1,1 +1,340 @@
-var TouchSlide=function(a){a=a||{};var b={slideCell:a.slideCell||"#touchSlide",titCell:a.titCell||".hd li",mainCell:a.mainCell||".bd",effect:a.effect||"left",autoPlay:a.autoPlay||!1,delayTime:a.delayTime||200,interTime:a.interTime||2500,defaultIndex:a.defaultIndex||0,titOnClassName:a.titOnClassName||"on",autoPage:a.autoPage||!1,prevCell:a.prevCell||".prev",nextCell:a.nextCell||".next",pageStateCell:a.pageStateCell||".pageState",pnLoop:"undefined "==a.pnLoop?!0:a.pnLoop,startFun:a.startFun||null,endFun:a.endFun||null,switchLoad:a.switchLoad||null},c=document.getElementById(b.slideCell.replace("#",""));if(!c)return!1;var d=function(a,b){a=a.split(" ");var c=[];b=b||document;var d=[b];for(var e in a)0!=a[e].length&&c.push(a[e]);for(var e in c){if(0==d.length)return!1;var f=[];for(var g in d)if("#"==c[e][0])f.push(document.getElementById(c[e].replace("#","")));else if("."==c[e][0])for(var h=d[g].getElementsByTagName("*"),i=0;i<h.length;i++){var j=h[i].className;j&&-1!=j.search(new RegExp("\\b"+c[e].replace(".","")+"\\b"))&&f.push(h[i])}else for(var h=d[g].getElementsByTagName(c[e]),i=0;i<h.length;i++)f.push(h[i]);d=f}return 0==d.length||d[0]==b?!1:d},e=function(a,b){var c=document.createElement("div");c.innerHTML=b,c=c.children[0];var d=a.cloneNode(!0);return c.appendChild(d),a.parentNode.replaceChild(c,a),m=d,c},g=function(a,b){!a||!b||a.className&&-1!=a.className.search(new RegExp("\\b"+b+"\\b"))||(a.className+=(a.className?" ":"")+b)},h=function(a,b){!a||!b||a.className&&-1==a.className.search(new RegExp("\\b"+b+"\\b"))||(a.className=a.className.replace(new RegExp("\\s*\\b"+b+"\\b","g"),""))},i=b.effect,j=d(b.prevCell,c)[0],k=d(b.nextCell,c)[0],l=d(b.pageStateCell)[0],m=d(b.mainCell,c)[0];if(!m)return!1;var N,O,n=m.children.length,o=d(b.titCell,c),p=o?o.length:n,q=b.switchLoad,r=parseInt(b.defaultIndex),s=parseInt(b.delayTime),t=parseInt(b.interTime),u="false"==b.autoPlay||0==b.autoPlay?!1:!0,v="false"==b.autoPage||0==b.autoPage?!1:!0,w="false"==b.pnLoop||0==b.pnLoop?!1:!0,x=r,y=null,z=null,A=null,B=0,C=0,D=0,E=0,G=/hp-tablet/gi.test(navigator.appVersion),H="ontouchstart"in window&&!G,I=H?"touchstart":"mousedown",J=H?"touchmove":"",K=H?"touchend":"mouseup",M=m.parentNode.clientWidth,P=n;if(0==p&&(p=n),v){p=n,o=o[0],o.innerHTML="";var Q="";if(1==b.autoPage||"true"==b.autoPage)for(var R=0;p>R;R++)Q+="<li>"+(R+1)+"</li>";else for(var R=0;p>R;R++)Q+=b.autoPage.replace("$",R+1);o.innerHTML=Q,o=o.children}"leftLoop"==i&&(P+=2,m.appendChild(m.children[0].cloneNode(!0)),m.insertBefore(m.children[n-1].cloneNode(!0),m.children[0])),N=e(m,'<div class="tempWrap" style="overflow:hidden; position:relative;"></div>'),m.style.cssText="width:"+P*M+"px;"+"position:relative;overflow:hidden;padding:0;margin:0;";for(var R=0;P>R;R++)m.children[R].style.cssText="display:table-cell;vertical-align:top;width:"+M+"px";var S=function(){"function"==typeof b.startFun&&b.startFun(r,p)},T=function(){"function"==typeof b.endFun&&b.endFun(r,p)},U=function(a){var b=("leftLoop"==i?r+1:r)+a,c=function(a){for(var b=m.children[a].getElementsByTagName("img"),c=0;c<b.length;c++)b[c].getAttribute(q)&&(b[c].setAttribute("src",b[c].getAttribute(q)),b[c].removeAttribute(q))};if(c(b),"leftLoop"==i)switch(b){case 0:c(n);break;case 1:c(n+1);break;case n:c(0);break;case n+1:c(1)}},V=function(){M=N.clientWidth,m.style.width=P*M+"px";for(var a=0;P>a;a++)m.children[a].style.width=M+"px";var b="leftLoop"==i?r+1:r;W(-b*M,0)};window.addEventListener("resize",V,!1);var W=function(a,b,c){c=c?c.style:m.style,c.webkitTransitionDuration=c.MozTransitionDuration=c.msTransitionDuration=c.OTransitionDuration=c.transitionDuration=b+"ms",c.webkitTransform="translate("+a+"px,0)"+"translateZ(0)",c.msTransform=c.MozTransform=c.OTransform="translateX("+a+"px)"},X=function(a){switch(i){case"left":r>=p?r=a?r-1:0:0>r&&(r=a?0:p-1),null!=q&&U(0),W(-r*M,s),x=r;break;case"leftLoop":null!=q&&U(0),W(-(r+1)*M,s),-1==r?(z=setTimeout(function(){W(-p*M,0)},s),r=p-1):r==p&&(z=setTimeout(function(){W(-M,0)},s),r=0),x=r}S(),A=setTimeout(function(){T()},s);for(var c=0;p>c;c++)h(o[c],b.titOnClassName),c==r&&g(o[c],b.titOnClassName);0==w&&(h(k,"nextStop"),h(j,"prevStop"),0==r?g(j,"prevStop"):r==p-1&&g(k,"nextStop")),l&&(l.innerHTML="<span>"+(r+1)+"</span>/"+p)};if(X(),u&&(y=setInterval(function(){r++,X()},t)),o)for(var R=0;p>R;R++)!function(){var a=R;o[a].addEventListener("click",function(){clearTimeout(z),clearTimeout(A),r=a,X()})}();k&&k.addEventListener("click",function(){(1==w||r!=p-1)&&(clearTimeout(z),clearTimeout(A),r++,X())}),j&&j.addEventListener("click",function(){(1==w||0!=r)&&(clearTimeout(z),clearTimeout(A),r--,X())});var Y=function(a){clearTimeout(z),clearTimeout(A),O=void 0,D=0;var b=H?a.touches[0]:a;B=b.pageX,C=b.pageY,m.addEventListener(J,Z,!1),m.addEventListener(K,$,!1)},Z=function(a){if(!H||!(a.touches.length>1||a.scale&&1!==a.scale)){var b=H?a.touches[0]:a;if(D=b.pageX-B,E=b.pageY-C,"undefined"==typeof O&&(O=!!(O||Math.abs(D)<Math.abs(E))),!O){switch(a.preventDefault(),u&&clearInterval(y),i){case"left":(0==r&&D>0||r>=p-1&&0>D)&&(D=.4*D),W(-r*M+D,0);break;case"leftLoop":W(-(r+1)*M+D,0)}null!=q&&Math.abs(D)>M/3&&U(D>-0?-1:1)}}},$=function(a){0!=D&&(a.preventDefault(),O||(Math.abs(D)>M/10&&(D>0?r--:r++),X(!0),u&&(y=setInterval(function(){r++,X()},t))),m.removeEventListener(J,Z,!1),m.removeEventListener(K,$,!1))};m.addEventListener(I,Y,!1)};
+
+/*!
+ * TouchSlide v1.1
+ * javascript触屏滑动特效插件，移动端滑动特效，触屏焦点图，触屏Tab切换，触屏多图切换等
+ * 详尽信息请看官网：http://www.SuperSlide2.com/TouchSlide/
+ *
+ * Copyright 2013 大话主席
+ *
+ * 请尊重原创，保留头部版权
+ * 在保留版权的前提下可应用于个人或商业用途
+
+ * 1.1 宽度自适应（修复安卓横屏时滑动范围不变的bug）
+ */
+var TouchSlide = function(a){
+	
+	a = a||{};
+	var opts = {
+		slideCell:a.slideCell || "#touchSlide", //运行效果主对象，必须用id！，例如 slideCell:"#touchSlide"
+		titCell:a.titCell || ".hd li", // 导航对象，当自动分页设为true时为“导航对象包裹层”
+		mainCell:a.mainCell || ".bd", // 切换对象包裹层
+		effect:a.effect || "left", // 效果，支持 left、leftLoop
+		autoPlay:a.autoPlay || false, // 自动播放
+		delayTime:a.delayTime || 200, // 效果持续时间
+		interTime:a.interTime ||2500, // 自动运行间隔
+		defaultIndex:a.defaultIndex ||0, // 默认的当前位置索引。0是第一个； defaultIndex:1 时，相当于从第2个开始执行
+		titOnClassName:a.titOnClassName ||"on", // 当前导航对象添加的className
+		autoPage:a.autoPage || false, // 自动分页，当为true时titCell为“导航对象包裹层”
+		prevCell:a.prevCell ||".prev", // 前一页按钮
+		nextCell:a.nextCell ||".next", // 后一页按钮
+		pageStateCell:a.pageStateCell ||".pageState", // 分页状态对象，用于显示分页状态，例如：2/3
+		pnLoop:a.pnLoop=='undefined '?true:a.pnLoop , // 前后按钮点击是否继续执行效果，当为最前/后页是会自动添加“prevStop”/“nextStop”控制样色
+		startFun:a.startFun || null, // 每次切换效果开始时执行函数，用于处理特殊情况或创建更多效果。用法 satrtFun:function(i,c){ }； 其中i为当前分页，c为总页数
+		endFun:a.endFun || null, // 每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+		switchLoad:a.switchLoad || null //每次切换效果结束时执行函数，用于处理特殊情况或创建更多效果。用法 endFun:function(i,c){ }； 其中i为当前分页，c为总页数
+	}
+
+	var slideCell = document.getElementById(opts.slideCell.replace("#",""));
+	if( !slideCell ) return false;
+
+
+	//简单模拟jquery选择器
+	var obj = function(str,parEle){ 
+		str = str.split(" ");
+		var par = [];
+		parEle = parEle||document;
+		var retn = [ parEle ] ;
+		for( var i in str ){ if(str[i].length!=0) par.push(str[i]) } //去掉重复空格
+		for( var i in par ){ 
+			if( retn.length==0 ) return false;
+			var _retn = [];
+			for ( var r in retn )
+			{
+				if( par[i][0] =="#" ) _retn.push( document.getElementById( par[i].replace("#","") ) );
+				else if( par[i][0] =="." ){
+					var tag = retn[r].getElementsByTagName('*');
+					for( var j=0; j<tag.length; j++ ){
+						var cln = tag[j].className;
+						if( cln && cln.search(new RegExp("\\b" + par[i].replace(".","") + "\\b"))!=-1 ){ _retn.push( tag[j] ); }
+					}
+				}
+				else { var tag = retn[r].getElementsByTagName( par[i] ); for( var j=0; j<tag.length; j++ ){ _retn.push( tag[j] ) } }
+			}
+			retn =_retn;
+		}
+		
+		return retn.length==0 || retn[0] == parEle ? false:retn;
+	}// obj E
+
+	// 创建包裹层
+	var wrap = function(el, v){
+			var tmp = document.createElement('div');
+			tmp.innerHTML = v;
+			tmp = tmp.children[0];
+			var _el = el.cloneNode(true);
+			tmp.appendChild(_el);
+			el.parentNode.replaceChild(tmp, el);
+			conBox = _el; // 重置conBox
+			return tmp;
+	};
+
+	// 获取样色数值
+	var getStyleVal =function(el, attr){ var v=0; if(el.currentStyle){ v= el.currentStyle[attr] } else { v= getComputedStyle(el,false)[attr]; } return parseInt(v.replace("px","")) } 
+
+	// class处理
+	var addClass =function(ele, className){
+		 if (!ele || !className || (ele.className && ele.className.search(new RegExp("\\b" + className + "\\b")) != -1)) return;
+		 ele.className += (ele.className ? " " : "") + className;
+	}
+
+	var removeClass = function(ele, className){
+		 if (!ele || !className || (ele.className && ele.className.search(new RegExp("\\b" + className + "\\b")) == -1)) return;
+		 ele.className = ele.className.replace(new RegExp("\\s*\\b" + className + "\\b", "g"), "");
+	}
+
+	//全局对象
+	var effect = opts.effect;
+	var prevBtn = obj( opts.prevCell,slideCell )[0];
+	var nextBtn = obj( opts.nextCell,slideCell )[0];
+	var pageState = obj( opts.pageStateCell )[0];
+	var conBox = obj( opts.mainCell,slideCell )[0];//内容元素父层对象
+	if( !conBox ) return false;
+	var conBoxSize= conBox.children.length;
+	var navObj = obj( opts.titCell,slideCell );//导航子元素结合
+	var navObjSize = navObj?navObj.length:conBoxSize;
+	var sLoad=opts.switchLoad;
+
+	/*字符串转换*/
+	var index=parseInt(opts.defaultIndex);
+	var delayTime=parseInt(opts.delayTime);
+	var interTime=parseInt(opts.interTime);
+	var autoPlay = (opts.autoPlay=="false"||opts.autoPlay==false)?false:true;
+	var autoPage = (opts.autoPage=="false"||opts.autoPage==false)?false:true;
+	var loop = (opts.pnLoop=="false"||opts.pnLoop==false)?false:true;
+	var oldIndex = index;
+	var inter=null;// autoPlay的setInterval
+	var timeout = null; // leftLoop的setTimeout
+	var endTimeout = null;  //translate的setTimeout
+	
+	var startX = 0;
+	var startY = 0;
+	var distX = 0;
+	var distY = 0;
+	var dist = 0; //手指滑动距离
+	var isTouchPad = (/hp-tablet/gi).test(navigator.appVersion);
+	var hasTouch = 'ontouchstart' in window && !isTouchPad;
+	var touchStart = hasTouch ? 'touchstart' : 'mousedown';
+	//var touchMove = hasTouch ? 'touchmove' : 'mousemove';
+	var touchMove = hasTouch ? 'touchmove' : '';
+	var touchEnd = hasTouch ? 'touchend' : 'mouseup';
+	var slideH=0;
+	var slideW= conBox.parentNode.clientWidth;// mainCell滑动距离
+	var twCell;
+	var scrollY ;
+	var tempSize = conBoxSize;
+	
+	//处理分页
+	if( navObjSize==0 )navObjSize=conBoxSize;
+	if( autoPage ){
+		navObjSize=conBoxSize;
+		navObj=navObj[0];
+		navObj.innerHTML=""; 
+		var str="";
+
+		if( opts.autoPage==true|| opts.autoPage=="true" ){ for( var i=0; i<navObjSize; i++ ){ str+="<li>"+(i+1)+"</li>" } }
+		else{ for( var i=0; i<navObjSize; i++ ){ str+=opts.autoPage.replace("$",(i+1))  } }
+		
+		navObj.innerHTML=str;
+		navObj = navObj.children;//重置navObj
+	}
+
+	
+	
+	if( effect == "leftLoop" ){
+		tempSize +=2;
+		conBox.appendChild( conBox.children[0].cloneNode(true) );
+		conBox.insertBefore( conBox.children[conBoxSize-1].cloneNode(true),conBox.children[0] );
+	}
+	twCell = wrap(conBox,'<div class="tempWrap" style="overflow:hidden; position:relative;"></div>');
+	conBox.style.cssText="width:"+tempSize*slideW+"px;"+"position:relative;overflow:hidden;padding:0;margin:0;";
+	for ( var i =0; i<tempSize; i++ ){  conBox.children[i].style.cssText="display:table-cell;vertical-align:top;width:"+slideW+"px"  }
+	
+
+	var doStartFun=function(){ if ( typeof opts.startFun =='function' ){ opts.startFun( index,navObjSize ) } }
+	var doEndFun=function(){ if (  typeof opts.endFun =='function' ){ opts.endFun( index,navObjSize ) } }
+	var doSwitchLoad=function( moving ){ 
+				var curIndex = ( effect=="leftLoop"?index+1:index ) + moving;
+				var changeImg = function( ind ){
+						var img = conBox.children[ind].getElementsByTagName("img");
+						for ( var i=0; i<img.length ; i++ )
+						{
+							if ( img[i].getAttribute(sLoad) ){ 
+								img[i].setAttribute("src", img[i].getAttribute(sLoad) ); 
+								img[i].removeAttribute( sLoad );
+							} 
+						}
+				}// changeImg E
+				changeImg( curIndex );
+				if( effect=="leftLoop" ){
+					switch ( curIndex )
+					{
+						case 0: changeImg( conBoxSize );break;
+						case 1: changeImg( conBoxSize+1 );break;
+						case conBoxSize: changeImg( 0 );break;
+						case conBoxSize+1: changeImg( 1 );break;
+					}
+				}
+	}// doSwitchLoad E
+
+	//动态设置滑动宽度
+	var orientationChange = function(){ 
+		slideW = twCell.clientWidth;
+		conBox.style.width = tempSize*slideW +"px";
+		for ( var i =0; i<tempSize; i++ ){  conBox.children[i].style.width=slideW+"px";  }
+		var ind = effect == "leftLoop"? index+1:index;
+		translate(  -ind*slideW ,0 );
+	} 
+	window.addEventListener("resize", orientationChange, false); 
+
+
+	//滑动效果
+	var translate = function( dist, speed, ele ) {
+		if( !!ele ){ ele=ele.style; }else{ ele=conBox.style; }
+		ele.webkitTransitionDuration =  ele.MozTransitionDuration = ele.msTransitionDuration = ele.OTransitionDuration = ele.transitionDuration =  speed + 'ms';
+		ele.webkitTransform = 'translate(' + dist + 'px,0)' + 'translateZ(0)';
+		ele.msTransform = ele.MozTransform = ele.OTransform = 'translateX(' + dist + 'px)';		
+	}
+
+	//效果函数
+	var doPlay=function(isTouch){
+		
+		switch (effect)
+		{
+			case "left": 
+				if ( index >= navObjSize) { index = isTouch?index-1:0; } else if( index < 0) { index = isTouch?0:navObjSize-1; } 
+				if( sLoad!=null ){ doSwitchLoad(0) } 
+				translate(  (-index*slideW),delayTime ); oldIndex=index; break;
+				
+				
+			case "leftLoop":
+				if( sLoad!=null ){ doSwitchLoad(0) }
+				translate(  -(index+1)*slideW ,delayTime );
+				if ( index==-1){ 
+						timeout= setTimeout( function(){ translate( -navObjSize*slideW ,0 ); }, delayTime );
+						index = navObjSize-1; 
+				}
+				else if( index==navObjSize ){ timeout= setTimeout( function(){ translate( -slideW ,0 ); }, delayTime );
+						index = 0; 
+				}
+				oldIndex=index;
+				break;// leftLoop end
+
+		}//switch end
+		doStartFun();
+		endTimeout= setTimeout( function(){ doEndFun() }, delayTime );
+
+		//设置className
+		for ( var i=0; i<navObjSize; i++ )
+		{
+			removeClass(navObj[i],opts.titOnClassName);
+			if( i == index ){ addClass(navObj[i],opts.titOnClassName) }
+		}
+
+		if( loop==false ){ //loop控制是否继续循环
+			removeClass( nextBtn,"nextStop" );removeClass( prevBtn,"prevStop" );
+			if (index==0 ){ addClass( prevBtn,"prevStop" ) }
+			else if (index==navObjSize-1 ){ addClass( nextBtn,"nextStop" ) }
+		}
+		if(pageState){ pageState.innerHTML= "<span>"+(index+1)+"</span>/"+navObjSize; }
+
+	};// doPlay end
+
+	//初始化执行
+	doPlay();
+	
+	//自动播放
+	if (autoPlay) {
+		 inter=setInterval(function(){ index++; doPlay() }, interTime); 
+	}
+
+	//点击事件
+	if( navObj ){
+		for ( var i=0; i<navObjSize; i++ )
+		{		
+			(function(){
+				var j = i;
+				navObj[j].addEventListener('click', function(e){ clearTimeout( timeout ); clearTimeout( endTimeout );  index=j; doPlay();  })
+			})()
+			
+		}
+	}
+	if(nextBtn){ nextBtn.addEventListener('click', function(e){ if ( loop==true || index!=navObjSize-1 ){ clearTimeout( timeout ); clearTimeout( endTimeout ); index++; doPlay(); } }) }
+	if(prevBtn){ prevBtn.addEventListener('click', function(e){ if ( loop==true || index!=0 ){ clearTimeout( timeout ); clearTimeout( endTimeout ); index--; doPlay(); } }) }
+
+
+
+	//触摸开始函数
+	var tStart = function(e){
+		clearTimeout( timeout );clearTimeout( endTimeout );
+		scrollY = undefined;
+		distX = 0;
+		var point = hasTouch ? e.touches[0] : e;
+		startX =  point.pageX;
+		startY =  point.pageY;
+
+		//添加“触摸移动”事件监听
+		conBox.	addEventListener(touchMove, tMove,false);
+		//添加“触摸结束”事件监听
+		conBox.addEventListener(touchEnd, tEnd ,false);
+	}
+
+	//触摸移动函数
+	var tMove = function(e){
+		if( hasTouch ){ if ( e.touches.length > 1 || e.scale && e.scale !== 1) return }; //多点或缩放
+
+		var point = hasTouch ? e.touches[0] : e;
+		distX = point.pageX-startX;
+		distY = point.pageY-startY;
+
+		if ( typeof scrollY == 'undefined') { scrollY = !!( scrollY || Math.abs(distX) < Math.abs(distY) ); }
+		if( !scrollY ){ 
+			e.preventDefault(); if(autoPlay){clearInterval(inter) }
+			switch (effect){
+				case "left":
+					if( (index==0 && distX>0) || (index>=navObjSize-1&&distX<0 )){ distX=distX*0.4 }
+					translate( -index*slideW+distX ,0 );
+				break;
+				case "leftLoop":translate( -(index+1)*slideW+distX ,0 );break;
+			}
+			
+			if(  sLoad!=null && Math.abs(distX)>slideW/3 ){ 
+				doSwitchLoad( distX>-0?-1:1 ) 
+			}
+		}
+		return false;
+	}
+
+	//触摸结束函数
+	var tEnd = function(e){
+		if(distX==0) return;
+		e.preventDefault(); 
+		if( !scrollY )
+		{
+			if( Math.abs(distX) > slideW/10  ){ distX>0? index--: index++; }
+			doPlay( true );  
+			if (autoPlay) {
+				 inter=setInterval(function(){ index++; doPlay() }, interTime); 
+			}
+		}
+
+		conBox.removeEventListener(touchMove, tMove, false);
+		conBox.removeEventListener(touchEnd, tEnd, false);
+	}
+
+
+	//添加“触摸开始”事件监听
+	conBox.addEventListener(touchStart, tStart ,false);
+
+
+}// TouchSlide E
+

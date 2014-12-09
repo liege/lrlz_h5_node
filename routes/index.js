@@ -2,10 +2,7 @@ var express = require('express');
 var router = express.Router();
 var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
-var brandController = require('../controller/brand');
-var newListController = require('../controller/new_products');
-var giftExchangeController = require('../controller/gift_exchange');
-var hotSalesController = require('../controller/hot_sales');
+var homeController = require('../controller/home');
 
 /* oauth */
 router.get('/oauth', function(req, res) {
@@ -27,23 +24,27 @@ router.get('/home/:name?/:index?', function(req, res) {
     console.log("=====>"+req.params.name);
     switch(req.params.name){
         case "gift_exchange":
-            giftExchangeController.getBrandList(req,res,renderView);
+            homeController.getGiftList(req,res,renderView);
             break;
         case "brand_street":
-            brandController.getBrandList(req,res,renderView);
+            homeController.getBrandList(req,res,renderView);
             break;
         case "new_products":
-            newListController.getNewList(req,res,renderView);
+            homeController.getNewList(req,res,renderView);
             break;
         case "hot_sales":
         default:
-            hotSalesController.getBrandList(req,res,renderView);
+            homeController.getHotSalesBanner(req,res,renderView);
     }
 });
 
+// 首页热销榜JSON 四个类别 scat_uuid=activity05/6/7/8
+router.get('/ajax/getHotSales/:scat_uuid',function(req,res){
+    homeController.getHotSalesData(req,res,renderJson);
+});
 /* 品牌列表. */
 router.get('/brand/list', function(req, res) {
-    brandController.getBrandDetail(req,res,renderView);
+    homeController.getBrandDetail(req,res,renderView);
 });
 
 /* GET users listing. */
