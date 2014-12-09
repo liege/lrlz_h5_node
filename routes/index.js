@@ -78,22 +78,22 @@ router.get('/product/detail/:uuid', function(req, res) {
 });
 
 /* GET product info data. */
-router.get('/ajax/getProductInfo.ss', function(req, res) {
+router.get('/ajax/getProductInfo', function(req, res) {
     productController.getProductInfoData(req, res, renderJson);
 });
 
 /* GET product recommands data. */
-router.get('/ajax/getRecommandList.ss', function(req, res) {
+router.get('/ajax/getRecommandList', function(req, res) {
     productController.getRecommandListData(req, res, renderJson);
 });
 
 /* GET product commends data. */
-router.post('/ajax/getCommentList.ss', function(req, res) {
+router.post('/ajax/getCommentList', function(req, res) {
     productController.getCommentListData(req, res, renderJson);
 });
 
 /* GET product detail data. */
-router.get('/ajax/getDetial.ss', function(req, res) {
+router.get('/ajax/getDetial', function(req, res) {
     productController.getDetailData(req, res, renderJson);
 });
 
