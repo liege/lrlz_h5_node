@@ -1,8 +1,8 @@
 body {
-    /*font-size: 24px;*/
     color: #4f5051;
-    margin: 0;
-    font: 24px Arial,Verdana,"宋体";
+    /*font: 1.4rem Arial,Verdana,"宋体";*/
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 .content{
@@ -10,7 +10,6 @@ body {
     margin-bottom: 97px;
     background-color: #fff;
     overflow: hidden;
-    /*font-weight: bold;*/
     /*border-bottom: 1px solid #d5d5d5;*/
 }
 
@@ -28,15 +27,14 @@ body {
 .chooseCategory{
     position: fixed;
     width: 100%;
-    margin-bottom: 96px;
+    margin-bottom: 54px;
     bottom: 0;
     background-color: #fff;
     z-index: 100;
-    /*font-weight: bold;*/
 }
 
 .categoryInfo{
-    height: 120px;
+    height: 80px;
     border-bottom: 1px solid #d5d5d5;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
@@ -45,9 +43,9 @@ body {
 
 .categoryImg{
     display: block;
-    width: 100px;
-    height: 100px;
-    margin: 0 20px;
+    width: 60px;
+    height: 60px;
+    margin: 0 10px;
 }
 
 .infoRight .price{
@@ -55,58 +53,58 @@ body {
 }
 
 .infoRight p{
-    height: 50px;
-    line-height: 50px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .chooseCategory .category{
-    margin: 0 20px;
+    margin: 0 10px;
 }
 
 .category p{
-    height: 50px;
-    line-height: 50px;
+    height: 30px;
+    line-height: 30px;
     border-bottom: 1px solid #d5d5d5;
 }
 
 .categoryList{
     width: 100%;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .categoryList span{
     display: inline-block;
     width: 44%;
-    height: 40px;
+    height: 30px;
     margin: 2%;
-    line-height: 40px;
+    line-height: 30px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #d5d5d5;
 }
 
 .categoryList .selected{
-    background-color: #f3416f;
-    color: #fff;
+    border-color: #ff9732;
+    color: #ff9732;
 }
 
 .closeBtn{
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     background: url('../images/product_detail_close.png') no-repeat 0 0;
     background-size: cover;
 }
 
 .goodsCount{
-    height: 80px;
+    height: 60px;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
     -webkit-box-pack: justify;
-    margin: 20px;
+    margin: 10px;
     border-top: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
 }
@@ -127,25 +125,29 @@ body {
 }
 
 .minus, .plus{
-    width: 74px;
-    height: 50px;
+    width: 42px;
+    height: 36px;
 }
 
 .minus{
-    background: url('../images/minus.png') no-repeat 0 0;
+    width: 40px;
+    background: url('../images/product_detail_minus.png') no-repeat 0 0;
+    background-size: cover;
 }
 
 .chooseCount{
     display: block;
-    width: 80px;
-    height: 50px;
-    line-height: 50px;
+    width: 56px;
+    height: 36px;
+    line-height: 36px;
     text-align: center;
     background: url('../images/choose_count.png') no-repeat 0 0;
+    background-size: cover;
 }
 
 .plus{
-    background: url('../images/plus.png') no-repeat 0 0;
+    background: url('../images/product_detail_plus.png') no-repeat 0 0;
+    background-size: cover;
 }
 
 .imgWindow{
@@ -160,15 +162,13 @@ body {
 }
 
 .introduceArea{
-    margin: 10px 20px;
-    font-weight: bold;
+    margin: 10px;
 }
 
 .introduceArea .introduce{
     display: block;
     width: 100%;
     margin-bottom: 10px;
-    /*font-size: 26px;*/
     /*text-overflow: ellipsis;*/
     /*overflow: hidden;*/
     /*white-space: nowrap;*/
@@ -181,12 +181,12 @@ body {
 }
 
 .integralBuy{
-    margin: 10px 20px;
+    margin: 10px;
 }
 
 .buyPrice, .buyInfo{
     width: 100%;
-    height: 40px;
+    height: 26px;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
@@ -195,17 +195,16 @@ body {
 
 span.commitment{
     display: block;
-    width: 116px;
-    height: 26px;
+    width: 70px;
+    height: 16px;
     background: url('../images/product_commitment.png') no-repeat 0 0;
     background-size: cover;
 }
 
 .discountPrice{
     display: block;
-    font-size: 30px;
+    font-size: 1.8rem;
     color: #f35a46;
-    font-weight: bold;
 }
 
 .originalPrice{
@@ -225,8 +224,8 @@ span.commitment{
 }
 
 .chooseCategoryArea{
-    height: 80px;
-    padding: 0 20px;
+    height: 50px;
+    padding: 0 10px;
     border-bottom: 1px solid #d5d5d5;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
@@ -238,13 +237,13 @@ span.commitment{
     display: block;
     width: 130px;
     color: #828f95;
-    font-size: 30px;
+    font-size: 1.6rem;
 }
 
 .categoryBtn{
     display: block;
-    width: 18px;
-    height: 30px;
+    width: 10px;
+    height: 17px;
     background: url('../images/product_choose_category.png') no-repeat 0 0;
     background-size: cover;
 }
@@ -257,24 +256,51 @@ span.commitment{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
-    -webkit-box-pack: center;
+    -webkit-box-pack: justify;
     background-color: #f8f8f8;
     border-top: 1px solid #d5d5d5;
     z-index: 200;
 }
 
-.buyNow, .download{
+.buyBtn .left{
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    -webkit-box-pack: justify;
+    height: 34px;
+    width: 100px;
+    margin: 10px 20px;
+}
+
+.buyBtn .add_favor, .buyBtn .go_cart{
     display: block;
-    height: 50px;
-    width: 130px;
-    margin: 12px;
-    font-size: 24px;
-    line-height: 50px;
+    width: 24px;
+    height: 32px;
+}
+
+.buyBtn .add_favor{
+    background: url('../images/product_detail_favor.png') no-repeat 0 0;
+    background-size: cover;
+}
+
+.buyBtn .go_cart{
+    width: 36px;
+    background: url('../images/product_detail_cart.png') no-repeat 0 0;
+    background-size: cover;
+}
+
+.add_cart{
+    display: block;
+    height: 34px;
+    width: 110px;
+    margin: 10px 20px;
+    line-height: 34px;
     text-align: center;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #ea4e57;
-    font-weight: bold;
+    /*background-color: #ff9732;*/
+    font-size: 1.6rem;
 }
 
 .productDownload{
@@ -286,41 +312,36 @@ span.commitment{
     background-size: cover;
 }
 
-.buyNow{
-    background-color: #ff9732;
-}
-
 .detailLabel, .evaluationLabel{
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     background-color: #f5f5f5;
     border-bottom: 1px solid #d5d5d5;
-    font-size: 26px;
+    font-size: 1.6rem;
     color: #828f95;
-    font-weight: bold;
 }
 
 .evaluationIcon, .detailIcon{
     display: inline-block;
-    margin-left: 20px;
-    width: 32px;
+    margin-left: 10px;
+    width: 18px;
+    height: 16px;
+    position: relative;
+    top: 3px;
 }
 
 .evaluationIcon{
-    position: relative;
-    top: 8px;
-    height: 30px;
     background: url("../images/product_evaluation_icon.png") no-repeat 0 0;
     background-size: cover;
 }
 
 .detailIcon{
-    height: 23px;
     background: url("../images/product_detail_icon.png") no-repeat 0 0;
+    background-size: cover;
 }
 
 .userInfo{
-    height: 60px;
+    height: 36px;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
@@ -330,7 +351,7 @@ span.commitment{
 
 .userInfo .userName{
     display: block;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .userInfo .time{
@@ -343,8 +364,8 @@ span.commitment{
 }
 
 .evaluationContent .comment{
-    height: 160px;
-    margin: 10px 20px;
+    height: 120px;
+    margin: 10px;
 }
 
 .detailContent{
@@ -382,19 +403,21 @@ iframe img{
 
 .focus .hd ul li {
     display: inline-block;
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     background: url('../images/slide_banner.png') no-repeat 0 0;
-    margin: 0 10px;
+    background-size: cover;
+    margin: 0 8px;
     vertical-align: top;
     overflow: hidden;
     text-align: center;
-    line-height: 16px;
+    line-height: 10px;
     text-indent: -9999px;
 }
 
 .focus .hd ul .on {
     background: url('../images/slide_banner_on.png') no-repeat 0 0;
+    background-size: cover;
 }
 
 .focus .bd {
@@ -405,7 +428,7 @@ iframe img{
 .focus .bd li img {
     display: block;
     width: 100%;
-    height: 480px;
+    height: 280px;
     border: 0 none
 }
 
