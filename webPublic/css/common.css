@@ -63,18 +63,18 @@ section:first-child{
 .brand_street_list li:last-child {
     margin-bottom: 3px;
 }
-.brand_street_list img, .brand_list img {
+.brand_street_list img, .layout_dblist img {
     width: 100%;
 }
 /*商品列表-品牌列表&新品首发*/
-
-.brand_list {
+.layout_dblist {
     display: flex;
     display: -webkit-flex;
     flex-flow: row wrap;
     -webkit-flex-flow: row wrap;
 }
-.brand_list li {
+.layout_dblist li {
+	position: relative;
     width: 50%;
     padding: 3px 3px 0;
     box-sizing: border-box;
@@ -87,18 +87,31 @@ section:first-child{
     float: left;
     /*fix old browser*/
 }
-.brand_list li:nth-child(odd) {
+.layout_dblist li:nth-child(odd) {
     padding-right: 1.5px;
 }
-.brand_list li:nth-child(even) {
+.layout_dblist li:nth-child(even) {
     padding-left: 1.5px;
 }
-.brand_list .pic {
+.layout_dblist .addFavor[data-flag="addFavor"],.layout_dblist .addFavor{
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	padding: 10px;
+	background: url(/images/xingyuandan.png) no-repeat center center;
+	background-size: 26px 26px;
+}
+.layout_dblist .addFavor[data-flag="rmFavor"]{
+	background-image: url(/images/xingyuandan-dianjihou.png)
+}
+.layout_dblist .pic {
     display: block;
     border: 1px solid #dadada;
     border-bottom-color: #eeeeee;
 }
-.brand_list .title {
+.layout_dblist .title {
     background: #fff;
     border-left: 1px solid #dadada;
     border-right: 1px solid #dadada;
@@ -107,7 +120,7 @@ section:first-child{
     line-height: 18px;
     padding: 8px;
 }
-.brand_list .memo {
+.layout_dblist .memo {
 	height: 3em;
     color: #b1bbbf;
     padding: 8px;
@@ -115,7 +128,7 @@ section:first-child{
     border-left: 1px solid #dadada;
     border-right: 1px solid #dadada;
 }
-.brand_list .price, .brand_list .info {
+.layout_dblist .price, .layout_dblist .info {
     display: flex;
     display: -webkit-flex;
     align-items: center;
@@ -127,10 +140,10 @@ section:first-child{
     background: #fff;
     padding: 3px 8px;
 }
-.brand_list .price {
+.layout_dblist .price {
     padding-top: 8px;
 }
-.brand_list .info {
+.layout_dblist .info {
     padding-bottom: 8px;
     height: 23px;
     line-height: 23px;

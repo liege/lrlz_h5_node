@@ -45,13 +45,13 @@ var globalToken = globalAPIParams['token'];
 //    // console.log('getBrandList: ' + JSON.stringify(returnData));
 //});
 ////我的收藏-保存收藏
-DriverApi.addFavor({uuid:'IJ45014z98',isDelete:'true', appKey:globalAppKey, appVer:globalAppVer,type:'0',user_label:'userXXXX'},function(returnData){
+DriverApi.addFavor({token:globalToken, appKey:globalAppKey, appVer:globalAppVer,type:'product',user_uuid:'44rPVH2uw1',uuids:'3Nx9550oI3'},function(returnData){
    console.log('addFavor: ' + JSON.stringify(returnData));
 });
 ////我的收藏-查询我收藏的商品
-DriverApi.getFavorList({client_type:'anywhere', appKey:globalAppKey, appVer:globalAppVer,user_label:'userXXXX'},function(returnData){
-   console.log('getFavorList: ' + JSON.stringify(returnData));
-});
+// DriverApi.getFavorList({client_type:'anywhere', appKey:globalAppKey, appVer:globalAppVer,user_label:'userXXXX'},function(returnData){
+//    console.log('getFavorList: ' + JSON.stringify(returnData));
+// });
 ////专场秀
 //DriverApi.getShows({appKey:globalAppKey, appVer:globalAppVer,update_time:'20140801',client_type:'anywhere'},function(returnData){
 //    // console.log('getShows: ' + JSON.stringify(returnData));

@@ -3,7 +3,7 @@
 <!-- 页面内容 -->
 <div class="container">
 	<ul class="brand_list layout_dblist">
-	<% brandDetailData.products.forEach(function(v){ %>
+	<% favorListData.forEach(function(v){ %>
 		<li>
 			<a class="pic" href="/product/detail/<%= v.uuid%>"><img src=<%= v.pic_url %> alt=""></a>
 			<p class="title decorate_line" data-value="<%= v.title %>"></p>
@@ -12,7 +12,7 @@
 				<div class="original"><%= v.og_price%></div>
 			</div>
 			<div class="info">
-				<div class="sales">已售<%= v.sales %>件</div>
+				<div class="sales"></div>
 				<div class="cart"><a href="javascript:;"></a></div>
 			</div>
 		</li>	    

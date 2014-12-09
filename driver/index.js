@@ -92,21 +92,22 @@ exports.queryByPost = function(url,data,fn){
             'Connection':'Keep-Alive',
             'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
             'Content-Length':content.length
-        }
+        },
+        rejectUnauthorized: false  
     };
-
+    // console.log("===>"+options.path);
     var req = require(isHttp?'http':'https').request(options,function(res){
         var _data='';
         res.on('data', function(chunk){
             _data += chunk;
-        });
 
+        });
         res.on('end', function(){
-//            console.log('_data : ' + _data);
+           // console.log('_data : ' + _data);
             _data ? fn!=undefined && fn(JSON.parse(_data)) : fn!=undefined && fn('');
         });
     });
-
+    console.log("===>");
     req.write(content);
 
     req.end();
