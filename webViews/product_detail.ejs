@@ -1,5 +1,6 @@
 <%- partial('common/header',{title:title,cssSrc:['product_detail']}) %>
 <div class="container">
+    <input id="uuid" name="uuid" type="hidden" value="<%= uuid %>"/>
     <div id="mask" class="mask displayNone"></div>
     <div id="chooseCategory" class="chooseCategory displayNone">
         <div class="categoryInfo">
@@ -94,8 +95,10 @@
         </div>
         <div class="detailArea">
             <div class="detailLabel">
-                <span class="detailIcon"></span>
-                <span>商品详情</span>
+                <!--<span class="detailIcon"></span>-->
+                <!--<span>商品详情</span>-->
+                <span id="detail_tab" class="detail_tab on">商品详情</span>
+                <span id="params_tab" class="params_tab">规格参数</span>
             </div>
             <iframe frameborder=no id="detailContent" class="detailContent"></iframe>
         </div>

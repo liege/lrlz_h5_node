@@ -86,7 +86,8 @@ router.post('/weixin/notify', function(req, res) {
 
 /* GET product info page. */
 router.get('/product/detail/:uuid', function(req, res) {
-    productController.getProductInfo(req, res, renderView);
+    res.render('product_detail', { title: '商品详情', uuid: req.params.uuid});
+//    productController.getProductInfo(req, res, renderView);
 });
 
 /* GET product info data. */
