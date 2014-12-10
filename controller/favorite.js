@@ -27,14 +27,32 @@ exports.getFavoriteList = function(req, res, renderFun){
 //添加收藏
 exports.addFavor = function(req, res, renderFun){
     var params = {};
+    params.token = setting.globalAPIParams.token;
     params.appKey = setting.globalAPIParams.appKey;
     params.appVer = setting.globalAPIParams.appVer;
-    params.token = setting.globalAPIParams.token;
-    params.user_uuid = "44rPVH2uw1";
-    params.uuids = "3Nx9550oI3";
     params.type = "product";
+    params.user_uuid = "44rPVH2uw1";
+    params.uuids = req.params.uuid || "3Nx9550oI3";
     try {
         driverApi.addFavor(params, function(data){
+            console.log('data' + JSON.stringify(data));
+            renderFun(req,res,data);
+        });
+    }catch(err){
+        console.log("call back error : " + JSON.stringify(err));
+    }
+};
+//取消收藏
+exports.delFavor = function(req, res, renderFun){
+    var params = {};
+    params.token = setting.globalAPIParams.token;
+    params.appKey = setting.globalAPIParams.appKey;
+    params.appVer = setting.globalAPIParams.appVer;
+    params.type = "product";
+    params.user_uuid = "44rPVH2uw1";
+    params.uuids = req.params.uuid || "3Nx9550oI3";
+    try {
+        driverApi.delFavor(params, function(data){
             console.log('data' + JSON.stringify(data));
             renderFun(req,res,data);
         });

@@ -59,10 +59,41 @@ $(function(){
 	});
 	// 列表页收藏商品按钮
 	$('.addFavor').on("tap",function(){
+		var $_this = $(this);
+		//添加收藏
 		if($(this).data("flag") && $(this).data("flag")=="addFavor"){
-			$(this).data("flag","rmFavor");
-		}else{
-			$(this).data("flag","addFavor");
+			$.ajax({
+				type:'GET',
+				url:"/ajax/addFavor/"+$_this.data("uuid"),
+				dataType:'json',
+				timeout:10000,
+				success:function(res){
+					if(res.success){
+						$_this.data("flag","rmFavor");
+						console.log("添加收藏成功");
+					}else{
+						console.log("收藏失败请重试");
+					}
+				}
+			});			
+		}
+		// 取消收藏
+		else{
+			$.ajax({
+				type:'GET',
+				url:"/ajax/delFavor/"+$_this.data("uuid"),
+				dataType:'json',
+				timeout:10000,
+				success:function(res){
+					if(res.success){
+						$_this.data("flag","addFavor");
+						console.log(res);
+						console.log("取消收藏成功");
+					}else{
+						console.log("取消失败请重试");
+					}
+				}
+			});				
 		}
 		return false;
 	});
