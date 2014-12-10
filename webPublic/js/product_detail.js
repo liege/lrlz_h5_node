@@ -181,7 +181,7 @@ function showGoodsInfo(goodsInfo){
                 var spanNone = $('<span>' + showName + '</span>');
                 $.each(skuInfo.skumap, function(i, skumapVal){
                     if(skumapVal.skuid == skuId){
-                        spanNone.attr('skuPrice', skumapVal.price).attr('skuid', skuId).attr('skuPic', skumapVal.pic_url);
+                        spanNone.attr('showName',showName).attr('outer_id',skumapVal.outer_id).attr('point',skumapVal.point).attr('stock',skumapVal.stock).attr('skuPrice', skumapVal.price).attr('sku_uuid', skumapVal.uuid).attr('skuPic', skumapVal.pic_url);
                     }
                 });
                 categoryList.append(spanNone);
@@ -192,12 +192,14 @@ function showGoodsInfo(goodsInfo){
                     $(this).addClass('selected');
                     $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
                     $('#priceRange').text($(this).attr('skuPrice'));
+                    $('#sku_stock').text($(this).attr('stock'));
                 }
                 $(this).on('tap', function(){
                     $('.categoryList .selected').removeClass('selected');
                     $(this).addClass('selected');
                     $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
                     $('#priceRange').text($(this).attr('skuPrice'));
+                    $('#sku_stock').text($(this).attr('stock'));
                 });
             });
         }
