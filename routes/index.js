@@ -4,6 +4,7 @@ var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
 var homeController = require('../controller/home');
 var favoriteController = require('../controller/favorite');
+var orderController = require('../controller/order');
 
 /* oauth */
 router.get('/oauth', function(req, res) {
@@ -108,6 +109,12 @@ router.post('/ajax/getCommentList', function(req, res) {
 /* GET product detail data. */
 router.get('/ajax/getDetial', function(req, res) {
     productController.getDetailData(req, res, renderJson);
+});
+
+//Order
+/* Add order. */
+router.post('/ajax/addOrder', function(req, res) {
+    orderController.addOrder(req, res, renderJson);
 });
 
 /**

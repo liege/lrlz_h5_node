@@ -48,7 +48,7 @@ var createNoncestr = exports.createNoncestr = function(length){
     var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
     var str ="";
     for ( var i = 0; i < length; i++ )  {
-        str = str + chars.substr(randomNumber(chars.length), 1);
+        str = str + chars.substr(randomNumber(chars.length-1), 1);
     }
     console.log('str : ' + str);
     return str;
