@@ -94,3 +94,8 @@ var preReg = exports.preReg = function(params, callback){
 var doneReg = exports.doneReg = function(params, callback){
     Driver.queryByPost(host_port+path+'/doneReg.ss', params, callback);
 };
+
+//下单接口
+var addOrder = exports.addOrder = function(params, callback){
+    Driver.queryByPost(https_host_port+path_h5+'/order.ss', params, callback);
+};
