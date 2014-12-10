@@ -52,8 +52,12 @@ router.get('/users/favor', function(req, res) {
     favoriteController.getFavoriteList(req,res,renderView);
 });
 // 添加收藏
-router.get('/ajax/addFavor', function(req, res) {
+router.get('/ajax/addFavor/:uuid', function(req, res) {
     favoriteController.addFavor(req,res,renderJson);
+});
+// 取消收藏
+router.get('/ajax/delFavor/:uuid', function(req, res) {
+    favoriteController.delFavor(req,res,renderJson);
 });
 /* GET users listing. */
 router.get('/users', function(req, res) {

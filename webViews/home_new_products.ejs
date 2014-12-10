@@ -10,7 +10,7 @@
 		<% newListData.products.forEach(function(v){ %>
 			<li>
 				<% if("当前版本后台无返回favor字段"){ %>
-				<i class="addFavor" data-flag="addFavor"></i>
+				<i class="addFavor" data-flag="addFavor" data-uuid=<%=v.uuid%>></i>
 				<% }else{ %>
 				<i class="addFavor" data-flag="rmFavor"></i>
 				<% } %>
