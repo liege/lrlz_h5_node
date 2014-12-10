@@ -82,7 +82,7 @@ router.post('/weixin/notify', function(req, res) {
 
 /* GET product info page. */
 router.get('/product/detail/:uuid', function(req, res) {
-    res.render('product_detail', { title: '商品详情'});
+    res.render('product_detail', { title: '商品详情', uuid: req.params.uuid});
 //    productController.getProductInfo(req, res, renderView);
 });
 

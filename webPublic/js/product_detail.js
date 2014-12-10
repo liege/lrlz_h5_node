@@ -12,7 +12,8 @@ window.onload = function(){
 
 function init() {
     bindEvent();
-    queryUuid = getQueryString('uuid')?getQueryString('uuid'):'IJ45014z98';
+    queryUuid = $('#uuid').val();
+//    queryUuid = getQueryString('uuid')?getQueryString('uuid'):'';
 }
 
 function bindEvent(){
