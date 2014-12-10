@@ -1,0 +1,13 @@
+.layout_column_list li{
+	display: flex;
+	display: -webkit-flex;
+}
+.checkbox{
+	width: 42px;
+}
+.pic{
+	width: 23%;
+}
+.pic img{
+	width: 100%;
+}
