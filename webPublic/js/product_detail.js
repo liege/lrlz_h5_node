@@ -54,6 +54,24 @@ function bindEvent(){
         var chooseCount = parseInt($('#chooseCount').text());
         $('#chooseCount').text(chooseCount+1);
     });
+
+    $('#detail_tab').on('tap',function(){
+        if(!$(this).hasClass('on')){
+            $('#params_tab').removeClass('on');
+            $('#params_content').addClass('displayNone');
+            $(this).addClass('on');
+            $('#detailContent').removeClass('displayNone');
+        }
+    });
+
+    $('#params_tab').on('tap',function(){
+        if(!$(this).hasClass('on')){
+            $('#detail_tab').removeClass('on');
+            $('#detailContent').addClass('displayNone');
+            $(this).addClass('on');
+            $('#params_content').removeClass('displayNone');
+        }
+    });
 }
 
 function showChooseCategory(){
@@ -96,6 +114,7 @@ function getGoodsInfo(){
 function showGoodsInfo(goodsInfo){
     var imgUl = $('#focus .bd ul');
     var categoryList = $('#categoryList');
+    var paramsTable = $('#params_table');
     var picUrlArr = new Array();
     var skuInfo = {};
 
@@ -181,6 +200,17 @@ function showGoodsInfo(goodsInfo){
                     $('#priceRange').text($(this).attr('skuPrice'));
                 });
             });
+        }
+    }
+
+    if(goodsInfo.prop){
+        var propArr = goodsInfo.prop.split(',');
+        if(propArr && propArr.length > 0){
+            $.each(propArr, function(i, item){
+                var itemArr = item.split(':');
+                var trNode = $('<tr><td style="width:30%;color:#4f5051">'+itemArr[0]+'</td><td>'+itemArr[1]+'</td></tr>');
+                paramsTable.append(trNode);
+            })
         }
     }
 }

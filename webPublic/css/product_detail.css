@@ -403,6 +403,35 @@ iframe img{
     height: 400px;
 }
 
+.params_content .params_title{
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    margin: 20px 0 10px;
+}
+
+.params_title .left,.params_title .right{
+    display: block;
+    -webkit-box-flex: 1;
+    border-bottom: 1px solid #4f5051;
+}
+
+.params_title .title{
+    margin: 10px;
+    color: #4f5051;
+}
+
+.params_table{
+    width: 98%;
+    margin: 1%;
+}
+
+.params_table td{
+    height: 40px;
+    border: 1px solid #d5d5d5;
+    padding-left: 5px;
+}
+
 /*touch slide*/
 .focus.index-banner {
     width: 100%;
