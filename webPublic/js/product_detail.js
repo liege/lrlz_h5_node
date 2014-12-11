@@ -20,9 +20,25 @@ function bindEvent(){
     $('#add_cart').on('tap', function(){
         var chooseCount = parseInt($('#chooseCount').text());
         if($(this).hasClass('onCategoryArea')){
-            //vincent-todo add cart
+            var selectSku = $('#categoryList .selected');
+            var skuInfo = {};
+            skuInfo.sku_uuid = selectSku.attr('sku_uuid');
+            skuInfo.show_name = selectSku.attr('show_name');
+            skuInfo.outer_id = selectSku.attr('outer_id');
+            skuInfo.sku_point = selectSku.attr('sku_point');
+            skuInfo.sku_stock = selectSku.attr('sku_stock');
+            skuInfo.sku_price = selectSku.attr('sku_price');
+            skuInfo.sku_pic = selectSku.attr('sku_pic');
+            skuInfo.sku_flage = 'true';
+            skuInfo.sku_count = chooseCount;
+            skuInfo.sku_kind = 'product';
+            skuInfo.sku_title = $('#introduce').attr('title');
+            Utils.addCart(skuInfo);
             $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
             closeChooseCategory();
+            if(Utils.storageGetItem('local_cart_list')) {
+                alert(Utils.storageGetItem('local_cart_list'));
+            }
         }else{
             $('#add_cart').addClass('onCategoryArea').text('确定');
             showChooseCategory();
@@ -144,7 +160,7 @@ function showGoodsInfo(goodsInfo){
     }
 
 //    $('#introduce').text(Utils.cutText(goodsInfo.title,20));
-    $('#introduce').text(goodsInfo.title);
+    $('#introduce').text(goodsInfo.title).attr('title',goodsInfo.title);
     var discountPrice = parseInt(goodsInfo.cur_price.split('-')[0]);
     var originalPrice = parseInt(goodsInfo.og_price.split('-')[0]);
     $('#discountPrice').text(discountPrice);
@@ -185,7 +201,7 @@ function showGoodsInfo(goodsInfo){
                 var spanNone = $('<span>' + showName + '</span>');
                 $.each(skuInfo.skumap, function(i, skumapVal){
                     if(skumapVal.skuid == skuId){
-                        spanNone.attr('showName',showName).attr('outer_id',skumapVal.outer_id).attr('point',skumapVal.point).attr('stock',skumapVal.stock).attr('skuPrice', skumapVal.price).attr('sku_uuid', skumapVal.uuid).attr('skuPic', skumapVal.pic_url);
+                        spanNone.attr('show_name',showName).attr('outer_id',skumapVal.outer_id).attr('sku_point',skumapVal.point).attr('sku_stock',skumapVal.stock).attr('sku_price', skumapVal.price).attr('sku_uuid', skumapVal.uuid).attr('sku_pic', skumapVal.pic_url);
                     }
                 });
                 categoryList.append(spanNone);
@@ -194,16 +210,16 @@ function showGoodsInfo(goodsInfo){
             $('.categoryList span').each(function(i){
                 if(i == 0){
                     $(this).addClass('selected');
-                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
-                    $('#priceRange').text($(this).attr('skuPrice'));
-                    $('#sku_stock').text($(this).attr('stock'));
+                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('sku_pic'));
+                    $('#priceRange').text($(this).attr('sku_price'));
+                    $('#sku_stock').text($(this).attr('sku_stock'));
                 }
                 $(this).on('tap', function(){
                     $('.categoryList .selected').removeClass('selected');
                     $(this).addClass('selected');
-                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
-                    $('#priceRange').text($(this).attr('skuPrice'));
-                    $('#sku_stock').text($(this).attr('stock'));
+                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('sku_pic'));
+                    $('#priceRange').text($(this).attr('sku_price'));
+                    $('#sku_stock').text($(this).attr('sku_stock'));
                 });
             });
         }

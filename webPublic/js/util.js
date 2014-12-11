@@ -69,6 +69,63 @@ var Utils = {
         }
     },
 
+    'addCart': function(skuInfo){// skuInfo: { key: value}
+        if(skuInfo){
+            var localCartList = new Array();
+            if(Utils.storageGetItem('local_cart_list')) {
+                localCartList = eval(Utils.storageGetItem('local_cart_list'));
+            }
+
+            if(localCartList.length > 0){
+                $.each(localCartList, function(i,item){
+                    if(item.sku_uuid == skuInfo.sku_uuid){
+                        localCartList[i].sku_count +=skuInfo.sku_count;
+                        return false;
+                    }
+                    if(i == localCartList.length-1){
+                        localCartList.unshift(skuInfo);
+                    }
+                });
+            }else{
+                localCartList.unshift(skuInfo);
+            }
+            Utils.storageSetItem('local_cart_list', JSON.stringify(localCartList));
+        }
+    },
+
+    'delCart' : function(sku_uuid){
+        if(Utils.storageGetItem('local_cart_list')) {
+            var localCartList = eval(Utils.storageGetItem('local_cart_list'));
+            $.each(localCartList, function(i,item){
+                if(item.sku_uuid == sku_uuid){
+                    localCartList.splice(i,1);
+                }
+            })
+        }
+    },
+
+    'addSkuCount' : function(sku_uuid, sku_count){
+        if(Utils.storageGetItem('local_cart_list')) {
+            var localCartList = eval(Utils.storageGetItem('local_cart_list'));
+            $.each(localCartList, function(i,item){
+                if(item.sku_uuid == sku_uuid){
+                    localCartList[i].sku_count += sku_count;
+                }
+            })
+        }
+    },
+
+    'editSkuFlag' : function(sku_uuid, sku_flag){// sku_flag: true(selected) / false(unselected)
+        if(Utils.storageGetItem('local_cart_list')) {
+            var localCartList = eval(Utils.storageGetItem('local_cart_list'));
+            $.each(localCartList, function(i,item){
+                if(item.sku_uuid == sku_uuid){
+                    localCartList[i].sku_flag = sku_flag;
+                }
+            })
+        }
+    },
+
     'showAlert' : function(content){
         if($('.alert_div').length == 0){
             var alertNode = $('<div class="alert_div"><span>' + content + '</span></div>');
