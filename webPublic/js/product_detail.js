@@ -11,9 +11,9 @@ window.onload = function(){
 };
 
 function init() {
-    bindEvent();
     queryUuid = $('#uuid').val();
-//    queryUuid = getQueryString('uuid')?getQueryString('uuid'):'';
+//    queryUuid = Utils.getQueryString('uuid')?Utils.getQueryString('uuid'):'';
+    bindEvent();
 }
 
 function bindEvent(){
@@ -72,6 +72,10 @@ function bindEvent(){
             $('#params_content').removeClass('displayNone');
         }
     });
+
+    $('#add_favor').on('tap', function(){
+        addFavor();
+    });
 }
 
 function showChooseCategory(){
@@ -91,7 +95,7 @@ function getGoodsInfo(){
         url: '/ajax/getProductInfo',
 //        data: JSON.stringify({ name: 'Zepto.js' }),
 //        contentType: 'application/json'
-        data: { uuid:queryUuid, appKey:'6581235709', appVer:'1.0'},
+        data: { uuid:queryUuid},
         dataType: 'json',
         timeout: 10000,
         beforeSend: function(xhr, opts){
@@ -139,7 +143,7 @@ function showGoodsInfo(goodsInfo){
         }
     }
 
-//    $('#introduce').text(cutText(goodsInfo.title,20));
+//    $('#introduce').text(Utils.cutText(goodsInfo.title,20));
     $('#introduce').text(goodsInfo.title);
     var discountPrice = parseInt(goodsInfo.cur_price.split('-')[0]);
     var originalPrice = parseInt(goodsInfo.og_price.split('-')[0]);
@@ -221,7 +225,7 @@ function getCommentList(){
     $.ajax({
         type: 'POST',
         url: '/ajax/getCommentList',
-        data: JSON.stringify({uuid: queryUuid, limit: '10', type: '1', appKey:'6581235709', appVer:'1.0'}),
+        data: JSON.stringify({uuid: queryUuid, limit: '10', type: '1'}),
         contentType: 'application/json',
         dataType: 'json',
         timeout: 10000,
@@ -273,7 +277,7 @@ function getDetail(){
     $.ajax({
         type: 'GET',
         url: '/ajax/getDetial',
-        data: { uuid:queryUuid, last_modified:'0', appKey:'6581235709', appVer:'1.0'},
+        data: { uuid:queryUuid, last_modified:'0'},
         dataType: 'json',
         timeout: 10000,
         beforeSend: function(xhr, opts){
@@ -301,26 +305,25 @@ function showDetail(productDetail){
     }
 }
 
-function cutText(str, length){
-    var sub_length = length ;
-    var temp1 = str.replace(/[^\x00-\xff]/g,"**");//匹配双字节字符
-    var temp2 = temp1.substring(0,sub_length);
-    //找出有多少个*
-    var x_length = temp2.split("\*").length - 1 ;
-    var hanzi_num = x_length /2 ;
-    sub_length = sub_length - hanzi_num ;//实际需要sub的长度是总长度-汉字长度
-    var res = str.substring(0,sub_length);
-    if(sub_length < str.length ){
-        var end  =res+"..." ;
-    }else{
-        var end  = res ;
-    }
-    return end ;
-}
-
-function getQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return r[2]; return null;
+function addFavor(){
+    $.ajax({
+        type: 'GET',
+        url: '/ajax/addFavor/' + queryUuid,
+        data: {},
+        dataType: 'json',
+        timeout: 10000,
+        beforeSend: function(xhr, opts){
+            console.log('opts: ' + JSON.stringify(opts));
+        },
+        success: function(res){
+            console.log('res: ' + JSON.stringify(res));
+            if((res && res.success && res.success == 'true')){
+                alert('收藏成功');
+            }
+        },
+        error: function(xhr, errorType, error){
+            console.log('error: ' + JSON.stringify(error));
+        }
+    })
 }
 
