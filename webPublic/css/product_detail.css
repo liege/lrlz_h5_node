@@ -269,26 +269,25 @@ span.commitment{
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
     -webkit-box-pack: justify;
-    height: 34px;
     width: 100px;
-    margin: 10px 20px;
 }
 
 .buyBtn .add_favor, .buyBtn .go_cart{
     display: block;
-    width: 24px;
-    height: 32px;
+    width: 26px;
+    height: 34px;
+    padding: 10px 20px;
 }
 
 .buyBtn .add_favor{
-    background: url('../images/product_detail_favor.png') no-repeat 0 0;
-    background-size: cover;
+    background: url('../images/product_detail_favor.png') no-repeat center center;
+    background-size: 26px 34px;
 }
 
 .buyBtn .go_cart{
-    width: 36px;
-    background: url('../images/product_detail_cart.png') no-repeat 0 0;
-    background-size: cover;
+    width: 38px;
+    background: url('../images/product_detail_cart.png') no-repeat center center;
+    background-size: 38px 34px;
 }
 
 .add_cart{
