@@ -318,7 +318,8 @@ function addFavor(){
         success: function(res){
             console.log('res: ' + JSON.stringify(res));
             if((res && res.success && res.success == 'true')){
-                alert('收藏成功');
+//                alert('收藏成功');
+                Utils.showAlert('收藏成功');
             }
         },
         error: function(xhr, errorType, error){

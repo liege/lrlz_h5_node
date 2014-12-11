@@ -19,7 +19,7 @@ var Utils = {
     'loadImages' : (function() {
         var imgIndex = 0;
 
-        return function(imgs, index, data){ // param imgs: zepto collections
+        return function(imgs, index, data){ // param imgs: dom collections
             data = data ? data : 'data-original';
 
             if (index == 0) {
@@ -27,13 +27,13 @@ var Utils = {
             }
 
             for (var i = imgIndex; i < imgs.length; i++){
-                if (imgs[i].offset.top < imgs[i].scrollTop() + window.innerHeight){
-                    var data_src = imgs[i].attr(data);
+                if ($(imgs[i]).offset().top < $(imgs[i]).scrollTop() + window.innerHeight){
+                    var data_src = $(imgs[i]).attr(data);
                     if (data_src) {
-                        imgs[i].attr('src', data_src);
+                        $(imgs[i]).attr('src', data_src);
                     }
                     imgs[i].onload = function(){
-                        this.css('opacity', '1');
+                        $(this).css('opacity', '1');
                     };
                 } else {
                     imgIndex = i;
@@ -47,6 +47,39 @@ var Utils = {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg);
         if (r != null) return r[2]; return null;
+    },
+
+    'storageGetItem' : function(key){
+        if(window.localStorage){
+            return window.localStorage.getItem(key);
+        }else{
+            return '';
+        }
+    },
+
+    'storageSetItem' : function(key, val){
+        if(window.localStorage){
+            window.localStorage.setItem(key, val);
+        }
+    },
+
+    'storageRemoveItem' : function(key){
+        if(window.localStorage){
+            window.localStorage.removeItem(key);
+        }
+    },
+
+    'showAlert' : function(content){
+        if($('.alert_div').length == 0){
+            var alertNode = $('<div class="alert_div"><span>' + content + '</span></div>');
+            $('#touchSlide').append(alertNode);
+            $('.alert_div').animate({opacity: 1}, 1000, 'ease-out');
+            setTimeout(function(){
+                $('.alert_div').animate({opacity: 0}, 1000, 'ease-in', function(){
+                    $('.alert_div').remove();
+                });
+            }, 2000)
+        }
     }
 };
 
