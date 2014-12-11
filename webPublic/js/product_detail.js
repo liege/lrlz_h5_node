@@ -36,9 +36,7 @@ function bindEvent(){
             Utils.addCart(skuInfo);
             $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
             closeChooseCategory();
-            if(Utils.storageGetItem('local_cart_list')) {
-                alert(Utils.storageGetItem('local_cart_list'));
-            }
+            console.log('local_cart_list: ' + Utils.storageGetItem('local_cart_list'));
         }else{
             $('#add_cart').addClass('onCategoryArea').text('确定');
             showChooseCategory();
