@@ -1,4 +1,5 @@
 var queryUuid = '';// IJ45014z98
+var sku_total_count = 0;
 
 $(document).ready(function(){
     init();
@@ -14,6 +15,16 @@ function init() {
     queryUuid = $('#uuid').val();
 //    queryUuid = Utils.getQueryString('uuid')?Utils.getQueryString('uuid'):'';
     bindEvent();
+    initCartCount();
+}
+
+function initCartCount(){
+//    Utils.storageSetItem('local_cart_list', JSON.stringify(new Array()));
+    var cartList = Utils.getCartList();
+    $.each(cartList, function(i, item){
+        sku_total_count += item.sku_count;
+    });
+    $('#sku_total_count').text(sku_total_count);
 }
 
 function bindEvent(){
@@ -34,6 +45,8 @@ function bindEvent(){
             skuInfo.gift = false;
             skuInfo.sku_title = $('#introduce').attr('title');
             Utils.addCart(skuInfo);
+            sku_total_count += chooseCount;
+            $('#sku_total_count').text(sku_total_count);
             $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
             closeChooseCategory();
             console.log('local_cart_list: ' + Utils.storageGetItem('local_cart_list'));
@@ -89,6 +102,10 @@ function bindEvent(){
 
     $('#add_favor').on('tap', function(){
         addFavor();
+    });
+
+    $('#go_cart').on('tap', function(){
+        window.location.href = '/user/cart';
     });
 }
 
