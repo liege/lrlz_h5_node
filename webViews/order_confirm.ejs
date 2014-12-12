@@ -1,4 +1,4 @@
-<%- partial('common/header_old',{title:title,cssSrc:['order_confirm']}) %>
+<%- partial('common/header',{title:title,cssSrc:['order_confirm']}) %>
 <div class="container">
     <div id="addAddress" class="addAddress">
         <span class="addBtn"></span>
@@ -39,21 +39,28 @@
     </div>
     <div class="goodsInfo">
         <div class="topInfo">
-            <span class="goodsLogo">Jurlique</span>
-            <span class="goodsName">茱莉蔻</span>
+            <div class="left">
+                <span class="commitment_label">美妆优选承诺：</span>
+                <span class="commitment_postage">满百包邮</span>
+            </div>
+            <span class="commitment"></span>
         </div>
         <div class="centerInfo">
             <img class="goodsImg" src="/images/order_confirm.jpg"/>
             <div class="introduceItem">
                 <span id="introduce" class="introduce"></span>
-                <span class="category">分类：洁面乳+乳液+面霜+水 30ml</span>
+                <span class="category">100ml三件套</span>
             </div>
             <div class="priceItem">
                 <span class="price">¥260.00</span>
-                <span class="originalPrice">¥360.00</span>
+                <div class="sku_count_sec"><span class="countBtn"></span><span class="sku_count">1</span></div>
             </div>
         </div>
         <div class="bottomInfo">
+            <div class="paymentItem boxFlexWrapper">
+                <span>实付款（含运费）：</span>
+                <span class="payment">¥260.00</span>
+            </div>
             <div class="courierItem boxFlexWrapper">
                 <span>快递费：</span>
                 <span class="courier">0元</span>
@@ -61,14 +68,6 @@
             <div class="integralItem boxFlexWrapper">
                 <span>积分：</span>
                 <span class="integral">260积分</span>
-            </div>
-            <div class="countItem boxFlexWrapper">
-                <span>数量：</span>
-                <span><span class="countBtn"></span><span class="count">1</span></span>
-            </div>
-            <div class="paymentItem boxFlexWrapper">
-                <span>实付款（含运费）：</span>
-                <span class="payment">¥260.00</span>
             </div>
         </div>
     </div>
@@ -113,4 +112,4 @@
         }
     }
 </script>
-<%- partial('common/footer_old',{jsSrc:['order_confirm']}) %>
+<%- partial('common/footer',{jsSrc:['order_confirm']}) %>

@@ -111,16 +111,16 @@ body {
 }
 
 .addSubtract{
-    height: 100%;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
     margin-left: 10px;
+    border: 1px solid #d5d5d5;
 }
 
 .chooseLab{
     display: block;
-    width: 120px;
+    /*width: 120px;*/
     line-height: 50px;
     text-align: left;
 }
@@ -131,24 +131,23 @@ body {
 }
 
 .minus{
-    width: 40px;
-    background: url('../images/product_detail_minus.png') no-repeat 0 0;
-    background-size: cover;
+    border-right: 1px solid #d5d5d5;
+    background: url('../images/product_detail_minus.png') no-repeat center center;
+    background-size: 20px 20px;
 }
 
 .chooseCount{
     display: block;
-    width: 56px;
+    width: 70px;
     height: 36px;
     line-height: 36px;
     text-align: center;
-    background: url('../images/choose_count.png') no-repeat 0 0;
-    background-size: cover;
 }
 
 .plus{
-    background: url('../images/product_detail_plus.png') no-repeat 0 0;
-    background-size: cover;
+    border-left: 1px solid #d5d5d5;
+    background: url('../images/product_detail_plus.png') no-repeat center center;
+    background-size: 20px 20px;
 }
 
 .imgWindow{
@@ -285,9 +284,24 @@ span.commitment{
 }
 
 .buyBtn .go_cart{
+    position: relative;
     width: 38px;
     background: url('../images/product_detail_cart.png') no-repeat center center;
     background-size: 38px 34px;
+}
+
+.buyBtn .sku_total_count{
+    position: absolute;
+    top: 3px;
+    right: 14px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: #ea4e57;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 16px;
+    text-align: center;
 }
 
 .add_cart{

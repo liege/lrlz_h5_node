@@ -6,43 +6,48 @@ var globalAppKey = globalAPIParams['appKey'];
 var globalAppVer = globalAPIParams['appVer'];
 var globalToken = globalAPIParams['token'];
 
-//下单接口
-DriverApi.addOrder({
-    token:globalToken,
-    appKey:globalAppKey,
-    appVer:globalAppVer,
-    conding:'P0103529',
-    product_uuid:'IJ45014z98',
-    product_name:'SEKKISEI 雪肌精水敷容纸膜14粒装3包 5包 压缩面膜 正品保证',
-    product_pic_urls:'http://img03.taobaocdn.com/bao/uploaded/i3/2203256980/TB2YG3XaFXXXXXuXpXXXXXXXXXX_!!2203256980.jpg',
-    isRegular:'1',
-    count:'2',
-    sku_uuid:'j19lB5823R',
-    sku_name:'1包',
-    sku_type:'颜色分类',
-    price:'28',
-    total_price: 56,
-    pay_point: 0,
-    back_point:56,
-    bat_uuid:utils.createNoncestr(16) + new Date().getTime(),
-    user_label:'97901u1kAn',
-    user_nick: '汪吉灵',
-    payed: '0',
-    post_fee: 10,
-    receiver_name: '汪吉灵',
-    receiver_state: '上海',
-    receiver_city: '上海',
-    receiver_district: '闵行',
-    receiver_address: '兴迪大厦',
-    receiver_mobile: '15216779471'
-},function(returnData){
-    console.log('addOrder: ' + JSON.stringify(returnData));
-});
+////下单接口
+//DriverApi.addOrder({
+//    token:globalToken,
+//    appKey:globalAppKey,
+//    appVer:globalAppVer,
+//    conding:'P0103529',
+//    product_uuid:'IJ45014z98',
+//    product_name:'SEKKISEI 雪肌精水敷容纸膜14粒装3包 5包 压缩面膜 正品保证',
+//    product_pic_urls:'http://img03.taobaocdn.com/bao/uploaded/i3/2203256980/TB2YG3XaFXXXXXuXpXXXXXXXXXX_!!2203256980.jpg',
+//    isRegular:'1',
+//    count:'2',
+//    sku_uuid:'j19lB5823R',
+//    sku_name:'1包',
+//    sku_type:'颜色分类',
+//    price:'28',
+//    total_price: 56,
+//    pay_point: 0,
+//    back_point:56,
+//    bat_uuid:utils.createNoncestr(16) + new Date().getTime(),
+//    user_label:'97901u1kAn',
+//    user_nick: '汪吉灵',
+//    payed: '0',
+//    post_fee: 10,
+//    receiver_name: '汪吉灵',
+//    receiver_state: '上海',
+//    receiver_city: '上海',
+//    receiver_district: '闵行',
+//    receiver_address: '兴迪大厦',
+//    receiver_mobile: '15216779471'
+//},function(returnData){
+//    console.log('addOrder: ' + JSON.stringify(returnData));
+//});
 
 //微信登陆接口
-// DriverApi.wxLogin({"weixin_id":"oT8GMjqTpFuZfmL9M28Su-6jtRBw","weixin_nick":"汪吉灵","weixin_pic":"http://wx.qlogo.cn/mmopen/9Qgaibq4OTBTYfRHiaIMOOibbwlLG9vjSxMOkYmuedn5sEeyNAUkObSWjFFSHqpq8PtjshrjicxThzMXdMFhsz64DcuKzMxjVNpib/0",appKey:globalAppKey,appVer:globalAppVer},function(returnData){
-//     console.log('wxLogin:'+JSON.stringify(returnData));
-// });
+DriverApi.wxLogin({"weixin_id":"oT8GMjqTpFuZfmL9M28Su-6jtRBw","weixin_nick":"汪吉灵","weixin_pic":"http://wx.qlogo.cn/mmopen/9Qgaibq4OTBTYfRHiaIMOOibbwlLG9vjSxMOkYmuedn5sEeyNAUkObSWjFFSHqpq8PtjshrjicxThzMXdMFhsz64DcuKzMxjVNpib/0",appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+     console.log('wxLogin:'+JSON.stringify(returnData));
+});
+
+//修改微信用户信息接口
+DriverApi.setUserInfo({uuid: '97901u1kAn', "weixin_nick":"吉灵","weixin_pic":"http://wx.qlogo.cn/mmopen/9Qgaibq4OTBTYfRHiaIMOOibbwlLG9vjSxMOkYmuedn5sEeyNAUkObSWjFFSHqpq8PtjshrjicxThzMXdMFhsz64DcuKzMxjVNpib/0",appKey:globalAppKey,appVer:globalAppVer},function(returnData){
+     console.log('setUserInfo:'+JSON.stringify(returnData));
+});
 
 //手机绑定接口
 // DriverApi.bindPhone({uuid: '97901u1kAn', phone: '15216779471', appKey:globalAppKey,appVer:globalAppVer},function(returnData){

@@ -114,7 +114,9 @@ var Utils = {
                     localCartList.splice(i,1);
                     return false;
                 }
-            })
+            });
+
+            Utils.storageSetItem('local_cart_list', JSON.stringify(localCartList));
         }
     },
 
@@ -126,7 +128,9 @@ var Utils = {
                     localCartList[i].sku_count = sku_count;
                     return false;
                 }
-            })
+            });
+
+            Utils.storageSetItem('local_cart_list', JSON.stringify(localCartList));
         }
     },
 
@@ -138,7 +142,9 @@ var Utils = {
                     localCartList[i].sku_flag = sku_flag;
                     return false;
                 }
-            })
+            });
+
+            Utils.storageSetItem('local_cart_list', JSON.stringify(localCartList));
         }
     },
 

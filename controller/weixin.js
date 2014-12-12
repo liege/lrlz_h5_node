@@ -88,24 +88,18 @@ exports.oauthUserInfo = function(req, res, renderFun){
                 Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
                     var userInfo = {};
                     if(!userData.errmsg){
-                        var wxLoginParams = {};
-                        wxLoginParams.weixin_id = userData.openid;
-                        wxLoginParams.weixin_nick = userData.nickname;
-                        wxLoginParams.weixin_pic = userData.headimgurl;
-                        wxLoginParams.appKey = setting.globalAPIParams.appKey;
-                        wxLoginParams.appVer = setting.globalAPIParams.appVer;
-                        console.log('oauthUserInfo wxLoginParams : ' + JSON.stringify(wxLoginParams));
-                        driverApi.wxLogin(wxLoginParams, function(wxLoginData){
-                            console.log('oauthUserInfo wxLoginData: ' + JSON.stringify(wxLoginData));
-                            if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
-                                //save userInfo to session
-                                req.session.userInfo = {};
-                                req.session.userInfo.uuid = wxLoginData.uuid;
-                                req.session.userInfo.openid = wxLoginData.weixin_id;
-                                req.session.userInfo.phone = wxLoginData.phone;
-                                req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
-                                req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
-                                req.session.userInfo.point = wxLoginData.point;
+                        var setUserInfoParams = {};
+                        setUserInfoParams.uuid = req.session.userInfo.uuid;
+                        setUserInfoParams.weixin_nick = userData.nickname;
+                        setUserInfoParams.weixin_pic = userData.headimgurl;
+                        setUserInfoParams.appKey = setting.globalAPIParams.appKey;
+                        setUserInfoParams.appVer = setting.globalAPIParams.appVer;
+                        console.log('oauthUserInfo setUserInfoParams : ' + JSON.stringify(setUserInfoParams));
+                        driverApi.setUserInfo(setUserInfoParams, function(setUserInfoData){
+                            console.log('oauthUserInfo wxLoginData: ' + JSON.stringify(setUserInfoData));
+                            if(setUserInfoData && setUserInfoData.success && setUserInfoData.success == 'true'){
+                                req.session.userInfo.weixin_nick = userData.nickname;
+                                req.session.userInfo.weixin_pic = userData.headimgurl;
 //                            req.session.userInfo.access_token = tokenData.access_token;
 //                            req.session.userInfo.refresh_token = tokenData.refresh_token;
                                 console.log('oauthUserInfo req.session.userInfo : ' + JSON.stringify(req.session.userInfo));
@@ -130,45 +124,49 @@ exports.oauthUserInfo = function(req, res, renderFun){
 };
 
 exports.orderConfirm = function(req, res, renderFun){
-    var unifiedOrderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-    var unifiedOrderParams = {};
-    unifiedOrderParams.appid = setting.wxParams.appId;
-    unifiedOrderParams.body = '贡献一分钱';
-    unifiedOrderParams.mch_id = setting.wxParams.mchid;
-    unifiedOrderParams.nonce_str = utils.createNoncestr(32);
-    unifiedOrderParams.notify_url = setting.wxParams.notify_url;
-    unifiedOrderParams.openid = req.session.userInfo.openid;
-    unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
-    console.log('client ip : ' + utils.getClientIp(req));
-    unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
-    unifiedOrderParams.total_fee = 1;
-    unifiedOrderParams.trade_type = 'JSAPI';
-    unifiedOrderParams.sign = utils.getSign(unifiedOrderParams);
-
-    var unifiedOrderXmlParams = utils.jsonToXml(unifiedOrderParams);
-
-    try{
-        Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
-            console.log('unifiedOrderData : ' + JSON.stringify(unifiedOrderData));
-            if(unifiedOrderData.xml.return_code[0] == 'SUCCESS' && unifiedOrderData.xml.result_code[0] == 'SUCCESS'){
-                var jsApiParameters = {};
-                jsApiParameters.appId = setting.wxParams.appId;
-                jsApiParameters.nonceStr = utils.createNoncestr(32);
-                jsApiParameters.package = 'prepay_id=' + unifiedOrderData.xml.prepay_id[0];
-                console.log('prepay_id: ' + unifiedOrderData.xml.prepay_id[0]);
-                jsApiParameters.signType = 'MD5';
-                jsApiParameters.timeStamp = parseInt(new Date().getTime()/1000).toString();
-                jsApiParameters.paySign = utils.getSign(jsApiParameters);
-                console.log('jsApiParameters: ' + JSON.stringify(jsApiParameters));
-                renderFun(req,res, {
-                    title:'确认订单',
-                    jsApiParameters: jsApiParameters
-                }, 'order_confirm');
-            }
-        });
-    }catch(err){
-        console.log("error : " + JSON.stringify(err));
-    }
+    renderFun(req,res, {
+        title:'确认订单',
+        jsApiParameters: {}
+    }, 'order_confirm');
+//    var unifiedOrderUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+//    var unifiedOrderParams = {};
+//    unifiedOrderParams.appid = setting.wxParams.appId;
+//    unifiedOrderParams.body = '贡献一分钱';
+//    unifiedOrderParams.mch_id = setting.wxParams.mchid;
+//    unifiedOrderParams.nonce_str = utils.createNoncestr(32);
+//    unifiedOrderParams.notify_url = setting.wxParams.notify_url;
+//    unifiedOrderParams.openid = req.session.userInfo.openid;
+//    unifiedOrderParams.out_trade_no = setting.wxParams.appId + new Date().getTime();
+//    console.log('client ip : ' + utils.getClientIp(req));
+//    unifiedOrderParams.spbill_create_ip = utils.getClientIp(req);
+//    unifiedOrderParams.total_fee = 1;
+//    unifiedOrderParams.trade_type = 'JSAPI';
+//    unifiedOrderParams.sign = utils.getSign(unifiedOrderParams);
+//
+//    var unifiedOrderXmlParams = utils.jsonToXml(unifiedOrderParams);
+//
+//    try{
+//        Driver.queryByPostXml(unifiedOrderUrl, unifiedOrderXmlParams, function(unifiedOrderData){
+//            console.log('unifiedOrderData : ' + JSON.stringify(unifiedOrderData));
+//            if(unifiedOrderData.xml.return_code[0] == 'SUCCESS' && unifiedOrderData.xml.result_code[0] == 'SUCCESS'){
+//                var jsApiParameters = {};
+//                jsApiParameters.appId = setting.wxParams.appId;
+//                jsApiParameters.nonceStr = utils.createNoncestr(32);
+//                jsApiParameters.package = 'prepay_id=' + unifiedOrderData.xml.prepay_id[0];
+//                console.log('prepay_id: ' + unifiedOrderData.xml.prepay_id[0]);
+//                jsApiParameters.signType = 'MD5';
+//                jsApiParameters.timeStamp = parseInt(new Date().getTime()/1000).toString();
+//                jsApiParameters.paySign = utils.getSign(jsApiParameters);
+//                console.log('jsApiParameters: ' + JSON.stringify(jsApiParameters));
+//                renderFun(req,res, {
+//                    title:'确认订单',
+//                    jsApiParameters: jsApiParameters
+//                }, 'order_confirm');
+//            }
+//        });
+//    }catch(err){
+//        console.log("error : " + JSON.stringify(err));
+//    }
 };
 
 exports.notify = function(req, res, renderFun){
