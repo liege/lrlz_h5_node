@@ -93,6 +93,15 @@ var Utils = {
         }
     },
 
+    'getCartList' : function(){
+        var localCartList = new Array();
+        if(Utils.storageGetItem('local_cart_list')) {
+            localCartList = eval(Utils.storageGetItem('local_cart_list'));
+        }
+
+        return localCartList;
+    },
+
     'delCart' : function(sku_uuid){
         if(Utils.storageGetItem('local_cart_list')) {
             var localCartList = eval(Utils.storageGetItem('local_cart_list'));
@@ -109,7 +118,7 @@ var Utils = {
             var localCartList = eval(Utils.storageGetItem('local_cart_list'));
             $.each(localCartList, function(i,item){
                 if(item.sku_uuid == sku_uuid){
-                    localCartList[i].sku_count += sku_count;
+                    localCartList[i].sku_count = sku_count;
                 }
             })
         }
