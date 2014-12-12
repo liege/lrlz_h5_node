@@ -1,7 +1,7 @@
 body {
     font-size: 1.4rem;
     color: #828f95;
-    background-color: #f8f8f8;
+    background-color: #e5e5e5;
 }
 
 .container{
@@ -108,7 +108,7 @@ input:focus{
 
 .topInfo{
     height: 40px;
-    margin: 0 5px;
+    margin: 0 10px;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
@@ -132,7 +132,6 @@ span.commitment{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: start;
-    border-bottom: 1px solid #d5d5d5;
 }
 
 .centerInfo span{
@@ -176,10 +175,13 @@ span.commitment{
     text-decoration: line-through;
 }
 
-.courierItem, .integralItem, .countItem, .paymentItem{
-    height: 60px;
-    padding: 0 10px;
+.courierItem, .integralItem, .paymentItem{
+    height: 40px;
+    margin: 0 5px;
+    line-height: 40px;
+    text-align: right;
     -webkit-box-pack: justify;
+    border-top: 1px solid #d5d5d5;
 }
 .priceItem .countBtn{
     display: inline-block;
@@ -197,10 +199,6 @@ span.commitment{
     font-size: 0.8px;
     margin-top: 3px;
     text-align: right;
-}
-
-.paymentItem, .courierItem{
-    border-bottom: 1px solid #d0d0d0;
 }
 
 .paymentItem .payment{
@@ -224,8 +222,7 @@ span.commitment{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: center;
-    -webkit-box-pack: center;
-    background-color: #e5e5e5;
+    background-color: #f8f8f8;
     height: 80px;
 }
 
