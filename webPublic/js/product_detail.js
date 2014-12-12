@@ -11,18 +11,32 @@ window.onload = function(){
 };
 
 function init() {
-    bindEvent();
     queryUuid = $('#uuid').val();
-//    queryUuid = getQueryString('uuid')?getQueryString('uuid'):'';
+//    queryUuid = Utils.getQueryString('uuid')?Utils.getQueryString('uuid'):'';
+    bindEvent();
 }
 
 function bindEvent(){
     $('#add_cart').on('tap', function(){
         var chooseCount = parseInt($('#chooseCount').text());
         if($(this).hasClass('onCategoryArea')){
-            //vincent-todo add cart
+            var selectSku = $('#categoryList .selected');
+            var skuInfo = {};
+            skuInfo.sku_uuid = selectSku.attr('sku_uuid');
+            skuInfo.show_name = selectSku.attr('show_name');
+            skuInfo.outer_id = selectSku.attr('outer_id');
+            skuInfo.sku_point = selectSku.attr('sku_point');
+            skuInfo.sku_stock = selectSku.attr('sku_stock');
+            skuInfo.sku_price = selectSku.attr('sku_price');
+            skuInfo.sku_pic = selectSku.attr('sku_pic');
+            skuInfo.sku_flage = 'true';
+            skuInfo.sku_count = chooseCount;
+            skuInfo.gift = false;
+            skuInfo.sku_title = $('#introduce').attr('title');
+            Utils.addCart(skuInfo);
             $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
             closeChooseCategory();
+            console.log('local_cart_list: ' + Utils.storageGetItem('local_cart_list'));
         }else{
             $('#add_cart').addClass('onCategoryArea').text('确定');
             showChooseCategory();
@@ -72,6 +86,10 @@ function bindEvent(){
             $('#params_content').removeClass('displayNone');
         }
     });
+
+    $('#add_favor').on('tap', function(){
+        addFavor();
+    });
 }
 
 function showChooseCategory(){
@@ -91,7 +109,7 @@ function getGoodsInfo(){
         url: '/ajax/getProductInfo',
 //        data: JSON.stringify({ name: 'Zepto.js' }),
 //        contentType: 'application/json'
-        data: { uuid:queryUuid, appKey:'6581235709', appVer:'1.0'},
+        data: { uuid:queryUuid},
         dataType: 'json',
         timeout: 10000,
         beforeSend: function(xhr, opts){
@@ -139,8 +157,8 @@ function showGoodsInfo(goodsInfo){
         }
     }
 
-//    $('#introduce').text(cutText(goodsInfo.title,20));
-    $('#introduce').text(goodsInfo.title);
+//    $('#introduce').text(Utils.cutText(goodsInfo.title,20));
+    $('#introduce').text(goodsInfo.title).attr('title',goodsInfo.title);
     var discountPrice = parseInt(goodsInfo.cur_price.split('-')[0]);
     var originalPrice = parseInt(goodsInfo.og_price.split('-')[0]);
     $('#discountPrice').text(discountPrice);
@@ -181,7 +199,7 @@ function showGoodsInfo(goodsInfo){
                 var spanNone = $('<span>' + showName + '</span>');
                 $.each(skuInfo.skumap, function(i, skumapVal){
                     if(skumapVal.skuid == skuId){
-                        spanNone.attr('skuPrice', skumapVal.price).attr('skuid', skuId).attr('skuPic', skumapVal.pic_url);
+                        spanNone.attr('show_name',showName).attr('outer_id',skumapVal.outer_id).attr('sku_point',skumapVal.point).attr('sku_stock',skumapVal.stock).attr('sku_price', skumapVal.price).attr('sku_uuid', skumapVal.uuid).attr('sku_pic', skumapVal.pic_url);
                     }
                 });
                 categoryList.append(spanNone);
@@ -190,14 +208,16 @@ function showGoodsInfo(goodsInfo){
             $('.categoryList span').each(function(i){
                 if(i == 0){
                     $(this).addClass('selected');
-                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
-                    $('#priceRange').text($(this).attr('skuPrice'));
+                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('sku_pic'));
+                    $('#priceRange').text($(this).attr('sku_price'));
+                    $('#sku_stock').text($(this).attr('sku_stock'));
                 }
                 $(this).on('tap', function(){
                     $('.categoryList .selected').removeClass('selected');
                     $(this).addClass('selected');
-                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('skuPic'));
-                    $('#priceRange').text($(this).attr('skuPrice'));
+                    $('#chooseCategory .categoryImg').attr('src', $(this).attr('sku_pic'));
+                    $('#priceRange').text($(this).attr('sku_price'));
+                    $('#sku_stock').text($(this).attr('sku_stock'));
                 });
             });
         }
@@ -219,7 +239,7 @@ function getCommentList(){
     $.ajax({
         type: 'POST',
         url: '/ajax/getCommentList',
-        data: JSON.stringify({uuid: queryUuid, limit: '10', type: '1', appKey:'6581235709', appVer:'1.0'}),
+        data: JSON.stringify({uuid: queryUuid, limit: '10', type: '1'}),
         contentType: 'application/json',
         dataType: 'json',
         timeout: 10000,
@@ -271,7 +291,7 @@ function getDetail(){
     $.ajax({
         type: 'GET',
         url: '/ajax/getDetial',
-        data: { uuid:queryUuid, last_modified:'0', appKey:'6581235709', appVer:'1.0'},
+        data: { uuid:queryUuid, last_modified:'0'},
         dataType: 'json',
         timeout: 10000,
         beforeSend: function(xhr, opts){
@@ -299,26 +319,26 @@ function showDetail(productDetail){
     }
 }
 
-function cutText(str, length){
-    var sub_length = length ;
-    var temp1 = str.replace(/[^\x00-\xff]/g,"**");//匹配双字节字符
-    var temp2 = temp1.substring(0,sub_length);
-    //找出有多少个*
-    var x_length = temp2.split("\*").length - 1 ;
-    var hanzi_num = x_length /2 ;
-    sub_length = sub_length - hanzi_num ;//实际需要sub的长度是总长度-汉字长度
-    var res = str.substring(0,sub_length);
-    if(sub_length < str.length ){
-        var end  =res+"..." ;
-    }else{
-        var end  = res ;
-    }
-    return end ;
-}
-
-function getQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return r[2]; return null;
+function addFavor(){
+    $.ajax({
+        type: 'GET',
+        url: '/ajax/addFavor/' + queryUuid,
+        data: {},
+        dataType: 'json',
+        timeout: 10000,
+        beforeSend: function(xhr, opts){
+            console.log('opts: ' + JSON.stringify(opts));
+        },
+        success: function(res){
+            console.log('res: ' + JSON.stringify(res));
+            if((res && res.success && res.success == 'true')){
+//                alert('收藏成功');
+                Utils.showAlert('收藏成功');
+            }
+        },
+        error: function(xhr, errorType, error){
+            console.log('error: ' + JSON.stringify(error));
+        }
+    })
 }
 

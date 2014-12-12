@@ -103,3 +103,25 @@ a{
 img{
     vertical-align: middle;
 }
+
+/*alert style*/
+.alert_div{
+    width: 100%;
+    position: fixed;
+    bottom: 160px;
+    z-index: 10000000;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    opacity: 0;
+}
+.alert_div span{
+    display: block;
+    height: 35px;
+    min-width: 120px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    background-color: #4f5051;
+}
