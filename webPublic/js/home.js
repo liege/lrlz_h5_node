@@ -43,7 +43,7 @@ $(function(){
 	})();
 	//首页列表加载
 	if(window.hotSalesTemp){
-		ajaxRenderTemplate(hotSalesTemp,"activity05",$(".caizhuang"));
+		ajaxRenderTemplate($(".caizhuang"),hotSalesTemp,"activity05");
 	}
 	//首页 分类列表选项卡初始化
 	new Tab({
@@ -53,7 +53,7 @@ $(function(){
 			if(this.bd.eq(index).html()!=""){
 				return;
 			}else{
-				ajaxRenderTemplate(hotSalesTemp,"activity0"+(5+index),this.bd.eq(index));
+				ajaxRenderTemplate(this.bd.eq(index),hotSalesTemp,"activity0"+(5+index));
 			}
 		}
 	});
@@ -101,12 +101,13 @@ $(function(){
 
 /**
  * [ajaxRenderTemplate description] ajax加载数据渲染局部视图
+ * @param  {[type]} $wrap       [渲染内容容器]
  * @param  {[type]} templateStr [art 模板片段]
  * @param  {[type]} scat_uuid   [activity05/6/7/8]
  * @return {[type]}             [undefined]
  */
-function ajaxRenderTemplate(templateStr,scat_uuid,$wrap){
-	console.log(scat_uuid);
+function ajaxRenderTemplate($wrap,templateStr,scat_uuid){
+	// console.log(scat_uuid);
 	$.ajax({
 		type:"GET",
 		url:"/ajax/getHotSales/"+scat_uuid,

@@ -4,6 +4,7 @@ var productController = require('../controller/product');
 var weixinController = require('../controller/weixin');
 var homeController = require('../controller/home');
 var favoriteController = require('../controller/favorite');
+var cartController = require('../controller/cart');
 var orderController = require('../controller/order');
 
 /* oauth */
@@ -51,6 +52,10 @@ router.get('/brand/list', function(req, res) {
 // 收藏列表页
 router.get('/users/favor', function(req, res) {
     favoriteController.getFavoriteList(req,res,renderView);
+});
+// 购物车列表
+router.get('/users/cart', function(req, res) {
+    cartController.getCartList(req,res,renderView);
 });
 // 添加收藏
 router.get('/ajax/addFavor/:uuid', function(req, res) {
