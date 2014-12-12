@@ -17,3 +17,23 @@ var hotSalesTemp =
 				'</div>'+
 			'</li>'+
 			'<% }) %>';	
+var cartListTemp = 
+		'<% products.forEach(function(v){ %>'+
+		'<li>'+
+			'<div class="checkbox_wrap"><i class="checkbox" data-sukuuid=<%=v.sku_uuid %> data-skuflag=<%=v.sku_flag %>></i></div>'+
+			'<a class="pic" href="javascript:;"><img src="http://121.40.209.34/productImg/c58xH1414987566382.jpg" alt=""></a>'+
+			'<div class="info">'+
+				'<p class="title"><%= v.sku_title %></p>'+
+				'<p class="sku_name"><%= v.show_name %></p>'+
+				'<div class="re-count">'+
+					'<div class="product_detail_minus"></div>'+
+					'<div class="value">1</div>'+
+					'<div class="product_detail_plus"></div>'+
+				'</div>'+
+			'</div>'+
+			'<div class="price">'+
+				'<div class="discount">￥<%= v.sku_price %></div>'+
+				'<div class="count">X<%= v.sku_count %></div>'+
+			'</div>'+
+		'</li>'+
+		'<% }) %>';	
