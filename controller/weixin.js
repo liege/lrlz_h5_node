@@ -88,24 +88,18 @@ exports.oauthUserInfo = function(req, res, renderFun){
                 Driver.queryByPost('https://api.weixin.qq.com/sns/userinfo', user_params, function(userData){
                     var userInfo = {};
                     if(!userData.errmsg){
-                        var wxLoginParams = {};
-                        wxLoginParams.weixin_id = userData.openid;
-                        wxLoginParams.weixin_nick = userData.nickname;
-                        wxLoginParams.weixin_pic = userData.headimgurl;
-                        wxLoginParams.appKey = setting.globalAPIParams.appKey;
-                        wxLoginParams.appVer = setting.globalAPIParams.appVer;
-                        console.log('oauthUserInfo wxLoginParams : ' + JSON.stringify(wxLoginParams));
-                        driverApi.wxLogin(wxLoginParams, function(wxLoginData){
-                            console.log('oauthUserInfo wxLoginData: ' + JSON.stringify(wxLoginData));
-                            if((wxLoginData && wxLoginData.success == undefined) || (wxLoginData && wxLoginData.success && wxLoginData.success == 'true')){
-                                //save userInfo to session
-                                req.session.userInfo = {};
-                                req.session.userInfo.uuid = wxLoginData.uuid;
-                                req.session.userInfo.openid = wxLoginData.weixin_id;
-                                req.session.userInfo.phone = wxLoginData.phone;
-                                req.session.userInfo.weixin_nick = wxLoginData.weixin_nick;
-                                req.session.userInfo.weixin_pic = wxLoginData.weixin_pic;
-                                req.session.userInfo.point = wxLoginData.point;
+                        var setUserInfoParams = {};
+                        setUserInfoParams.uuid = req.session.userInfo.uuid;
+                        setUserInfoParams.weixin_nick = userData.nickname;
+                        setUserInfoParams.weixin_pic = userData.headimgurl;
+                        setUserInfoParams.appKey = setting.globalAPIParams.appKey;
+                        setUserInfoParams.appVer = setting.globalAPIParams.appVer;
+                        console.log('oauthUserInfo setUserInfoParams : ' + JSON.stringify(setUserInfoParams));
+                        driverApi.setUserInfo(setUserInfoParams, function(setUserInfoData){
+                            console.log('oauthUserInfo wxLoginData: ' + JSON.stringify(setUserInfoData));
+                            if(setUserInfoData && setUserInfoData.success && setUserInfoData.success == 'true'){
+                                req.session.userInfo.weixin_nick = userData.nickname;
+                                req.session.userInfo.weixin_pic = userData.headimgurl;
 //                            req.session.userInfo.access_token = tokenData.access_token;
 //                            req.session.userInfo.refresh_token = tokenData.refresh_token;
                                 console.log('oauthUserInfo req.session.userInfo : ' + JSON.stringify(req.session.userInfo));

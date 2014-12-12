@@ -9,6 +9,11 @@ var wxLogin = exports.wxLogin = function(params, callback){
     Driver.queryByPost(host_port+path_h5+'/login.ss', params, callback);
 };
 
+//修改微信用户信息接口
+var setUserInfo = exports.setUserInfo = function(params, callback){
+    Driver.queryByPost(host_port+path+'/setUserInfo.ss', params, callback);
+};
+
 //手机绑定接口
 var bindPhone = exports.bindPhone = function(params, callback){
     Driver.queryByPost(host_port+path_h5+'/bindPhone.ss', params, callback);
