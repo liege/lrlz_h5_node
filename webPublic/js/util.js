@@ -76,6 +76,7 @@ var Utils = {
                 localCartList = eval(Utils.storageGetItem('local_cart_list'));
             }
 
+            var  iteration_flag = false;
             if(localCartList.length > 0){
                 $.each(localCartList, function(i,item){
                     if(item.sku_uuid == skuInfo.sku_uuid){
@@ -83,9 +84,12 @@ var Utils = {
                         return false;
                     }
                     if(i == localCartList.length-1){
-                        localCartList.unshift(skuInfo);
+                        iteration_flag = true;
                     }
                 });
+                if(iteration_flag){
+                    localCartList.unshift(skuInfo);
+                }
             }else{
                 localCartList.unshift(skuInfo);
             }
@@ -108,6 +112,7 @@ var Utils = {
             $.each(localCartList, function(i,item){
                 if(item.sku_uuid == sku_uuid){
                     localCartList.splice(i,1);
+                    return false;
                 }
             })
         }
@@ -119,6 +124,7 @@ var Utils = {
             $.each(localCartList, function(i,item){
                 if(item.sku_uuid == sku_uuid){
                     localCartList[i].sku_count = sku_count;
+                    return false;
                 }
             })
         }
@@ -130,6 +136,7 @@ var Utils = {
             $.each(localCartList, function(i,item){
                 if(item.sku_uuid == sku_uuid){
                     localCartList[i].sku_flag = sku_flag;
+                    return false;
                 }
             })
         }
