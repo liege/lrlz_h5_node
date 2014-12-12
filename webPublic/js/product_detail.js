@@ -31,7 +31,7 @@ function bindEvent(){
             skuInfo.sku_pic = selectSku.attr('sku_pic');
             skuInfo.sku_flage = 'true';
             skuInfo.sku_count = chooseCount;
-            skuInfo.sku_kind = 'product';
+            skuInfo.gift = false;
             skuInfo.sku_title = $('#introduce').attr('title');
             Utils.addCart(skuInfo);
             $('#add_cart').removeClass('onCategoryArea').text('加入购物车');
