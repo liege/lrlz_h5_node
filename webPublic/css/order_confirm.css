@@ -1,5 +1,5 @@
 body {
-    font-size: 24px;
+    font-size: 1.4rem;
     color: #828f95;
     background-color: #f8f8f8;
 }
@@ -28,7 +28,7 @@ body {
 
 .editAddress .errMsg{
     color: #f3416f;
-    font-size: 18px;
+    font-size: 1rem;
     margin-left: 10px;
     margin-top: 5px;
 }
@@ -43,7 +43,7 @@ body {
 input{
     display: block;
     -webkit-box-flex: 1;
-    color: #c2cacc;
+    color: #d5d5d5;
     font-weight: bold;
     height: 30px;
     background-color: #556270;
@@ -65,16 +65,16 @@ input:focus{
 .editAddress span, .completeAddress span{
     margin: 0 10px;
     width: 100px;
-    border-right: 1px solid #c2cacc;
+    border-right: 1px solid #d5d5d5;
 }
 
 .completeBtn{
-    width: 200px;
-    height: 50px;
-    line-height: 50px;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
-    margin: 60px auto 0;
-    border: 1px solid #c2cacc;
+    margin: 50px auto 0;
+    border: 1px solid #d5d5d5;
     border-radius: 5px;
 }
 
@@ -86,44 +86,53 @@ input:focus{
     height: 30px;
     line-height: 30px;
     text-align: center;
-    border: 1px solid #c2cacc;
+    border: 1px solid #d5d5d5;
     border-radius: 3px;
 }
 
 .addBtn{
     display: inline-block;
     position: relative;
-    top: 6px;
-    width: 30px;
-    height: 30px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
     background-image: url('../images/order_confirm_plus.png');
     background-size: cover;
-    margin: auto 10px;
+    margin: auto 5px;
 }
 
 .goodsInfo{
-    margin: 10px 5px;
-    border: 1px solid #556270;
+    margin-top: 5px;
     background-color: #fff;
 }
 
 .topInfo{
-    height: 50px;
-    line-height: 50px;
-    color: #160000;
-    border-bottom: 1px solid #556270;
+    height: 40px;
+    margin: 0 5px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    -webkit-box-pack: justify;
+    border-bottom: 1px solid #d5d5d5;
 }
 
-.goodsLogo{
-    margin: 0 20px 0 10px;
+.commitment_postage{
+    color: #ff9732;
+}
+
+span.commitment{
+    display: block;
+    width: 70px;
+    height: 16px;
+    background: url('../images/product_commitment.png') no-repeat 0 0;
+    background-size: cover;
 }
 
 .centerInfo{
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: start;
-    border-bottom: 1px solid #556270;
-    font-size: 20px;
+    border-bottom: 1px solid #d5d5d5;
 }
 
 .centerInfo span{
@@ -132,29 +141,30 @@ input:focus{
 
 .goodsImg{
     display: block;
-    width: 150px;
-    height: 150px;
-    margin: 15px 15px 15px 5px;
-    border: 1px solid #556270;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
 }
 
 .introduceItem{
-    margin-top: 15px;
+    margin-top: 10px;
+    height: 80px;
     -webkit-box-flex: 1;
  }
 
 .introduce{
-    margin-bottom: 10px;
+   height: 60px;
 }
 
 .category{
+    height: 20px;
+    line-height: 20px;
     color: #c3cbce;
-    font-size: 16px;
+    font-size: 1.2rem;
  }
 
 .priceItem{
-    width: 80px;
-    margin: 15px 0 0 15px;
+    margin: 10px;
 }
 
 .price{
@@ -170,24 +180,27 @@ input:focus{
     height: 60px;
     padding: 0 10px;
     -webkit-box-pack: justify;
-    border-bottom: 1px solid #d0d0d0;
 }
-
-.countItem .countBtn{
+.priceItem .countBtn{
     display: inline-block;
-    width: 16px;
-    height: 15px;
+    width: 9px;
+    height: 8px;
     background-image: url('../images/order_confirm_cheng.png');
     background-size: cover;
-    margin-right: 5px;
 }
 
-.countItem .count{
+.priceItem .sku_count{
     display: inline-block;
 }
 
-.paymentItem{
-    border: 0 none;
+.priceItem .sku_count_sec{
+    font-size: 0.8px;
+    margin-top: 3px;
+    text-align: right;
+}
+
+.paymentItem, .courierItem{
+    border-bottom: 1px solid #d0d0d0;
 }
 
 .paymentItem .payment{
@@ -237,7 +250,7 @@ input:focus{
     top: 15px;
     text-align: center;
     background-color: #f3416f;
-    font-size: 26px;
+    font-size: 1.6rem;
     color: #fff;
     border-radius: 5px;
 }

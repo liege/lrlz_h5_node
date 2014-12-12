@@ -40,7 +40,7 @@ function bindEvent(){
             skuInfo.sku_stock = selectSku.attr('sku_stock');
             skuInfo.sku_price = selectSku.attr('sku_price');
             skuInfo.sku_pic = selectSku.attr('sku_pic');
-            skuInfo.sku_flage = 'true';
+            skuInfo.sku_flag = 'true';
             skuInfo.sku_count = chooseCount;
             skuInfo.gift = false;
             skuInfo.sku_title = $('#introduce').attr('title');
