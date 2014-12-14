@@ -23,12 +23,11 @@ $(function(){
 		$checkbox.on('tap',function(){
 			var sku_uuid = $(this).data('sukuuid');
 			var count = $(this).parents('li').find('.value').html();
-			console.log(sku_uuid+"-"+count);
 			if($(this).hasClass('checked')){
 				$(this).removeClass("checked");
+			}else{
 				//添加到订单列表
 				Utils.addSkuCount(sku_uuid,count);
-			}else{
 				$(this).addClass("checked");
 			}
 			//全选后取消单个
@@ -50,5 +49,24 @@ $(function(){
 				});						
 			}
 		});
-	})()
+		//修改数量
+		$('.product_detail_plus').on('tap',function(){
+			$(this).prev().html(function(i,oldValue){
+				return oldValue*1+1;
+			});
+		});
+		$('.product_detail_minus').on('tap',function(){
+			$(this).next().html(function(i,oldValue){
+				if(oldValue==1){return 1;}
+				return oldValue*1-1;
+			});
+		});	
+		//删除收藏
+		$('.del_item').on('tap',function(){
+			$('.layout_column_list .checked').each(function(i,v){
+				Utils.delCart($(v).data('skuuuid'));
+				$(v).parents('li').remove();
+			})
+		})	
+	})();
 });

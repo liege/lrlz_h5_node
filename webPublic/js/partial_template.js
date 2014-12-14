@@ -20,7 +20,7 @@ var hotSalesTemp =
 var cartListTemp = 
 		'<% products.forEach(function(v){ %>'+
 		'<li>'+
-			'<div class="checkbox_wrap"><i class="checkbox" data-sukuuid=<%=v.sku_uuid %> data-skuflag=<%=v.sku_flag %>></i></div>'+
+			'<div class="checkbox_wrap"><i class="checkbox" data-skuuuid=<%=v.sku_uuid %> data-skuflag=<%=v.sku_flag %>></i></div>'+
 			'<a class="pic" href="javascript:;"><img src="http://121.40.209.34/productImg/c58xH1414987566382.jpg" alt=""></a>'+
 			'<div class="info">'+
 				'<p class="title"><%= v.sku_title %></p>'+
