@@ -21,19 +21,25 @@ $(function(){
 		var $checkbox = $('.layout_column_list .checkbox');
 		//单选
 		$checkbox.on('tap',function(){
-			var sku_uuid = $(this).data('sukuuid');
+			var sku_uuid = $(this).data('skuuuid');
 			var count = $(this).parents('li').find('.value').html();
 			if($(this).hasClass('checked')){
-				$(this).removeClass("checked");
+				$(this).removeClass("checked")[0].dataset.skuflag ="false";
+				Utils.editSkuFlag(sku_uuid,"false");
 			}else{
 				//添加到订单列表
 				Utils.addSkuCount(sku_uuid,count);
-				$(this).addClass("checked");
-			}
-			//全选后取消单个
+				$(this).addClass("checked")[0].dataset.skuflag ="true";
+				Utils.editSkuFlag(sku_uuid,"true");
+			}			
 			$checkbox.each(function(i,v){
+				//全选后取消单个
 				if(!$(v).hasClass('checked')){
 					$('.checkall').removeClass("checked");
+				}
+				//单选完全部
+				else{
+					$('.checkall').addClass("checked");
 				}
 			});
 		});
@@ -42,23 +48,37 @@ $(function(){
 			if($(this).hasClass('checked')){
 				$('.checkbox').each(function(i,v){
 					$(v).removeClass("checked");
+					if(!$(v).hasClass('checkall')){
+						v.dataset.skuflag ="false";
+						Utils.editSkuFlag($(v).data('skuuuid'),"false");
+					}
 				});
 			}else{
 				$('.checkbox').each(function(i,v){
 					$(v).addClass("checked");
+					if(!$(v).hasClass('checkall')){
+						v.dataset.skuflag ="true";
+						Utils.editSkuFlag($(v).data('skuuuid'),"true");
+					}	
 				});						
 			}
 		});
 		//修改数量
 		$('.product_detail_plus').on('tap',function(){
 			$(this).prev().html(function(i,oldValue){
-				return oldValue*1+1;
+				var newValue = oldValue*1+1;
+				Utils.addSkuCount($(this).parents('li').find('.checkbox').data('skuuuid'),newValue);
+				$(this).parents('li').find('.count').html("x"+newValue);
+				return newValue;
 			});
 		});
 		$('.product_detail_minus').on('tap',function(){
 			$(this).next().html(function(i,oldValue){
-				if(oldValue==1){return 1;}
-				return oldValue*1-1;
+				var newValue = oldValue*1-1;
+				if(oldValue==1){newValue=1;}
+				Utils.addSkuCount($(this).parents('li').find('.checkbox').data('skuuuid'),newValue);
+				$(this).parents('li').find('.count').html("x"+newValue);
+				return newValue;
 			});
 		});	
 		//删除收藏
