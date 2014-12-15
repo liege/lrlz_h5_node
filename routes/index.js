@@ -50,11 +50,11 @@ router.get('/brand/list', function(req, res) {
     homeController.getBrandDetail(req,res,renderView);
 });
 // 收藏列表页
-router.get('/users/favor', function(req, res) {
+router.get('/user/favor', function(req, res) {
     favoriteController.getFavoriteList(req,res,renderView);
 });
 // 购物车列表
-router.get('/users/cart', function(req, res) {
+router.get('/user/cart', function(req, res) {
     cartController.getCartList(req,res,renderView);
 });
 // 添加收藏
