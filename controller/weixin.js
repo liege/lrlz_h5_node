@@ -1,3 +1,4 @@
+var http = require('http');
 var Driver = require('../driver/index');
 var driverApi = require('../driverApi');
 var setting = require('../configuration').setting;

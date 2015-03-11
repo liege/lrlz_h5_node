@@ -41,9 +41,9 @@ $(function(){
 			$("#banner").width(window.innerWidth-6+"px");
 		}, false);
 	})();
-	//首页列表加载
+	//首页默认列表加载
 	if(window.hotSalesTemp){
-		ajaxRenderTemplate($(".caizhuang"),hotSalesTemp,"activity05");
+		ajaxRenderHotSales($(".caizhuang"),hotSalesTemp,"activity05");
 	}
 	//首页 分类列表选项卡初始化
 	new Tab({
@@ -53,7 +53,7 @@ $(function(){
 			if(this.bd.eq(index).html()!=""){
 				return;
 			}else{
-				ajaxRenderTemplate(this.bd.eq(index),hotSalesTemp,"activity0"+(5+index));
+				ajaxRenderHotSales(this.bd.eq(index),hotSalesTemp,"activity0"+(5+index));
 			}
 		}
 	});
@@ -97,16 +97,17 @@ $(function(){
 		}
 		return false;
 	});
+	ajaxRenderHomeTab();
 });
 
 /**
- * [ajaxRenderTemplate description] ajax加载数据渲染局部视图
+ * [ajaxRenderHotSales description] ajax加载数据渲染局部视图
  * @param  {[type]} $wrap       [渲染内容容器]
  * @param  {[type]} templateStr [art 模板片段]
  * @param  {[type]} scat_uuid   [activity05/6/7/8]
  * @return {[type]}             [undefined]
  */
-function ajaxRenderTemplate($wrap,templateStr,scat_uuid){
+function ajaxRenderHotSales($wrap,templateStr,scat_uuid){
 	// console.log(scat_uuid);
 	$.ajax({
 		type:"GET",
@@ -120,3 +121,23 @@ function ajaxRenderTemplate($wrap,templateStr,scat_uuid){
         }		
 	});			
 }
+function ajaxRenderHomeTab(options){
+
+	$.ajax({
+		type:"GET",
+		dataType:"text",
+		url:"http://localhost:8080/home/gift_exchange",
+        timeout: 10000,
+        success:function(res){
+        	console.dir($(res).text());
+        	$('#integral_exchange').html($(res)[21].innerHTML);
+        }		
+	});	
+}
+
+
+
+
+
+
+

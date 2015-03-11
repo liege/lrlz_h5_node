@@ -22,6 +22,21 @@ exports.getBrandList = function(req,res,renderFun){
 		console.log("call back error : " + JSON.stringify(err));
 	}
 };
+// 品牌街ajax
+exports.getBrandListData = function(req,res,renderFun){
+	var params = {};
+	params.appKey = setting.globalAPIParams.appKey;
+	params.appVer = setting.globalAPIParams.appVer;
+	params.update_time = '20141201';
+	params.user_label = 'userXXXX';
+	try{
+		driverApi.getBrandList(params,function(data){
+            renderFun(req,res,data);
+		});
+	}catch(err){
+		console.log("call back error : " + JSON.stringify(err));
+	}
+};
 // 品牌列表
 exports.getBrandDetail = function(req,res,renderFun){
 	var params = {};
@@ -68,6 +83,22 @@ exports.getGiftList = function(req,res,renderFun){
 		console.log("call back error : " + JSON.stringify(err));
 	}
 };
+// 积分兑换ajax
+exports.getGiftListData = function(req,res,renderFun){
+	var params = {};
+	params.appKey = setting.globalAPIParams.appKey;
+	params.appVer = setting.globalAPIParams.appVer;
+	params.scat_uuid = 'activity04';
+	params.show_point = 'true';
+	params.show_gift = 'true';
+	try{
+		driverApi.getListProducts(params,function(data){
+            renderFun(req,res,data);
+		});
+	}catch(err){
+		console.log("call back error : " + JSON.stringify(err));
+	}
+};
 // 新品首发
 exports.getNewList = function(req,res,renderFun){
 	console.log('====>init getNewList');
@@ -88,6 +119,23 @@ exports.getNewList = function(req,res,renderFun){
 					newListData:newList
 				},'home_new_products');
 			}
+		});
+	}catch(err){
+		console.log("call back error : " + JSON.stringify(err));
+	}
+};
+// 新品首发ajax
+exports.getNewListData = function(req,res,renderFun){
+	console.log('====>init getNewList');
+	var params = {};
+	params.appKey = setting.globalAPIParams.appKey;
+	params.appVer = setting.globalAPIParams.appVer;
+	params.scat_uuid = "activity03";
+	params.show_memo = "true";
+	console.log('========>INIT TRY');
+	try{
+		driverApi.getListProducts(params,function(data){
+			renderFun(req,res,data);
 		});
 	}catch(err){
 		console.log("call back error : " + JSON.stringify(err));

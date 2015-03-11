@@ -40,7 +40,20 @@ router.get('/home/:name?/:index?', function(req, res) {
             homeController.getHotSalesBanner(req,res,renderView);
     }
 });
-
+/* 首页ajax. */
+router.get('/ajax/home/:name?', function(req, res) {
+    switch(req.params.name){
+        case "gift_exchange":
+            homeController.getGiftListData(req,res,renderView);
+            break;
+        case "brand_street":
+            homeController.getBrandListData(req,res,renderView);
+            break;
+        case "new_products":
+            homeController.getNewListData(req,res,renderView);
+            break;
+    }
+});
 // 首页热销榜JSON 四个类别 scat_uuid=activity05/6/7/8
 router.get('/ajax/getHotSales/:scat_uuid',function(req,res){
     homeController.getHotSalesData(req,res,renderJson);
